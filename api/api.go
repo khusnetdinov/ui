@@ -44,6 +44,7 @@ func NewApi(token string, timeout time.Duration) (*Api, error) {
 		url:    fmt.Sprintf(telegramApiUrl, token),
 	}
 
+	// User: begin
 	response, err := api.GetMe()
 	if err != nil {
 		return &Api{}, err
@@ -54,6 +55,18 @@ func NewApi(token string, timeout time.Duration) (*Api, error) {
 		return &Api{}, err
 	}
 	api.User = user
+	// User: end
 
 	return api, nil
+}
+
+func (api Api) ListenLongPoolingUpdates() (string) {
+	// Error? Can api start as long pool update receiver
+	return "LongPoolUpdate"
+}
+
+
+func (api Api) ListenWebHookUpdates() (string) {
+	// Error? Can api starts as webhook update listener
+	return "WebHookUpdate"
 }
