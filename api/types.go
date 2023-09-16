@@ -1,4 +1,4 @@
-package main
+package api
 
 // // https://core.telegram.org/bots/api#update
 // type Update struct {
