@@ -9,8 +9,17 @@ import (
 
 const telegramApiUrl = "https://api.telegram.org/bot%s/"
 
+type Config struct {
+	Token string
+	HttpClientTimeout time.Duration
+	UpdateOffset int
+	UpdateLimit int
+	UpdateTimeout int
+}
+
 type Api struct {
 	client *http.Client
+	config Config
 	url    string
 	User   User
 }
@@ -38,10 +47,11 @@ func (e ApiError) Error() string {
 	return e.Message
 }
 
-func NewApi(token string, timeout time.Duration) (*Api, error) {
+func NewApi(config Config) (*Api, error) {
 	api := &Api{
-		client: &http.Client{Timeout: timeout},
-		url:    fmt.Sprintf(telegramApiUrl, token),
+		config: config,
+		client: &http.Client{Timeout: config.HttpClientTimeout},
+		url:    fmt.Sprintf(telegramApiUrl, config.Token),
 	}
 
 	// User: begin
