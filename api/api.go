@@ -24,26 +24,26 @@ type Api struct {
 	User   User
 }
 
-type ApiResponse struct {
+type Response struct {
 	Ok          bool                   `json:"ok"`
 	Result      json.RawMessage        `json:"result,omitempty"`
 	ErrorCode   int                    `json:"error_code,omitempty"`
 	Description string                 `json:"description,omitempty"`
-	Parameters  *ApiResponseParameters `json:"parameters,omitempty"`
+	Parameters  *ResponseParams `json:"parameters,omitempty"`
 }
 
-type ApiResponseParameters struct {
+type ResponseParams struct {
 	MigrateToChatID int64 `json:"migrate_to_chat_id,omitempty"`
 	RetryAfter      int   `json:"retry_after,omitempty"`
 }
 
-type ApiError struct {
+type Error struct {
 	Code    int
 	Message string
-	ApiResponseParameters
+	ResponseParams
 }
 
-func (e ApiError) Error() string {
+func (e Error) Error() string {
 	return e.Message
 }
 
@@ -71,12 +71,10 @@ func NewApi(config Config) (*Api, error) {
 }
 
 func (api Api) ListenLongPoolingUpdates() (string) {
-	// Error? Can api start as long pool update receiver
 	return "LongPoolUpdate"
 }
 
 
 func (api Api) ListenWebHookUpdates() (string) {
-	// Error? Can api starts as webhook update listener
 	return "WebHookUpdate"
 }

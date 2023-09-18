@@ -22,8 +22,5 @@ func main() {
 		log.Panic(err)
 	}
 
-	ui.ListenLongPoolingUpdates()
-	ui.ListenWebHookUpdates()
-
 	fmt.Println(JsonPrint(ui.User))
 }

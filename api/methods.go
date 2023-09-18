@@ -130,137 +130,137 @@ const (
 	// RequestMethodGetGameHighScores                 = "getGameHighScores"                 // https://core.telegram.org/bots/api#getgamehighscores
 )
 
-// func (api Api) GetUpdates() (ApiResponse, error) {}
-// func (api Api) SetWebhook() (ApiResponse, error) {}
-// func (api Api) DeleteWebhook() (ApiResponse, error) {}
-// func (api Api) GetWebhookInfo() (ApiResponse, error) {}
+// func (api Api) GetUpdates() (Response, error) {}
+// func (api Api) SetWebhook() (Response, error) {}
+// func (api Api) DeleteWebhook() (Response, error) {}
+// func (api Api) GetWebhookInfo() (Response, error) {}
 
-func (api Api) GetMe() (ApiResponse, error) {
+func (api Api) GetMe() (Response, error) {
 	response, err := api.client.Get(api.url + RequestMethodGetMe)
 	if err != nil {
-		return ApiResponse{}, err
+		return Response{}, err
 	}
 	defer response.Body.Close()
 
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		return ApiResponse{}, err
+		return Response{}, err
 	}
 
-	var apiResponse ApiResponse
+	var apiResponse Response
 	if err := json.Unmarshal(body, &apiResponse); err != nil {
-		return ApiResponse{}, err
+		return Response{}, err
 	}
 
 	return apiResponse, err
 }
 
-// func (api Api) LogOut() (ApiResponse, error) {}
-// func (api Api) Close() (ApiResponse, error) {}
-// func (api Api) SendMessage() (ApiResponse, error) {}
-// func (api Api) ForwardMessage() (ApiResponse, error) {}
-// func (api Api) CopyMessage() (ApiResponse, error) {}
-// func (api Api) SendPhoto() (ApiResponse, error) {}
-// func (api Api) SendAudio() (ApiResponse, error) {}
-// func (api Api) SendDocument() (ApiResponse, error) {}
-// func (api Api) SendVideo() (ApiResponse, error) {}
-// func (api Api) SendAnimation() (ApiResponse, error) {}
-// func (api Api) SendVoice() (ApiResponse, error) {}
-// func (api Api) SendVideoNote() (ApiResponse, error) {}
-// func (api Api) SendMediaGroup() (ApiResponse, error) {}
-// func (api Api) SendLocation() (ApiResponse, error) {}
-// func (api Api) SendVenue() (ApiResponse, error) {}
-// func (api Api) SendContact() (ApiResponse, error) {}
-// func (api Api) SendPoll() (ApiResponse, error) {}
-// func (api Api) SendDice() (ApiResponse, error) {}
-// func (api Api) SendChatAction() (ApiResponse, error) {}
-// func (api Api) GetUserProfilePhotos() (ApiResponse, error) {}
-// func (api Api) GetFile() (ApiResponse, error) {}
-// func (api Api) BanChatMember() (ApiResponse, error) {}
-// func (api Api) UnbanChatMember() (ApiResponse, error) {}
-// func (api Api) RestrictChatMember() (ApiResponse, error) {}
-// func (api Api) PromoteChatMember() (ApiResponse, error) {}
-// func (api Api) SetChatAdministratorCustomTitle() (ApiResponse, error) {}
-// func (api Api) BanChatSenderChat() (ApiResponse, error) {}
-// func (api Api) UnbanChatSenderChat() (ApiResponse, error) {}
-// func (api Api) SetChatPermissions() (ApiResponse, error) {}
-// func (api Api) ExportChatInviteLink() (ApiResponse, error) {}
-// func (api Api) CreateChatInviteLink() (ApiResponse, error) {}
-// func (api Api) EditChatInviteLink() (ApiResponse, error) {}
-// func (api Api) RevokeChatInviteLink() (ApiResponse, error) {}
-// func (api Api) ApproveChatJoinRequest() (ApiResponse, error) {}
-// func (api Api) DeclineChatJoinRequest() (ApiResponse, error) {}
-// func (api Api) SetChatPhoto() (ApiResponse, error) {}
-// func (api Api) DeleteChatPhoto() (ApiResponse, error) {}
-// func (api Api) SetChatTitle() (ApiResponse, error) {}
-// func (api Api) SetChatDescription() (ApiResponse, error) {}
-// func (api Api) PinChatMessage() (ApiResponse, error) {}
-// func (api Api) UnpinChatMessage() (ApiResponse, error) {}
-// func (api Api) UnpinAllChatMessages() (ApiResponse, error) {}
-// func (api Api) LeaveChat() (ApiResponse, error) {}
-// func (api Api) GetChat() (ApiResponse, error) {}
-// func (api Api) GetChatAdministrators() (ApiResponse, error) {}
-// func (api Api) GetChatMemberCount() (ApiResponse, error) {}
-// func (api Api) GetChatMember() (ApiResponse, error) {}
-// func (api Api) SetChatStickerSet() (ApiResponse, error) {}
-// func (api Api) DeleteChatStickerSet() (ApiResponse, error) {}
-// func (api Api) GetForumTopicIconStickers() (ApiResponse, error) {}
-// func (api Api) CreateForumTopic() (ApiResponse, error) {}
-// func (api Api) EditForumTopic() (ApiResponse, error) {}
-// func (api Api) CloseForumTopic() (ApiResponse, error) {}
-// func (api Api) ReopenForumTopic() (ApiResponse, error) {}
-// func (api Api) DeleteForumTopic() (ApiResponse, error) {}
-// func (api Api) UnpinAllForumTopicMessages() (ApiResponse, error) {}
-// func (api Api) EditGeneralForumTopic() (ApiResponse, error) {}
-// func (api Api) CloseGeneralForumTopic() (ApiResponse, error) {}
-// func (api Api) ReopenGeneralForumTopic() (ApiResponse, error) {}
-// func (api Api) HideGeneralForumTopic() (ApiResponse, error) {}
-// func (api Api) UnhideGeneralForumTopic() (ApiResponse, error) {}
-// func (api Api) UnpinAllGeneralForumTopicMessages() (ApiResponse, error) {}
-// func (api Api) AnswerCallbackQuery() (ApiResponse, error) {}
-// func (api Api) SetMyCommands() (ApiResponse, error) {}
-// func (api Api) DeleteMyCommands() (ApiResponse, error) {}
-// func (api Api) GetMyCommands() (ApiResponse, error) {}
-// func (api Api) SetMyName() (ApiResponse, error) {}
-// func (api Api) GetMyName() (ApiResponse, error) {}
-// func (api Api) SetMyDescription() (ApiResponse, error) {}
-// func (api Api) GetMyDescription() (ApiResponse, error) {}
-// func (api Api) SetMyShortDescription() (ApiResponse, error) {}
-// func (api Api) GetMyShortDescription() (ApiResponse, error) {}
-// func (api Api) SetChatMenuButton() (ApiResponse, error) {}
-// func (api Api) GetChatMenuButton() (ApiResponse, error) {}
-// func (api Api) SetMyDefaultAdministratorRights() (ApiResponse, error) {}
-// func (api Api) GetMyDefaultAdministratorRights() (ApiResponse, error) {}
-// func (api Api) EditMessageText() (ApiResponse, error) {}
-// func (api Api) EditMessageCaption() (ApiResponse, error) {}
-// func (api Api) EditMessageMedia() (ApiResponse, error) {}
-// func (api Api) EditMessageLiveLocation() (ApiResponse, error) {}
-// func (api Api) StopMessageLiveLocation() (ApiResponse, error) {}
-// func (api Api) EditMessageReplyMarkup() (ApiResponse, error) {}
-// func (api Api) StopPoll() (ApiResponse, error) {}
-// func (api Api) DeleteMessage() (ApiResponse, error) {}
-// func (api Api) SendSticker() (ApiResponse, error) {}
-// func (api Api) GetStickerSet() (ApiResponse, error) {}
-// func (api Api) GetCustomEmojiStickers() (ApiResponse, error) {}
-// func (api Api) UploadStickerFile() (ApiResponse, error) {}
-// func (api Api) CreateNewStickerSet() (ApiResponse, error) {}
-// func (api Api) AddStickerToSet() (ApiResponse, error) {}
-// func (api Api) SetStickerPositionInSet() (ApiResponse, error) {}
-// func (api Api) DeleteStickerFromSet() (ApiResponse, error) {}
-// func (api Api) SetStickerEmojiList() (ApiResponse, error) {}
-// func (api Api) SetStickerKeywords() (ApiResponse, error) {}
-// func (api Api) SetStickerMaskPosition() (ApiResponse, error) {}
-// func (api Api) SetStickerSetTitle() (ApiResponse, error) {}
-// func (api Api) SetStickerSetThumbnail() (ApiResponse, error) {}
-// func (api Api) SetCustomEmojiStickerSetThumbnail() (ApiResponse, error) {}
-// func (api Api) DeleteStickerSet() (ApiResponse, error) {}
-// func (api Api) AnswerInlineQuery() (ApiResponse, error) {}
-// func (api Api) AnswerWebAppQuery() (ApiResponse, error) {}
-// func (api Api) SendInvoice() (ApiResponse, error) {}
-// func (api Api) CreateInvoiceLink() (ApiResponse, error) {}
-// func (api Api) AnswerShippingQuery() (ApiResponse, error) {}
-// func (api Api) AnswerPreCheckoutQuery() (ApiResponse, error) {}
-// func (api Api) SetPassportDataErrors() (ApiResponse, error) {}
-// func (api Api) SendGame() (ApiResponse, error) {}
-// func (api Api) SetGameScore() (ApiResponse, error) {}
-// func (api Api) GetGameHighScores() (ApiResponse, error) {}
+// func (api Api) LogOut() (Response, error) {}
+// func (api Api) Close() (Response, error) {}
+// func (api Api) SendMessage() (Response, error) {}
+// func (api Api) ForwardMessage() (Response, error) {}
+// func (api Api) CopyMessage() (Response, error) {}
+// func (api Api) SendPhoto() (Response, error) {}
+// func (api Api) SendAudio() (Response, error) {}
+// func (api Api) SendDocument() (Response, error) {}
+// func (api Api) SendVideo() (Response, error) {}
+// func (api Api) SendAnimation() (Response, error) {}
+// func (api Api) SendVoice() (Response, error) {}
+// func (api Api) SendVideoNote() (Response, error) {}
+// func (api Api) SendMediaGroup() (Response, error) {}
+// func (api Api) SendLocation() (Response, error) {}
+// func (api Api) SendVenue() (Response, error) {}
+// func (api Api) SendContact() (Response, error) {}
+// func (api Api) SendPoll() (Response, error) {}
+// func (api Api) SendDice() (Response, error) {}
+// func (api Api) SendChatAction() (Response, error) {}
+// func (api Api) GetUserProfilePhotos() (Response, error) {}
+// func (api Api) GetFile() (Response, error) {}
+// func (api Api) BanChatMember() (Response, error) {}
+// func (api Api) UnbanChatMember() (Response, error) {}
+// func (api Api) RestrictChatMember() (Response, error) {}
+// func (api Api) PromoteChatMember() (Response, error) {}
+// func (api Api) SetChatAdministratorCustomTitle() (Response, error) {}
+// func (api Api) BanChatSenderChat() (Response, error) {}
+// func (api Api) UnbanChatSenderChat() (Response, error) {}
+// func (api Api) SetChatPermissions() (Response, error) {}
+// func (api Api) ExportChatInviteLink() (Response, error) {}
+// func (api Api) CreateChatInviteLink() (Response, error) {}
+// func (api Api) EditChatInviteLink() (Response, error) {}
+// func (api Api) RevokeChatInviteLink() (Response, error) {}
+// func (api Api) ApproveChatJoinRequest() (Response, error) {}
+// func (api Api) DeclineChatJoinRequest() (Response, error) {}
+// func (api Api) SetChatPhoto() (Response, error) {}
+// func (api Api) DeleteChatPhoto() (Response, error) {}
+// func (api Api) SetChatTitle() (Response, error) {}
+// func (api Api) SetChatDescription() (Response, error) {}
+// func (api Api) PinChatMessage() (Response, error) {}
+// func (api Api) UnpinChatMessage() (Response, error) {}
+// func (api Api) UnpinAllChatMessages() (Response, error) {}
+// func (api Api) LeaveChat() (Response, error) {}
+// func (api Api) GetChat() (Response, error) {}
+// func (api Api) GetChatAdministrators() (Response, error) {}
+// func (api Api) GetChatMemberCount() (Response, error) {}
+// func (api Api) GetChatMember() (Response, error) {}
+// func (api Api) SetChatStickerSet() (Response, error) {}
+// func (api Api) DeleteChatStickerSet() (Response, error) {}
+// func (api Api) GetForumTopicIconStickers() (Response, error) {}
+// func (api Api) CreateForumTopic() (Response, error) {}
+// func (api Api) EditForumTopic() (Response, error) {}
+// func (api Api) CloseForumTopic() (Response, error) {}
+// func (api Api) ReopenForumTopic() (Response, error) {}
+// func (api Api) DeleteForumTopic() (Response, error) {}
+// func (api Api) UnpinAllForumTopicMessages() (Response, error) {}
+// func (api Api) EditGeneralForumTopic() (Response, error) {}
+// func (api Api) CloseGeneralForumTopic() (Response, error) {}
+// func (api Api) ReopenGeneralForumTopic() (Response, error) {}
+// func (api Api) HideGeneralForumTopic() (Response, error) {}
+// func (api Api) UnhideGeneralForumTopic() (Response, error) {}
+// func (api Api) UnpinAllGeneralForumTopicMessages() (Response, error) {}
+// func (api Api) AnswerCallbackQuery() (Response, error) {}
+// func (api Api) SetMyCommands() (Response, error) {}
+// func (api Api) DeleteMyCommands() (Response, error) {}
+// func (api Api) GetMyCommands() (Response, error) {}
+// func (api Api) SetMyName() (Response, error) {}
+// func (api Api) GetMyName() (Response, error) {}
+// func (api Api) SetMyDescription() (Response, error) {}
+// func (api Api) GetMyDescription() (Response, error) {}
+// func (api Api) SetMyShortDescription() (Response, error) {}
+// func (api Api) GetMyShortDescription() (Response, error) {}
+// func (api Api) SetChatMenuButton() (Response, error) {}
+// func (api Api) GetChatMenuButton() (Response, error) {}
+// func (api Api) SetMyDefaultAdministratorRights() (Response, error) {}
+// func (api Api) GetMyDefaultAdministratorRights() (Response, error) {}
+// func (api Api) EditMessageText() (Response, error) {}
+// func (api Api) EditMessageCaption() (Response, error) {}
+// func (api Api) EditMessageMedia() (Response, error) {}
+// func (api Api) EditMessageLiveLocation() (Response, error) {}
+// func (api Api) StopMessageLiveLocation() (Response, error) {}
+// func (api Api) EditMessageReplyMarkup() (Response, error) {}
+// func (api Api) StopPoll() (Response, error) {}
+// func (api Api) DeleteMessage() (Response, error) {}
+// func (api Api) SendSticker() (Response, error) {}
+// func (api Api) GetStickerSet() (Response, error) {}
+// func (api Api) GetCustomEmojiStickers() (Response, error) {}
+// func (api Api) UploadStickerFile() (Response, error) {}
+// func (api Api) CreateNewStickerSet() (Response, error) {}
+// func (api Api) AddStickerToSet() (Response, error) {}
+// func (api Api) SetStickerPositionInSet() (Response, error) {}
+// func (api Api) DeleteStickerFromSet() (Response, error) {}
+// func (api Api) SetStickerEmojiList() (Response, error) {}
+// func (api Api) SetStickerKeywords() (Response, error) {}
+// func (api Api) SetStickerMaskPosition() (Response, error) {}
+// func (api Api) SetStickerSetTitle() (Response, error) {}
+// func (api Api) SetStickerSetThumbnail() (Response, error) {}
+// func (api Api) SetCustomEmojiStickerSetThumbnail() (Response, error) {}
+// func (api Api) DeleteStickerSet() (Response, error) {}
+// func (api Api) AnswerInlineQuery() (Response, error) {}
+// func (api Api) AnswerWebAppQuery() (Response, error) {}
+// func (api Api) SendInvoice() (Response, error) {}
+// func (api Api) CreateInvoiceLink() (Response, error) {}
+// func (api Api) AnswerShippingQuery() (Response, error) {}
+// func (api Api) AnswerPreCheckoutQuery() (Response, error) {}
+// func (api Api) SetPassportDataErrors() (Response, error) {}
+// func (api Api) SendGame() (Response, error) {}
+// func (api Api) SetGameScore() (Response, error) {}
+// func (api Api) GetGameHighScores() (Response, error) {}
