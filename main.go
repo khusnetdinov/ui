@@ -17,10 +17,12 @@ func main() {
 		UpdateTimeout:     0,
 	}
 
-	ui, err := api.NewApi(config)
+	ui, err := api.New(config)
 	if err != nil {
 		log.Panic(err)
 	}
 
 	fmt.Println(JsonPrint(ui.User))
+
+
 }

@@ -49,7 +49,7 @@ func (e Error) Error() string {
 	return e.Message
 }
 
-func NewApi(config Config) (*Api, error) {
+func New(config Config) (*Api, error) {
 	api := &Api{
 		config: config,
 		client: &http.Client{Timeout: config.HttpClientTimeout},
