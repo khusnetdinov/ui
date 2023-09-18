@@ -24,11 +24,13 @@ type Api struct {
 	User   User
 }
 
+type RequestParams []byte
+
 type Response struct {
-	Ok          bool                   `json:"ok"`
-	Result      json.RawMessage        `json:"result,omitempty"`
-	ErrorCode   int                    `json:"error_code,omitempty"`
-	Description string                 `json:"description,omitempty"`
+	Ok          bool            `json:"ok"`
+	Result      json.RawMessage `json:"result,omitempty"`
+	ErrorCode   int             `json:"error_code,omitempty"`
+	Description string          `json:"description,omitempty"`
 	Parameters  *ResponseParams `json:"parameters,omitempty"`
 }
 
