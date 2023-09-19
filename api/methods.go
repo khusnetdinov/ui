@@ -20,7 +20,7 @@ const (
 	// RequestMethodSetWebhook                        = "setWebhook"                        // https://core.telegram.org/bots/api#setwebhook
 	// RequestMethodDeleteWebhook                     = "deleteWebhook"                     // https://core.telegram.org/bots/api#deletewebhook
 	// RequestMethodGetWebhookInfo                    = "getWebhookInfo"                    // https://core.telegram.org/bots/api#getwebhookinfo
-	RequestMethodGetMe = "getMe" // https://core.telegram.org/bots/api#getme
+	RequestMethodGetMe                             = "getMe"                             // https://core.telegram.org/bots/api#getme
 	// RequestMethodLogOut                            = "logOut"                            // https://core.telegram.org/bots/api#logout
 	// RequestMethodClose                             = "close"                             // https://core.telegram.org/bots/api#close
 	RequestMethodSendMessage                       = "sendMessage"                       // https://core.telegram.org/bots/api#sendmessage
