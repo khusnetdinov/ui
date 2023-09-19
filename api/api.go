@@ -55,7 +55,9 @@ func New(config *Config) (*Api, error) {
 		url:    fmt.Sprintf(telegramApiUrl, config.Token),
 	}
 
-	response, err := api.GetMe()
+	requestParams := GetMeParams{}
+
+	response, err := api.GetMe(requestParams)
 	if err != nil {
 		return &Api{}, err
 	}

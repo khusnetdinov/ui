@@ -28,8 +28,6 @@ func main() {
 					ReplyToMessageId: update.Message.MessageId,
 					Text:             update.Message.Text,
 				}
-				log.Println(update.UpdateId)
-				log.Println(JsonPrint(message))
 
 				ui.SendMessage(message)
 			}

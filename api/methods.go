@@ -167,8 +167,19 @@ func (api Api) GetUpdates(params GetUpdatesParams) (Response, error) {
 // func (api Api) DeleteWebhook() (Response, error) {}
 // func (api Api) GetWebhookInfo() (Response, error) {}
 
-func (api Api) GetMe() (Response, error) {
-	response, err := api.client.Get(api.url + RequestMethodGetMe)
+func (api Api) GetMe(params GetMeParams) (Response, error) {
+	jsonParams, err := json.Marshal(params)
+	if err != nil {
+		return Response{}, err
+	}
+
+	request, err := http.NewRequest("GET", api.url + RequestMethodGetMe, bytes.NewBuffer(jsonParams))
+	if err != nil {
+		return Response{}, err
+	}
+	request.Header.Set("Content-Type", ContentTypeJSON)
+
+	response, err := api.client.Do(request)
 	if err != nil {
 		return Response{}, err
 	}
