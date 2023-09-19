@@ -1,8 +1,10 @@
 package api
 
 import (
+	"bytes"
 	"encoding/json"
 	"io/ioutil"
+	"net/http"
 )
 
 const (
@@ -14,7 +16,7 @@ const (
 )
 
 const (
-	// RequestMethodGetUpdates                        = "getUpdates"                        // https://core.telegram.org/bots/api#getupdates
+	RequestMethodGetUpdates                        = "getUpdates"                        // https://core.telegram.org/bots/api#getupdates
 	// RequestMethodSetWebhook                        = "setWebhook"                        // https://core.telegram.org/bots/api#setwebhook
 	// RequestMethodDeleteWebhook                     = "deleteWebhook"                     // https://core.telegram.org/bots/api#deletewebhook
 	// RequestMethodGetWebhookInfo                    = "getWebhookInfo"                    // https://core.telegram.org/bots/api#getwebhookinfo
@@ -130,7 +132,37 @@ const (
 	// RequestMethodGetGameHighScores                 = "getGameHighScores"                 // https://core.telegram.org/bots/api#getgamehighscores
 )
 
-// func (api Api) GetUpdates() (Response, error) {}
+func (api Api) GetUpdates(params GetUpdatesParams) (Response, error) {
+	jsonParams, err := json.Marshal(params)
+	if err != nil {
+		return Response{}, err
+	}
+
+	request, err := http.NewRequest("POST", api.url + RequestMethodGetUpdates, bytes.NewBuffer(jsonParams))
+	if err != nil {
+		return Response{}, err
+	}
+	request.Header.Set("Content-Type", ContentTypeForm)
+
+	response, err := api.client.Do(request)
+	if err != nil {
+		return Response{}, err
+	}
+	defer response.Body.Close()
+
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		return Response{}, err
+	}
+
+	var apiResponse Response
+	if err := json.Unmarshal(body, &apiResponse); err != nil {
+		return Response{}, err
+	}
+
+	return apiResponse, err
+}
+
 // func (api Api) SetWebhook() (Response, error) {}
 // func (api Api) DeleteWebhook() (Response, error) {}
 // func (api Api) GetWebhookInfo() (Response, error) {}

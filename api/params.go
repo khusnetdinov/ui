@@ -1,12 +1,12 @@
 package api
 
-// // https://core.telegram.org/bots/api#getupdates
-// type GetUpdatesParams struct {
-// 	Offset         int64    `json:"offset,omitempty"`
-// 	Limit          int64    `json:"limit,omitempty"`
-// 	Timeout        int64    `json:"timeout,omitempty"`
-// 	AllowedUpdates []string `json:"allowed_updates,omitempty"`
-// }
+// https://core.telegram.org/bots/api#getupdates
+type GetUpdatesParams struct {
+	Offset         int64    `json:"offset,omitempty"`
+	Limit          int64    `json:"limit,omitempty"`
+	Timeout        int64    `json:"timeout,omitempty"`
+	AllowedUpdates []string `json:"allowed_updates,omitempty"`
+}
 
 // // https://core.telegram.org/bots/api#setwebhook
 // type SetWebhookParams struct {

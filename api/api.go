@@ -3,6 +3,7 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 )
@@ -10,11 +11,11 @@ import (
 const telegramApiUrl = "https://api.telegram.org/bot%s/"
 
 type Config struct {
-	Token string
+	Token             string
 	HttpClientTimeout time.Duration
-	UpdateOffset int
-	UpdateLimit int
-	UpdateTimeout int
+	UpdateOffset      int64
+	UpdateLimit       int64
+	UpdateTimeout     int64
 }
 
 type Api struct {
@@ -23,8 +24,6 @@ type Api struct {
 	url    string
 	User   User
 }
-
-type RequestParams []byte
 
 type Response struct {
 	Ok          bool            `json:"ok"`
@@ -72,11 +71,42 @@ func New(config Config) (*Api, error) {
 	return api, nil
 }
 
-func (api Api) ListenLongPoolingUpdates() (string) {
-	return "LongPoolUpdate"
+func (api Api) ListenLongPoolingUpdates(callback func(updates <-chan Update)) {
+	updatesChan := make(chan Update, 100)
+
+	go func() {
+		for {
+			requestParams := GetUpdatesParams{
+				Offset:  api.config.UpdateOffset,
+				Limit:   api.config.UpdateLimit,
+				Timeout: api.config.UpdateTimeout,
+			}
+
+			// []Update: begin
+			response, err := api.GetUpdates(requestParams)
+			if err != nil {
+				log.Println(err)
+			}
+
+			var updates []Update
+			if err := json.Unmarshal(response.Result, &updates); err != nil {
+				log.Println(err)
+			}
+			// []Update: end
+
+			for _, update := range updates {
+				if update.UpdateId >= api.config.UpdateOffset {
+					api.config.UpdateOffset = update.UpdateId + 1
+					updatesChan <- update
+				}
+
+			}
+		}
+	}()
+
+	callback(updatesChan)
 }
 
-
-func (api Api) ListenWebHookUpdates() (string) {
-	return "WebHookUpdate"
+func (api Api) ListenWebHookUpdates(callback func()) {
+	callback()
 }

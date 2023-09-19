@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"time"
 
@@ -12,17 +11,20 @@ func main() {
 	config := api.Config{
 		Token:             "6591790550:AAE5s6Mmhs8QsGPDxmTxEB23kvKKg3KrI_w",
 		HttpClientTimeout: time.Duration(1) * time.Second,
-		UpdateOffset:      100,
-		UpdateLimit:       0,
+		UpdateOffset:      0,
+		UpdateLimit:       100,
 		UpdateTimeout:     0,
 	}
-
 	ui, err := api.New(config)
 	if err != nil {
 		log.Panic(err)
 	}
 
-	fmt.Println(JsonPrint(ui.User))
-
-
+	ui.ListenLongPoolingUpdates(func(updates <-chan api.Update) {
+		for update := range updates {
+			if update.Message != nil {
+				log.Println(JsonPrint(update.Message))
+			}
+		}
+	})
 }
