@@ -48,14 +48,13 @@ func (e Error) Error() string {
 	return e.Message
 }
 
-func New(config Config) (*Api, error) {
+func New(config *Config) (*Api, error) {
 	api := &Api{
-		config: config,
+		config: *config,
 		client: &http.Client{Timeout: config.HttpClientTimeout},
 		url:    fmt.Sprintf(telegramApiUrl, config.Token),
 	}
 
-	// User: begin
 	response, err := api.GetMe()
 	if err != nil {
 		return &Api{}, err
@@ -66,12 +65,11 @@ func New(config Config) (*Api, error) {
 		return &Api{}, err
 	}
 	api.User = user
-	// User: end
 
 	return api, nil
 }
 
-func (api Api) ListenLongPoolingUpdates(callback func(updates <-chan Update)) {
+func (api *Api) ListenPoolingUpdates(callback func(updates <-chan Update)) {
 	updatesChan := make(chan Update, 100)
 
 	go func() {
@@ -82,22 +80,23 @@ func (api Api) ListenLongPoolingUpdates(callback func(updates <-chan Update)) {
 				Timeout: api.config.UpdateTimeout,
 			}
 
-			// []Update: begin
 			response, err := api.GetUpdates(requestParams)
 			if err != nil {
-				log.Println(err)
+				log.Println("Error: %s", err)
+
+				time.Sleep(api.config.HttpClientTimeout)
 			}
 
 			var updates []Update
 			if err := json.Unmarshal(response.Result, &updates); err != nil {
 				log.Println(err)
 			}
-			// []Update: end
 
 			for _, update := range updates {
 				if update.UpdateId >= api.config.UpdateOffset {
 					api.config.UpdateOffset = update.UpdateId + 1
 					updatesChan <- update
+
 				}
 
 			}

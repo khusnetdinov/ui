@@ -23,7 +23,7 @@ const (
 	RequestMethodGetMe = "getMe" // https://core.telegram.org/bots/api#getme
 	// RequestMethodLogOut                            = "logOut"                            // https://core.telegram.org/bots/api#logout
 	// RequestMethodClose                             = "close"                             // https://core.telegram.org/bots/api#close
-	// RequestMethodSendMessage                       = "sendMessage"                       // https://core.telegram.org/bots/api#sendmessage
+	RequestMethodSendMessage                       = "sendMessage"                       // https://core.telegram.org/bots/api#sendmessage
 	// RequestMethodForwardMessage                    = "forwardMessage"                    // https://core.telegram.org/bots/api#forwardmessage
 	// RequestMethodCopyMessage                       = "copyMessage"                       // https://core.telegram.org/bots/api#copymessage
 	// RequestMethodSendPhoto                         = "sendPhoto"                         // https://core.telegram.org/bots/api#sendphoto
@@ -142,7 +142,7 @@ func (api Api) GetUpdates(params GetUpdatesParams) (Response, error) {
 	if err != nil {
 		return Response{}, err
 	}
-	request.Header.Set("Content-Type", ContentTypeForm)
+	request.Header.Set("Content-Type", ContentTypeJSON)
 
 	response, err := api.client.Do(request)
 	if err != nil {
@@ -189,7 +189,38 @@ func (api Api) GetMe() (Response, error) {
 
 // func (api Api) LogOut() (Response, error) {}
 // func (api Api) Close() (Response, error) {}
-// func (api Api) SendMessage() (Response, error) {}
+
+func (api Api) SendMessage(params SendMessageParams) (Response, error) {
+	jsonParams, err := json.Marshal(params)
+	if err != nil {
+		return Response{}, err
+	}
+
+	request, err := http.NewRequest("POST", api.url + RequestMethodSendMessage, bytes.NewBuffer(jsonParams))
+	if err != nil {
+		return Response{}, err
+	}
+	request.Header.Set("Content-Type", ContentTypeJSON)
+
+	response, err := api.client.Do(request)
+	if err != nil {
+		return Response{}, err
+	}
+	defer response.Body.Close()
+
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		return Response{}, err
+	}
+
+	var apiResponse Response
+	if err := json.Unmarshal(body, &apiResponse); err != nil {
+		return Response{}, err
+	}
+
+	return apiResponse, err
+}
+
 // func (api Api) ForwardMessage() (Response, error) {}
 // func (api Api) CopyMessage() (Response, error) {}
 // func (api Api) SendPhoto() (Response, error) {}

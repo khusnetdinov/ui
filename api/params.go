@@ -32,20 +32,20 @@ type GetMeParams struct{}
 // type CloseParams struct {
 // }
 
-// // https://core.telegram.org/bots/api#sendmessage
-// type SendMessageParams struct {
-// 	ChatId                   int64           `json:"chat_id"`
-// 	MessageThreadId          int64           `json:"message_thread_id,omitempty"`
-// 	Text                     string          `json:"text"`
-// 	ParseMode                string          `json:"parse_mode,omitempty"`
-// 	Entities                 []MessageEntity `json:"entities,omitempty"`
-// 	DisableWebPagePreview    bool            `json:"disable_web_page_preview,omitempty"`
-// 	DisableNotification      bool            `json:"disable_notification,omitempty"`
-// 	ProtectContent           bool            `json:"protect_content,omitempty"`
-// 	ReplyToMessageId         int64           `json:"reply_to_message_id,omitempty"`
-// 	AllowSendingWithoutReply bool            `json:"allow_sending_without_reply,omitempty"`
-// 	// ReplyMarkup InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply`json:"reply_markup,omitempty"`
-// }
+// https://core.telegram.org/bots/api#sendmessage
+type SendMessageParams struct {
+	ChatId                   int64           `json:"chat_id"`
+	MessageThreadId          int64           `json:"message_thread_id,omitempty"`
+	Text                     string          `json:"text"`
+	ParseMode                string          `json:"parse_mode,omitempty"`
+	Entities                 []MessageEntity `json:"entities,omitempty"`
+	DisableWebPagePreview    bool            `json:"disable_web_page_preview,omitempty"`
+	DisableNotification      bool            `json:"disable_notification,omitempty"`
+	ProtectContent           bool            `json:"protect_content,omitempty"`
+	ReplyToMessageId         int64           `json:"reply_to_message_id,omitempty"`
+	AllowSendingWithoutReply bool            `json:"allow_sending_without_reply,omitempty"`
+	// ReplyMarkup InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply`json:"reply_markup,omitempty"`
+}
 
 // // https://core.telegram.org/bots/api#forwardmessage
 // type ForwardMessageParams struct {
