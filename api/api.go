@@ -55,15 +55,9 @@ func New(config *Config) (*Api, error) {
 		url:    fmt.Sprintf(telegramApiUrl, config.Token),
 	}
 
-	requestParams := GetMeParams{}
-
-	response, err := api.GetMe(requestParams)
-	if err != nil {
-		return &Api{}, err
-	}
-
 	var user User
-	if err := json.Unmarshal(response.Result, &user); err != nil {
+	requestParams := GetMeParams{}
+	if err := api.GetMe(requestParams, &user); err != nil {
 		return &Api{}, err
 	}
 	api.User = user
@@ -76,31 +70,23 @@ func (api *Api) ListenPoolingUpdates(callback func(updates <-chan Update)) {
 
 	go func() {
 		for {
+			var updates []Update
 			requestParams := GetUpdatesParams{
 				Offset:  api.config.UpdateOffset,
 				Limit:   api.config.UpdateLimit,
 				Timeout: api.config.UpdateTimeout,
 			}
-
-			response, err := api.GetUpdates(requestParams)
-			if err != nil {
+			if err := api.GetUpdates(requestParams, &updates); err != nil {
 				log.Println("Error: %s", err)
 
 				time.Sleep(api.config.HttpClientTimeout)
-			}
-
-			var updates []Update
-			if err := json.Unmarshal(response.Result, &updates); err != nil {
-				log.Println(err)
 			}
 
 			for _, update := range updates {
 				if update.UpdateId >= api.config.UpdateOffset {
 					api.config.UpdateOffset = update.UpdateId + 1
 					updatesChan <- update
-
 				}
-
 			}
 		}
 	}()
