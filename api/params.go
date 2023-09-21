@@ -12,10 +12,10 @@ type GetUpdatesParams struct {
 // type SetWebhookParams struct {
 // }
 
-// // https://core.telegram.org/bots/api#deletewebhook
-// type DeleteWebhookParams struct {
-// 	DropPendingUpdates bool `json:"drop_pending_updates,omitempty"`
-// }
+// https://core.telegram.org/bots/api#deletewebhook
+type DeleteWebhookParams struct {
+	DropPendingUpdates bool `json:"drop_pending_updates,omitempty"`
+}
 
 // https://core.telegram.org/bots/api#getwebhookinfo
 type GetWebhookInfoParams struct {}

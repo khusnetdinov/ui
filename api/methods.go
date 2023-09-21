@@ -18,7 +18,7 @@ const (
 const (
 	RequestMethodGetUpdates                        = "getUpdates"                        // https://core.telegram.org/bots/api#getupdates
 	// RequestMethodSetWebhook                        = "setWebhook"                        // https://core.telegram.org/bots/api#setwebhook
-	// RequestMethodDeleteWebhook                     = "deleteWebhook"                     // https://core.telegram.org/bots/api#deletewebhook
+	RequestMethodDeleteWebhook                     = "deleteWebhook"                     // https://core.telegram.org/bots/api#deletewebhook
 	RequestMethodGetWebhookInfo                    = "getWebhookInfo"                    // https://core.telegram.org/bots/api#getwebhookinfo
 	RequestMethodGetMe                             = "getMe"                             // https://core.telegram.org/bots/api#getme
 	// RequestMethodLogOut                            = "logOut"                            // https://core.telegram.org/bots/api#logout
@@ -168,7 +168,41 @@ func (api Api) GetUpdates(params GetUpdatesParams, result *[]Update) error {
 }
 
 // func (api Api) SetWebhook() error {}
-// func (api Api) DeleteWebhook() error {}
+
+func (api Api) DeleteWebhook(params DeleteWebhookParams, result *bool) error {
+	jsonParams, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	request, err := http.NewRequest("POST", api.url + RequestMethodDeleteWebhook, bytes.NewBuffer(jsonParams))
+	if err != nil {
+		return err
+	}
+	request.Header.Set("Content-Type", ContentTypeJSON)
+
+	response, err := api.client.Do(request)
+	if err != nil {
+		return err
+	}
+	defer response.Body.Close()
+
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		return err
+	}
+
+	var apiResponse Response
+	if err := json.Unmarshal(body, &apiResponse); err != nil {
+		return err
+	}
+
+	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {
+		return err
+	}
+
+	return nil
+}
 
 func (api Api) GetWebhookInfo(params GetWebhookInfoParams, result *WebhookInfo) error {
 	jsonParams, err := json.Marshal(params)
