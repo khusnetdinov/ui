@@ -20,7 +20,7 @@ type Update struct {
 }
 
 // https://core.telegram.org/bots/api#webhookinfo
-type WebhookInfo struct {
+type WebHookInfo struct {
 	Url                          string   `json:"url"`
 	HasCustomCertificate         bool     `json:"has_custom_certificate"`
 	PendingUpdateCount           int64    `json:"pending_update_count"`
@@ -844,9 +844,9 @@ type ChatLocation struct {
 // 	DisableContentTypeDetection bool            `json:"disable_content_type_detection,omitempty"`
 // }
 
-// // https://core.telegram.org/bots/api#inputfile
-// type InputFile struct {
-// }
+// https://core.telegram.org/bots/api#inputfile
+type InputFile struct {
+}
 
 // https://core.telegram.org/bots/api#sticker
 type Sticker struct {

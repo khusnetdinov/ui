@@ -8,17 +8,24 @@ type GetUpdatesParams struct {
 	AllowedUpdates []string `json:"allowed_updates,omitempty"`
 }
 
-// // https://core.telegram.org/bots/api#setwebhook
-// type SetWebhookParams struct {
-// }
+// https://core.telegram.org/bots/api#setwebhook
+type SetWebHookParams struct {
+	Url                string     `json:"url"`
+	Certificate        *InputFile `json:"certificate,omitempty"`
+	IpAddress          int64      `json:"ip_address,omitempty"`
+	MaxConnections     int64      `json:"max_connections,omitempty"`
+	AllowedUpdates     []string   `json:"allowed_updates,omitempty"`
+	DropPendingUpdates bool       `json:"drop_pending_updates,omitempty"`
+	SecretToken        string     `json:"secret_token,omitempty"`
+}
 
 // https://core.telegram.org/bots/api#deletewebhook
-type DeleteWebhookParams struct {
+type DeleteWebHookParams struct {
 	DropPendingUpdates bool `json:"drop_pending_updates,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#getwebhookinfo
-type GetWebhookInfoParams struct {}
+type GetWebHookInfoParams struct{}
 
 // https://core.telegram.org/bots/api#getme
 type GetMeParams struct{}

@@ -20,19 +20,35 @@ func main() {
 		log.Panic(err)
 	}
 
-	ui.ListenPoolingUpdates(func(updates <-chan api.Update) {
-		for update := range updates {
-			if update.Message != nil {
-				var message api.Message
-				requestParams := api.SendMessageParams{
-					ChatId:           update.Message.Chat.Id,
-					ReplyToMessageId: update.Message.MessageId,
-					Text:             update.Message.Text,
-				}
-				ui.SendMessage(requestParams, &message)
+	var resultSet bool
+	requestSetParams := api.SetWebHookParams{}
+	if err := ui.SetWebHook(requestSetParams, &resultSet); err != nil {
+		log.Panic(err)
+	}
+	log.Println("SetWebHook: %s", resultSet)
 
-				log.Println(JsonPrint(message))
-			}
-		}
-	})
+	var resultDelete bool
+	requestDeleteParams := api.DeleteWebHookParams{
+		DropPendingUpdates: false,
+	}
+	if err := ui.DeleteWebHook(requestDeleteParams, &resultDelete); err != nil {
+		log.Panic(err)
+	}
+	log.Println("DeleteWebHook: %s", resultDelete)
+
+	// ui.ListenPoolingUpdates(func(updates <-chan api.Update) {
+	// 	for update := range updates {
+	// 		if update.Message != nil {
+	// 			var message api.Message
+	// 			requestParams := api.SendMessageParams{
+	// 				ChatId:           update.Message.Chat.Id,
+	// 				ReplyToMessageId: update.Message.MessageId,
+	// 				Text:             update.Message.Text,
+	// 			}
+	// 			ui.SendMessage(requestParams, &message)
+
+	// 			log.Println(JsonPrint(message))
+	// 		}
+	// 	}
+	// })
 }
