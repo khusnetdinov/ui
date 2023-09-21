@@ -19,7 +19,7 @@ const (
 	RequestMethodGetUpdates                        = "getUpdates"                        // https://core.telegram.org/bots/api#getupdates
 	// RequestMethodSetWebhook                        = "setWebhook"                        // https://core.telegram.org/bots/api#setwebhook
 	// RequestMethodDeleteWebhook                     = "deleteWebhook"                     // https://core.telegram.org/bots/api#deletewebhook
-	// RequestMethodGetWebhookInfo                    = "getWebhookInfo"                    // https://core.telegram.org/bots/api#getwebhookinfo
+	RequestMethodGetWebhookInfo                    = "getWebhookInfo"                    // https://core.telegram.org/bots/api#getwebhookinfo
 	RequestMethodGetMe                             = "getMe"                             // https://core.telegram.org/bots/api#getme
 	// RequestMethodLogOut                            = "logOut"                            // https://core.telegram.org/bots/api#logout
 	// RequestMethodClose                             = "close"                             // https://core.telegram.org/bots/api#close
@@ -165,7 +165,37 @@ func (api Api) GetUpdates(params GetUpdatesParams) (Response, error) {
 
 // func (api Api) SetWebhook() (Response, error) {}
 // func (api Api) DeleteWebhook() (Response, error) {}
-// func (api Api) GetWebhookInfo() (Response, error) {}
+
+func (api Api) GetWebhookInfo(params GetWebhookInfoParams) (Response, error) {
+	jsonParams, err := json.Marshal(params)
+	if err != nil {
+		return Response{}, err
+	}
+
+	request, err := http.NewRequest("POST", api.url + RequestMethodGetWebhookInfo, bytes.NewBuffer(jsonParams))
+	if err != nil {
+		return Response{}, err
+	}
+	request.Header.Set("Content-Type", ContentTypeJSON)
+
+	response, err := api.client.Do(request)
+	if err != nil {
+		return Response{}, err
+	}
+	defer response.Body.Close()
+
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		return Response{}, err
+	}
+
+	var apiResponse Response
+	if err := json.Unmarshal(body, &apiResponse); err != nil {
+		return Response{}, err
+	}
+
+	return apiResponse, err
+}
 
 func (api Api) GetMe(params GetMeParams) (Response, error) {
 	jsonParams, err := json.Marshal(params)

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
 	"time"
 
@@ -20,17 +21,30 @@ func main() {
 		log.Panic(err)
 	}
 
-	ui.ListenPoolingUpdates(func(updates <-chan api.Update) {
-		for update := range updates {
-			if update.Message != nil {
-				message := api.SendMessageParams{
-					ChatId:           update.Message.Chat.Id,
-					ReplyToMessageId: update.Message.MessageId,
-					Text:             update.Message.Text,
-				}
+	requestParams := api.GetWebhookInfoParams{}
+	response, err := ui.GetWebhookInfo(requestParams)
+	if err != nil {
+		log.Panic(err)
+	}
 
-				ui.SendMessage(message)
-			}
-		}
-	})
+	var webhookInfo api.WebhookInfo
+	if err := json.Unmarshal(response.Result, &webhookInfo); err != nil {
+		log.Println(err)
+	}
+
+	log.Println(JsonPrint(webhookInfo))
+
+	// ui.ListenPoolingUpdates(func(updates <-chan api.Update) {
+	// 	for update := range updates {
+	// 		if update.Message != nil {
+	// 			message := api.SendMessageParams{
+	// 				ChatId:           update.Message.Chat.Id,
+	// 				ReplyToMessageId: update.Message.MessageId,
+	// 				Text:             update.Message.Text,
+	// 			}
+
+	// 			ui.SendMessage(message)
+	// 		}
+	// 	}
+	// })
 }

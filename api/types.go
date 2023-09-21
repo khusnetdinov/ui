@@ -19,18 +19,18 @@ type Update struct {
 	ChatJoinRequest    *ChatJoinRequest    `json:"chat_join_request,omitempty"`
 }
 
-// // https://core.telegram.org/bots/api#webhookinfo
-// type WebhookInfo struct {
-// 	Url                          string   `json:"url"`
-// 	HasCustomCertificate         bool     `json:"has_custom_certificate"`
-// 	PendingUpdateCount           int64    `json:"pending_update_count"`
-// 	IpAddress                    string   `json:"ip_address,omitempty"`
-// 	LastErrorDate                int64    `json:"last_error_date,omitempty"`
-// 	LastErrorMessage             string   `json:"last_error_message,omitempty"`
-// 	LastSynchronizationErrorDate int64    `json:"last_synchronization_error_date,omitempty"`
-// 	MaxConnections               int64    `json:"max_connections,omitempty"`
-// 	AllowedUpdates               []string `json:"allowed_updates,omitempty"`
-// }
+// https://core.telegram.org/bots/api#webhookinfo
+type WebhookInfo struct {
+	Url                          string   `json:"url"`
+	HasCustomCertificate         bool     `json:"has_custom_certificate"`
+	PendingUpdateCount           int64    `json:"pending_update_count"`
+	IpAddress                    string   `json:"ip_address,omitempty"`
+	LastErrorDate                int64    `json:"last_error_date,omitempty"`
+	LastErrorMessage             string   `json:"last_error_message,omitempty"`
+	LastSynchronizationErrorDate int64    `json:"last_synchronization_error_date,omitempty"`
+	MaxConnections               int64    `json:"max_connections,omitempty"`
+	AllowedUpdates               []string `json:"allowed_updates,omitempty"`
+}
 
 // https://core.telegram.org/bots/api#user
 type User struct {

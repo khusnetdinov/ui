@@ -17,9 +17,8 @@ type GetUpdatesParams struct {
 // 	DropPendingUpdates bool `json:"drop_pending_updates,omitempty"`
 // }
 
-// // https://core.telegram.org/bots/api#getwebhookinfo
-// type GetWebhookInfoParams struct {
-// }
+// https://core.telegram.org/bots/api#getwebhookinfo
+type GetWebhookInfoParams struct {}
 
 // https://core.telegram.org/bots/api#getme
 type GetMeParams struct{}
