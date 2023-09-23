@@ -8,6 +8,7 @@ import (
 )
 
 const (
+	ContentType       = "Content-Type"
 	ContentTypeBinary = "application/octet-stream"
 	ContentTypeForm   = "application/x-www-form-urlencoded"
 	ContentTypeJSON   = "application/json"
@@ -138,11 +139,12 @@ func (api Api) GetUpdates(params GetUpdatesParams, result *[]Update) error {
 		return err
 	}
 
-	request, err := http.NewRequest("POST", api.url + RequestMethodGetUpdates, bytes.NewBuffer(jsonParams))
+	requestUrl := api.url + RequestMethodGetUpdates
+	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
 	if err != nil {
 		return err
 	}
-	request.Header.Set("Content-Type", ContentTypeJSON)
+	request.Header.Set(ContentType, ContentTypeJSON)
 
 	response, err := api.client.Do(request)
 	if err != nil {
@@ -173,11 +175,12 @@ func (api Api) SetWebHook(params SetWebHookParams, result *bool) error {
 		return err
 	}
 
-	request, err := http.NewRequest("POST", api.url + RequestMethodSetWebHook, bytes.NewBuffer(jsonParams))
+	requestUrl := api.url + RequestMethodSetWebHook
+	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
 	if err != nil {
 		return err
 	}
-	request.Header.Set("Content-Type", ContentTypeJSON)
+	request.Header.Set(ContentType, ContentTypeJSON)
 
 	response, err := api.client.Do(request)
 	if err != nil {
@@ -208,11 +211,12 @@ func (api Api) DeleteWebHook(params DeleteWebHookParams, result *bool) error {
 		return err
 	}
 
-	request, err := http.NewRequest("POST", api.url + RequestMethodDeleteWebHook, bytes.NewBuffer(jsonParams))
+	requestUrl := api.url + RequestMethodDeleteWebHook
+	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
 	if err != nil {
 		return err
 	}
-	request.Header.Set("Content-Type", ContentTypeJSON)
+	request.Header.Set(ContentType, ContentTypeJSON)
 
 	response, err := api.client.Do(request)
 	if err != nil {
@@ -243,11 +247,12 @@ func (api Api) GetWebHookInfo(params GetWebHookInfoParams, result *WebHookInfo) 
 		return err
 	}
 
-	request, err := http.NewRequest("POST", api.url + RequestMethodGetWebHookInfo, bytes.NewBuffer(jsonParams))
+	requestUrl := api.url + RequestMethodGetWebHookInfo
+	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
 	if err != nil {
 		return err
 	}
-	request.Header.Set("Content-Type", ContentTypeJSON)
+	request.Header.Set(ContentType, ContentTypeJSON)
 
 	response, err := api.client.Do(request)
 	if err != nil {
@@ -278,11 +283,12 @@ func (api Api) GetMe(params GetMeParams, result *User) error {
 		return err
 	}
 
-	request, err := http.NewRequest("GET", api.url + RequestMethodGetMe, bytes.NewBuffer(jsonParams))
+	requestUrl := api.url + RequestMethodGetMe
+	request, err := http.NewRequest(http.MethodGet, requestUrl, bytes.NewBuffer(jsonParams))
 	if err != nil {
 		return err
 	}
-	request.Header.Set("Content-Type", ContentTypeJSON)
+	request.Header.Set(ContentType, ContentTypeJSON)
 
 	response, err := api.client.Do(request)
 	if err != nil {
@@ -316,11 +322,12 @@ func (api Api) SendMessage(params SendMessageParams, result *Message) error {
 		return err
 	}
 
-	request, err := http.NewRequest("POST", api.url + RequestMethodSendMessage, bytes.NewBuffer(jsonParams))
+	requestUrl := api.url + RequestMethodSendMessage
+	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
 	if err != nil {
 		return err
 	}
-	request.Header.Set("Content-Type", ContentTypeJSON)
+	request.Header.Set(ContentType, ContentTypeJSON)
 
 	response, err := api.client.Do(request)
 	if err != nil {

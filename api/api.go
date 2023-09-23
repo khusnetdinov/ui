@@ -10,12 +10,26 @@ import (
 
 const telegramApiUrl = "https://api.telegram.org/bot%s/"
 
+const (
+	UpdatesViaPooling      = "polling"
+	UpdatesViaNgrokWebhook = "ngrok"
+	UpdatesViaLocalServer  = "local"
+	UpdatesViaTlsServer    = "tlc"
+)
+
 type Config struct {
-	Token             string
-	HttpClientTimeout time.Duration
-	UpdateOffset      int64
-	UpdateLimit       int64
-	UpdateTimeout     int64
+	Token               string
+	HttpClientTimeout   time.Duration
+	UpdatesVia          string
+	UpdateBuffer        int64
+	UpdateOffset        int64
+	UpdateLimit         int64
+	UpdateTimeout       int64
+	WebHookUrl          string
+	WebHookListenOnPort string
+	WebHookListenOnPath string
+	WebHookTlsCertPem   string
+	WebHookTlsKeyPem    string
 }
 
 type Api struct {
@@ -66,7 +80,7 @@ func New(config *Config) (*Api, error) {
 }
 
 func (api *Api) ListenPoolingUpdates(callback func(updates <-chan Update)) {
-	updatesChan := make(chan Update, 100)
+	updatesChan := make(chan Update, api.config.UpdateBuffer)
 
 	go func() {
 		for {
@@ -77,7 +91,7 @@ func (api *Api) ListenPoolingUpdates(callback func(updates <-chan Update)) {
 				Timeout: api.config.UpdateTimeout,
 			}
 			if err := api.GetUpdates(requestParams, &updates); err != nil {
-				log.Println("Error: %s", err)
+				log.Panic(err)
 
 				time.Sleep(api.config.HttpClientTimeout)
 			}
@@ -94,6 +108,39 @@ func (api *Api) ListenPoolingUpdates(callback func(updates <-chan Update)) {
 	callback(updatesChan)
 }
 
-func (api Api) ListenWebHookUpdates(callback func()) {
-	callback()
+func (api *Api) ListenHttpWebHookUpdates(callback func(updates <-chan Update)) {
+	updatesChan := make(chan Update, api.config.UpdateBuffer)
+
+	http.HandleFunc(api.config.WebHookListenOnPath, func(writer http.ResponseWriter, request *http.Request) {
+		var update Update
+		if err := json.NewDecoder(request.Body).Decode(&update); err != nil {
+			log.Panic(err)
+		}
+
+		updatesChan <- update
+	})
+	go http.ListenAndServe(api.config.WebHookListenOnPort, nil)
+
+	callback(updatesChan)
+}
+
+func (api Api) ListenHttpsWebHookUpdates(callback func(updates <-chan Update)) {
+	updatesChan := make(chan Update, api.config.UpdateBuffer)
+
+	http.HandleFunc(api.config.WebHookListenOnPath, func(writer http.ResponseWriter, request *http.Request) {
+		var update Update
+		if err := json.NewDecoder(request.Body).Decode(&update); err != nil {
+			log.Panic(err)
+		}
+
+		updatesChan <- update
+	})
+	go http.ListenAndServeTLS(
+		api.config.WebHookListenOnPort,
+		api.config.WebHookTlsCertPem,
+		api.config.WebHookTlsKeyPem,
+		nil,
+	)
+
+	callback(updatesChan)
 }
