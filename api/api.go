@@ -52,16 +52,6 @@ type ResponseParams struct {
 	RetryAfter      int   `json:"retry_after,omitempty"`
 }
 
-type Error struct {
-	Code    int
-	Message string
-	ResponseParams
-}
-
-func (e Error) Error() string {
-	return e.Message
-}
-
 func New(config *Config) (*Api, error) {
 	api := &Api{
 		config: *config,

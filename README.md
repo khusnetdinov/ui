@@ -5,6 +5,7 @@
 .
 ├── api                         # package api
 │   ├── api.go                  # Ui.Api Types & Structures for interacting with Api on low lelel
+│   ├── errors.go               # Errors raised by api methods
 │   ├── go.mod                  # Module file
 │   ├── methods.go              # Methods for calliing Http.Request to Telegram Api
 │   ├── params.go               # Params for calliing Http.Request to Telegram Api

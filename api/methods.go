@@ -22,8 +22,8 @@ const (
 	RequestMethodDeleteWebHook                     = "deleteWebhook"                     // https://core.telegram.org/bots/api#deletewebhook
 	RequestMethodGetWebHookInfo                    = "getWebhookInfo"                    // https://core.telegram.org/bots/api#getwebhookinfo
 	RequestMethodGetMe                             = "getMe"                             // https://core.telegram.org/bots/api#getme
-	// RequestMethodLogOut                            = "logOut"                            // https://core.telegram.org/bots/api#logout
-	// RequestMethodClose                             = "close"                             // https://core.telegram.org/bots/api#close
+	RequestMethodLogOut                            = "logOut"                            // https://core.telegram.org/bots/api#logout
+	RequestMethodClose                             = "close"                             // https://core.telegram.org/bots/api#close
 	RequestMethodSendMessage                       = "sendMessage"                       // https://core.telegram.org/bots/api#sendmessage
 	// RequestMethodForwardMessage                    = "forwardMessage"                    // https://core.telegram.org/bots/api#forwardmessage
 	// RequestMethodCopyMessage                       = "copyMessage"                       // https://core.telegram.org/bots/api#copymessage
@@ -313,8 +313,17 @@ func (api Api) GetMe(params GetMeParams, result *User) error {
 	return nil
 }
 
-// func (api Api) LogOut() error {}
-// func (api Api) Close() error {}
+func (api Api) LogOut(params LogOutParams, result *bool) error {
+	// TODO:
+
+	return nil
+}
+
+func (api Api) Close(params CloseParams, result *bool) error {
+	// TODO:
+
+	return nil
+}
 
 func (api Api) SendMessage(params SendMessageParams, result *Message) error {
 	jsonParams, err := json.Marshal(params)

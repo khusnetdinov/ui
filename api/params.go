@@ -30,13 +30,11 @@ type GetWebHookInfoParams struct{}
 // https://core.telegram.org/bots/api#getme
 type GetMeParams struct{}
 
-// // https://core.telegram.org/bots/api#logout
-// type LogOutParams struct {
-// }
+// https://core.telegram.org/bots/api#logout
+type LogOutParams struct {}
 
-// // https://core.telegram.org/bots/api#close
-// type CloseParams struct {
-// }
+// https://core.telegram.org/bots/api#close
+type CloseParams struct {}
 
 // https://core.telegram.org/bots/api#sendmessage
 type SendMessageParams struct {
