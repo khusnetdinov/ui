@@ -314,13 +314,73 @@ func (api Api) GetMe(params GetMeParams, result *User) error {
 }
 
 func (api Api) LogOut(params LogOutParams, result *bool) error {
-	// TODO:
+	jsonParams, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	requestUrl := api.url + RequestMethodLogOut
+	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
+	if err != nil {
+		return err
+	}
+	request.Header.Set(ContentType, ContentTypeJSON)
+
+	response, err := api.client.Do(request)
+	if err != nil {
+		return err
+	}
+	defer response.Body.Close()
+
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		return err
+	}
+
+	var apiResponse Response
+	if err := json.Unmarshal(body, &apiResponse); err != nil {
+		return err
+	}
+
+	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {
+		return err
+	}
 
 	return nil
 }
 
 func (api Api) Close(params CloseParams, result *bool) error {
-	// TODO:
+	jsonParams, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	requestUrl := api.url + RequestMethodClose
+	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
+	if err != nil {
+		return err
+	}
+	request.Header.Set(ContentType, ContentTypeJSON)
+
+	response, err := api.client.Do(request)
+	if err != nil {
+		return err
+	}
+	defer response.Body.Close()
+
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		return err
+	}
+
+	var apiResponse Response
+	if err := json.Unmarshal(body, &apiResponse); err != nil {
+		return err
+	}
+
+	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {
+		return err
+	}
 
 	return nil
 }
