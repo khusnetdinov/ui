@@ -10,16 +10,16 @@ import (
 func main() {
 
 	config := api.Config{
+		Production:          true,
 		Token:               "6591790550:AAE5s6Mmhs8QsGPDxmTxEB23kvKKg3KrI_w",
 		HttpClientTimeout:   time.Duration(5) * time.Second,
-		UpdatesVia:          api.UpdatesViaPooling,
 		UpdateBuffer:        100,
 		UpdateOffset:        0,
 		UpdateLimit:         1,
 		UpdateTimeout:       1,
 		WebHookUrl:          "",
 		WebHookListenOnPath: "/",
-		WebHookListenOnPort: ":8443",
+		WebHookListenOnPort: ":8081",
 		WebHookTlsCertPem:   "",
 		WebHookTlsKeyPem:    "",
 	}

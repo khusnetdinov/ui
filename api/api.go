@@ -9,15 +9,10 @@ import (
 )
 
 const telegramApiUrl = "https://api.telegram.org/bot%s/"
-
-const (
-	UpdatesViaPooling      = "polling"
-	UpdatesViaNgrokWebhook = "ngrok"
-	UpdatesViaLocalServer  = "local"
-	UpdatesViaTlsServer    = "tlc"
-)
+const localApiUrl = "http://localhost:8081/bot%s/"
 
 type Config struct {
+	Production          bool
 	Token               string
 	HttpClientTimeout   time.Duration
 	UpdatesVia          string
@@ -53,10 +48,17 @@ type ResponseParams struct {
 }
 
 func New(config *Config) (*Api, error) {
+	var url string
+	if config.Production {
+		url = fmt.Sprintf(telegramApiUrl, config.Token)
+	} else {
+		url = fmt.Sprintf(localApiUrl, config.Token)
+	}
+
 	api := &Api{
 		config: *config,
 		client: &http.Client{Timeout: config.HttpClientTimeout},
-		url:    fmt.Sprintf(telegramApiUrl, config.Token),
+		url:    url,
 	}
 
 	var user User
