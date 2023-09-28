@@ -133,13 +133,13 @@ const (
 	// RequestMethodGetGameHighScores                 = "getGameHighScores"                 // https://core.telegram.org/bots/api#getgamehighscores
 )
 
-func (api Api) GetUpdates(params GetUpdatesParams, result *[]Update) error {
+func (api Api) request(url string, params interface{}, result interface{}) error {
 	jsonParams, err := json.Marshal(params)
 	if err != nil {
 		return err
 	}
 
-	requestUrl := api.url + RequestMethodGetUpdates
+	requestUrl := api.url + url
 	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
 	if err != nil {
 		return err
@@ -163,6 +163,14 @@ func (api Api) GetUpdates(params GetUpdatesParams, result *[]Update) error {
 	}
 
 	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (api Api) GetUpdates(params GetUpdatesParams, result *[]Update) error {
+	if err := api.request(RequestMethodGetUpdates, params, &result); err != nil {
 		return err
 	}
 
@@ -170,35 +178,7 @@ func (api Api) GetUpdates(params GetUpdatesParams, result *[]Update) error {
 }
 
 func (api Api) SetWebHook(params SetWebHookParams, result *bool) error {
-	jsonParams, err := json.Marshal(params)
-	if err != nil {
-		return err
-	}
-
-	requestUrl := api.url + RequestMethodSetWebHook
-	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
-	if err != nil {
-		return err
-	}
-	request.Header.Set(ContentType, ContentTypeJSON)
-
-	response, err := api.client.Do(request)
-	if err != nil {
-		return err
-	}
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		return err
-	}
-
-	var apiResponse Response
-	if err := json.Unmarshal(body, &apiResponse); err != nil {
-		return err
-	}
-
-	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {
+	if err := api.request(RequestMethodSetWebHook, params, &result); err != nil {
 		return err
 	}
 
@@ -206,35 +186,7 @@ func (api Api) SetWebHook(params SetWebHookParams, result *bool) error {
 }
 
 func (api Api) DeleteWebHook(params DeleteWebHookParams, result *bool) error {
-	jsonParams, err := json.Marshal(params)
-	if err != nil {
-		return err
-	}
-
-	requestUrl := api.url + RequestMethodDeleteWebHook
-	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
-	if err != nil {
-		return err
-	}
-	request.Header.Set(ContentType, ContentTypeJSON)
-
-	response, err := api.client.Do(request)
-	if err != nil {
-		return err
-	}
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		return err
-	}
-
-	var apiResponse Response
-	if err := json.Unmarshal(body, &apiResponse); err != nil {
-		return err
-	}
-
-	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {
+	if err := api.request(RequestMethodDeleteWebHook, params, &result); err != nil {
 		return err
 	}
 
@@ -242,35 +194,7 @@ func (api Api) DeleteWebHook(params DeleteWebHookParams, result *bool) error {
 }
 
 func (api Api) GetWebHookInfo(params GetWebHookInfoParams, result *WebHookInfo) error {
-	jsonParams, err := json.Marshal(params)
-	if err != nil {
-		return err
-	}
-
-	requestUrl := api.url + RequestMethodGetWebHookInfo
-	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
-	if err != nil {
-		return err
-	}
-	request.Header.Set(ContentType, ContentTypeJSON)
-
-	response, err := api.client.Do(request)
-	if err != nil {
-		return err
-	}
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		return err
-	}
-
-	var apiResponse Response
-	if err := json.Unmarshal(body, &apiResponse); err != nil {
-		return err
-	}
-
-	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {
+	if err := api.request(RequestMethodGetWebHookInfo, params, &result); err != nil {
 		return err
 	}
 
@@ -278,35 +202,7 @@ func (api Api) GetWebHookInfo(params GetWebHookInfoParams, result *WebHookInfo) 
 }
 
 func (api Api) GetMe(params GetMeParams, result *User) error {
-	jsonParams, err := json.Marshal(params)
-	if err != nil {
-		return err
-	}
-
-	requestUrl := api.url + RequestMethodGetMe
-	request, err := http.NewRequest(http.MethodGet, requestUrl, bytes.NewBuffer(jsonParams))
-	if err != nil {
-		return err
-	}
-	request.Header.Set(ContentType, ContentTypeJSON)
-
-	response, err := api.client.Do(request)
-	if err != nil {
-		return err
-	}
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		return err
-	}
-
-	var apiResponse Response
-	if err := json.Unmarshal(body, &apiResponse); err != nil {
-		return err
-	}
-
-	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {
+	if err := api.request(RequestMethodGetMe, params, &result); err != nil {
 		return err
 	}
 
@@ -314,35 +210,7 @@ func (api Api) GetMe(params GetMeParams, result *User) error {
 }
 
 func (api Api) LogOut(params LogOutParams, result *bool) error {
-	jsonParams, err := json.Marshal(params)
-	if err != nil {
-		return err
-	}
-
-	requestUrl := api.url + RequestMethodLogOut
-	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
-	if err != nil {
-		return err
-	}
-	request.Header.Set(ContentType, ContentTypeJSON)
-
-	response, err := api.client.Do(request)
-	if err != nil {
-		return err
-	}
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		return err
-	}
-
-	var apiResponse Response
-	if err := json.Unmarshal(body, &apiResponse); err != nil {
-		return err
-	}
-
-	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {
+	if err := api.request(RequestMethodLogOut, params, &result); err != nil {
 		return err
 	}
 
@@ -350,35 +218,7 @@ func (api Api) LogOut(params LogOutParams, result *bool) error {
 }
 
 func (api Api) Close(params CloseParams, result *bool) error {
-	jsonParams, err := json.Marshal(params)
-	if err != nil {
-		return err
-	}
-
-	requestUrl := api.url + RequestMethodClose
-	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
-	if err != nil {
-		return err
-	}
-	request.Header.Set(ContentType, ContentTypeJSON)
-
-	response, err := api.client.Do(request)
-	if err != nil {
-		return err
-	}
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		return err
-	}
-
-	var apiResponse Response
-	if err := json.Unmarshal(body, &apiResponse); err != nil {
-		return err
-	}
-
-	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {
+	if err := api.request(RequestMethodClose, params, &result); err != nil {
 		return err
 	}
 
@@ -386,144 +226,437 @@ func (api Api) Close(params CloseParams, result *bool) error {
 }
 
 func (api Api) SendMessage(params SendMessageParams, result *Message) error {
-	jsonParams, err := json.Marshal(params)
-	if err != nil {
-		return err
-	}
-
-	requestUrl := api.url + RequestMethodSendMessage
-	request, err := http.NewRequest(http.MethodPost, requestUrl, bytes.NewBuffer(jsonParams))
-	if err != nil {
-		return err
-	}
-	request.Header.Set(ContentType, ContentTypeJSON)
-
-	response, err := api.client.Do(request)
-	if err != nil {
-		return err
-	}
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		return err
-	}
-
-	var apiResponse Response
-	if err := json.Unmarshal(body, &apiResponse); err != nil {
-		return err
-	}
-
-	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {
+	if err := api.request(RequestMethodSendMessage, params, &result); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-// func (api Api) ForwardMessage() error {}
-// func (api Api) CopyMessage() error {}
-// func (api Api) SendPhoto() error {}
-// func (api Api) SendAudio() error {}
-// func (api Api) SendDocument() error {}
-// func (api Api) SendVideo() error {}
-// func (api Api) SendAnimation() error {}
-// func (api Api) SendVoice() error {}
-// func (api Api) SendVideoNote() error {}
-// func (api Api) SendMediaGroup() error {}
-// func (api Api) SendLocation() error {}
-// func (api Api) SendVenue() error {}
-// func (api Api) SendContact() error {}
-// func (api Api) SendPoll() error {}
-// func (api Api) SendDice() error {}
-// func (api Api) SendChatAction() error {}
-// func (api Api) GetUserProfilePhotos() error {}
-// func (api Api) GetFile() error {}
-// func (api Api) BanChatMember() error {}
-// func (api Api) UnbanChatMember() error {}
-// func (api Api) RestrictChatMember() error {}
-// func (api Api) PromoteChatMember() error {}
-// func (api Api) SetChatAdministratorCustomTitle() error {}
-// func (api Api) BanChatSenderChat() error {}
-// func (api Api) UnbanChatSenderChat() error {}
-// func (api Api) SetChatPermissions() error {}
-// func (api Api) ExportChatInviteLink() error {}
-// func (api Api) CreateChatInviteLink() error {}
-// func (api Api) EditChatInviteLink() error {}
-// func (api Api) RevokeChatInviteLink() error {}
-// func (api Api) ApproveChatJoinRequest() error {}
-// func (api Api) DeclineChatJoinRequest() error {}
-// func (api Api) SetChatPhoto() error {}
-// func (api Api) DeleteChatPhoto() error {}
-// func (api Api) SetChatTitle() error {}
-// func (api Api) SetChatDescription() error {}
-// func (api Api) PinChatMessage() error {}
-// func (api Api) UnpinChatMessage() error {}
-// func (api Api) UnpinAllChatMessages() error {}
-// func (api Api) LeaveChat() error {}
-// func (api Api) GetChat() error {}
-// func (api Api) GetChatAdministrators() error {}
-// func (api Api) GetChatMemberCount() error {}
-// func (api Api) GetChatMember() error {}
-// func (api Api) SetChatStickerSet() error {}
-// func (api Api) DeleteChatStickerSet() error {}
-// func (api Api) GetForumTopicIconStickers() error {}
-// func (api Api) CreateForumTopic() error {}
-// func (api Api) EditForumTopic() error {}
-// func (api Api) CloseForumTopic() error {}
-// func (api Api) ReopenForumTopic() error {}
-// func (api Api) DeleteForumTopic() error {}
-// func (api Api) UnpinAllForumTopicMessages() error {}
-// func (api Api) EditGeneralForumTopic() error {}
-// func (api Api) CloseGeneralForumTopic() error {}
-// func (api Api) ReopenGeneralForumTopic() error {}
-// func (api Api) HideGeneralForumTopic() error {}
-// func (api Api) UnhideGeneralForumTopic() error {}
-// func (api Api) UnpinAllGeneralForumTopicMessages() error {}
-// func (api Api) AnswerCallbackQuery() error {}
-// func (api Api) SetMyCommands() error {}
-// func (api Api) DeleteMyCommands() error {}
-// func (api Api) GetMyCommands() error {}
-// func (api Api) SetMyName() error {}
-// func (api Api) GetMyName() error {}
-// func (api Api) SetMyDescription() error {}
-// func (api Api) GetMyDescription() error {}
-// func (api Api) SetMyShortDescription() error {}
-// func (api Api) GetMyShortDescription() error {}
-// func (api Api) SetChatMenuButton() error {}
-// func (api Api) GetChatMenuButton() error {}
-// func (api Api) SetMyDefaultAdministratorRights() error {}
-// func (api Api) GetMyDefaultAdministratorRights() error {}
-// func (api Api) EditMessageText() error {}
-// func (api Api) EditMessageCaption() error {}
-// func (api Api) EditMessageMedia() error {}
-// func (api Api) EditMessageLiveLocation() error {}
-// func (api Api) StopMessageLiveLocation() error {}
-// func (api Api) EditMessageReplyMarkup() error {}
-// func (api Api) StopPoll() error {}
-// func (api Api) DeleteMessage() error {}
-// func (api Api) SendSticker() error {}
-// func (api Api) GetStickerSet() error {}
-// func (api Api) GetCustomEmojiStickers() error {}
-// func (api Api) UploadStickerFile() error {}
-// func (api Api) CreateNewStickerSet() error {}
-// func (api Api) AddStickerToSet() error {}
-// func (api Api) SetStickerPositionInSet() error {}
-// func (api Api) DeleteStickerFromSet() error {}
-// func (api Api) SetStickerEmojiList() error {}
-// func (api Api) SetStickerKeywords() error {}
-// func (api Api) SetStickerMaskPosition() error {}
-// func (api Api) SetStickerSetTitle() error {}
-// func (api Api) SetStickerSetThumbnail() error {}
-// func (api Api) SetCustomEmojiStickerSetThumbnail() error {}
-// func (api Api) DeleteStickerSet() error {}
-// func (api Api) AnswerInlineQuery() error {}
-// func (api Api) AnswerWebAppQuery() error {}
-// func (api Api) SendInvoice() error {}
-// func (api Api) CreateInvoiceLink() error {}
-// func (api Api) AnswerShippingQuery() error {}
-// func (api Api) AnswerPreCheckoutQuery() error {}
-// func (api Api) SetPassportDataErrors() error {}
-// func (api Api) SendGame() error {}
-// func (api Api) SetGameScore() error {}
-// func (api Api) GetGameHighScores() error {}
+// func (api Api) ForwardMessage(params ForwardMessageParams, result *Message) error {
+// 	if err := api.request(RequestMethodForwardMessage, params, &result); err != nil {
+// 		return err
+// 	}
+
+// 	return nil
+// }
+
+// func (api Api) CopyMessage(params CopyMessageParams, result *int64) error {
+// 	return nil
+// }
+
+// func (api Api) SendPhoto(params SendPhotoParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendAudio(params SendAudioParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendDocument(params SendDocumentParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendVideo(params SendVideoParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendAnimation(params SendAnimationParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendVoice(params SendVoiceParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendVideoNote(params SendVideoNoteParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendMediaGroup(params SendMediaGroupParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendLocation(params SendLocationParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendVenue(params SendVenueParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendContact(params SendContactParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendPoll(params SendPollParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendDice(params SendDiceParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SendChatAction(params SendChatActionParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) GetUserProfilePhotos(params GetUserProfilePhotosParams, result *UserProfilePhotos) error {
+// 	return nil
+// }
+
+// func (api Api) GetFile(params GetFileParams, result *File) error {
+// 	return nil
+// }
+
+// func (api Api) BanChatMember(params BanChatMemberParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) UnbanChatMember(params UnbanChatMemberParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) RestrictChatMember(params RestrictChatMemberParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) PromoteChatMember(params PromoteChatMemberParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetChatAdministratorCustomTitle(params SetChatAdministratorCustomTitleParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) BanChatSenderChat(params BanChatSenderChatParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) UnbanChatSenderChat(params UnbanChatSenderChatParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetChatPermissions(params SetChatPermissionsParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) ExportChatInviteLink(params ExportChatInviteLinkParams, result *string) error {
+// 	return nil
+// }
+
+// func (api Api) CreateChatInviteLink(params CreateChatInviteLinkParams, result *ChatInviteLink) error {
+// 	return nil
+// }
+
+// func (api Api) EditChatInviteLink(params EditChatInviteLinkParams, result *ChatInviteLink) error {
+// 	return nil
+// }
+
+// func (api Api) RevokeChatInviteLink(params RevokeChatInviteLinkParams, result *ChanInviteLink) error {
+// 	return nil
+// }
+
+// func (api Api) ApproveChatJoinRequest(params ApproveChatJoinRequestParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) DeclineChatJoinRequest(params DeclineChatJoinRequestParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetChatPhoto(params SetChatPhotoParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) DeleteChatPhoto(params DeleteChatPhotoParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetChatTitle(params SetChatTitleParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetChatDescription(params SetChatDescriptionParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) PinChatMessage(params PinChatMessageParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) UnpinChatMessage(params UnpinChatMessageParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) UnpinAllChatMessages(params UnpinAllChatMessagesParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) LeaveChat(params LeaveChatParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) GetChat(params GetChatParams, result *Chat) error {
+// 	return nil
+// }
+
+// func (api Api) GetChatAdministrators(params GetChatAdministratorsParams, result *[]ChatMember) error {
+// 	return nil
+// }
+
+// func (api Api) GetChatMemberCount(params GetChatMemberCountParams, result *int64) error {
+// 	return nil
+// }
+
+// func (api Api) GetChatMember(params GetChatMemberParams, result *ChatMember) error {
+// 	return nil
+// }
+
+// func (api Api) SetChatStickerSet(params SetChatStickerSetParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) DeleteChatStickerSet(params DeleteChatStickerSetParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) GetForumTopicIconStickers(params GetForumTopicIconStickersParams, result *[]Sticker) error {
+// 	return nil
+// }
+
+// func (api Api) CreateForumTopic(params CreateForumTopicParams, result *ForumTopic) error {
+// 	return nil
+// }
+
+// func (api Api) EditForumTopic(params EditForumTopicParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) CloseForumTopic(params CloseForumTopicParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) ReopenForumTopic(params ReopenForumTopicParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) DeleteForumTopic(params DeleteForumTopicParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) UnpinAllForumTopicMessages(params UnpinAllForumTopicMessagesParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) EditGeneralForumTopic(params EditGeneralForumTopicParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) CloseGeneralForumTopic(params CloseGeneralForumTopicParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) ReopenGeneralForumTopic(params ReopenGeneralForumTopicParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) HideGeneralForumTopic(params HideGeneralForumTopicParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) UnhideGeneralForumTopic(params UnhideGeneralForumTopicParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) UnpinAllGeneralForumTopicMessages(params UnpinAllGeneralForumTopicMessagesParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) AnswerCallbackQuery(params AnswerCallbackQueryParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetMyCommands(params SetMyCommandsParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) DeleteMyCommands(params DeleteMyCommandsParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) GetMyCommands(params GetMyCommandsParams, result *[]BotCommand) error {
+// 	return nil
+// }
+
+// func (api Api) SetMyName(params SetMyNameParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) GetMyName(params GetMyNameParams, result *BotName) error {
+// 	return nil
+// }
+
+// func (api Api) SetMyDescription(params SetMyDescriptionParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) GetMyDescription(params GetMyDescriptionParams, result *BotDescription) error {
+// 	return nil
+// }
+
+// func (api Api) SetMyShortDescription(params SetMyShortDescriptionParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) GetMyShortDescription(params GetMyShortDescriptionParams, result *BotShortDescription) error {
+// 	return nil
+// }
+
+// func (api Api) SetChatMenuButton(params SetChatMenuButtonParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) GetChatMenuButton(params GetChatMenuButtonParams, result *MenuButton) error {
+// 	return nil
+// }
+
+// func (api Api) SetMyDefaultAdministratorRights(params SetMyDefaultAdministratorRightsParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) GetMyDefaultAdministratorRights(params GetMyDefaultAdministratorRightsParams, result *ChatAdministratorRights) error {
+// 	return nil
+// }
+
+// func (api Api) EditMessageText(params EditMessageTextParams, result *Message | *bool) error {
+// 	return nil
+// }
+
+// func (api Api) EditMessageCaption(params EditMessageCaptionParams, result *Message | *bool) error {
+// 	return nil
+// }
+
+// func (api Api) EditMessageMedia(params EditMessageMediaParams, result *Message | *bool) error {
+// 	return nil
+// }
+
+// func (api Api) EditMessageLiveLocation(params EditMessageLiveLocationParams, result *Message | *bool) error {
+// 	return nil
+// }
+
+// func (api Api) StopMessageLiveLocation(params StopMessageLiveLocationParams, result *Message | *bool) error {
+// 	return nil
+// }
+
+// func (api Api) EditMessageReplyMarkup(params EditMessageReplyMarkupParams, result *Message | *bool) error {
+// 	return nil
+// }
+
+// func (api Api) StopPoll(params StopPollParams, result *Poll) error {
+// 	return nil
+// }
+
+// func (api Api) DeleteMessage(params DeleteMessageParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SendSticker(params SendStickerParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) GetStickerSet(params GetStickerSetParams, result *StickerSet) error {
+// 	return nil
+// }
+
+// func (api Api) GetCustomEmojiStickers(params GetCustomEmojiStickersParams, result *Sticker) error {
+// 	return nil
+// }
+
+// func (api Api) UploadStickerFile(params UploadStickerFileParams, result *File) error {
+// 	return nil
+// }
+
+// func (api Api) CreateNewStickerSet(params CreateNewStickerSetParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) AddStickerToSet(params AddStickerToSetParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetStickerPositionInSet(params SetStickerPositionInSetParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) DeleteStickerFromSet(params DeleteStickerFromSetParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetStickerEmojiList(params SetStickerEmojiListParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetStickerKeywords(params SetStickerKeywordsParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetStickerMaskPosition(params SetStickerMaskPositionParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetStickerSetTitle(params SetStickerSetTitleParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetStickerSetThumbnail(params SetStickerSetThumbnailParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetCustomEmojiStickerSetThumbnail(params SetCustomEmojiStickerSetThumbnailParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) DeleteStickerSet(params DeleteStickerSetParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) AnswerInlineQuery(params AnswerInlineQueryParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) AnswerWebAppQuery(params AnswerWebAppQueryParams, result *SentWebAppMessage) error {
+// 	return nil
+// }
+
+// func (api Api) SendInvoice(params SendInvoiceParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) CreateInvoiceLink(params CreateInvoiceLinkParams, result *string) error {
+// 	return nil
+// }
+
+// func (api Api) AnswerShippingQuery(params AnswerShippingQueryParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) AnswerPreCheckoutQuery(params AnswerPreCheckoutQueryParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SetPassportDataErrors(params SetPassportDataErrorsParams, result *bool) error {
+// 	return nil
+// }
+
+// func (api Api) SendGame(params SendGameParams, result *Message) error {
+// 	return nil
+// }
+
+// func (api Api) SetGameScore(params SetGameScoreParams, result *Message | *bool) error {
+// 	return nil
+// }
+
+// func (api Api) GetGameHighScores(params GetGameHighScoresParams, result *[]GameHighScore) error {
+// 	return nil
+// }
