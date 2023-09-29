@@ -156,10 +156,10 @@ type Message struct {
 	ReplyMarkup                   *InlineKeyboardMarkup          `json:"reply_markup,omitempty"`
 }
 
-// // https://core.telegram.org/bots/api#messageid
-// type MessageId struct {
-// 	MessageId int64 `json:"message_id"`
-// }
+// https://core.telegram.org/bots/api#messageid
+type MessageId struct {
+	MessageId int64 `json:"message_id"`
+}
 
 // https://core.telegram.org/bots/api#messageentity
 type MessageEntity struct {
@@ -403,11 +403,11 @@ type VideoChatParticipantsInvited struct {
 	Users []User `json:"users"`
 }
 
-// // https://core.telegram.org/bots/api#userprofilephotos
-// type UserProfilePhotos struct {
-// 	TotalCount int64       `json:"total_count"`
-// 	Photos     []PhotoSize `json:"photos"`
-// }
+// https://core.telegram.org/bots/api#userprofilephotos
+type UserProfilePhotos struct {
+	TotalCount int64       `json:"total_count"`
+	Photos     []PhotoSize `json:"photos"`
+}
 
 // https://core.telegram.org/bots/api#file
 type File struct {
@@ -418,56 +418,56 @@ type WebAppInfo struct {
 	Url string `json:"url"`
 }
 
-// // https://core.telegram.org/bots/api#replykeyboardmarkup
-// type ReplyKeyboardMarkup struct {
-// 	Keyboard              []KeyboardButton `json:"keyboard"`
-// 	IsPersistent          bool             `json:"is_persistent,omitempty"`
-// 	ResizeKeyboard        bool             `json:"resize_keyboard,omitempty"`
-// 	OneTimeKeyboard       bool             `json:"one_time_keyboard,omitempty"`
-// 	InputFieldPlaceholder string           `json:"input_field_placeholder,omitempty"`
-// 	Selective             bool             `json:"selective,omitempty"`
-// }
+// https://core.telegram.org/bots/api#replykeyboardmarkup
+type ReplyKeyboardMarkup struct {
+	Keyboard              []KeyboardButton `json:"keyboard"`
+	IsPersistent          bool             `json:"is_persistent,omitempty"`
+	ResizeKeyboard        bool             `json:"resize_keyboard,omitempty"`
+	OneTimeKeyboard       bool             `json:"one_time_keyboard,omitempty"`
+	InputFieldPlaceholder string           `json:"input_field_placeholder,omitempty"`
+	Selective             bool             `json:"selective,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#keyboardbutton
-// type KeyboardButton struct {
-// 	Text            string                     `json:"text"`
-// 	RequestUser     *KeyboardButtonRequestUser `json:"request_user,omitempty"`
-// 	RequestChat     *KeyboardButtonRequestChat `json:"request_chat,omitempty"`
-// 	RequestContact  bool                       `json:"request_contact,omitempty"`
-// 	RequestLocation bool                       `json:"request_location,omitempty"`
-// 	RequestPoll     *KeyboardButtonPollType    `json:"request_poll,omitempty"`
-// 	WebApp          *WebAppInfo                `json:"web_app,omitempty"`
-// }
+// https://core.telegram.org/bots/api#keyboardbutton
+type KeyboardButton struct {
+	Text            string                     `json:"text"`
+	RequestUser     *KeyboardButtonRequestUser `json:"request_user,omitempty"`
+	RequestChat     *KeyboardButtonRequestChat `json:"request_chat,omitempty"`
+	RequestContact  bool                       `json:"request_contact,omitempty"`
+	RequestLocation bool                       `json:"request_location,omitempty"`
+	RequestPoll     *KeyboardButtonPollType    `json:"request_poll,omitempty"`
+	WebApp          *WebAppInfo                `json:"web_app,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#keyboardbuttonrequestuser
-// type KeyboardButtonRequestUser struct {
-// 	RequestId     int64 `json:"request_id"`
-// 	UserIsBot     bool  `json:"user_is_bot,omitempty"`
-// 	UserIsPremium bool  `json:"user_is_premium,omitempty"`
-// }
+// https://core.telegram.org/bots/api#keyboardbuttonrequestuser
+type KeyboardButtonRequestUser struct {
+	RequestId     int64 `json:"request_id"`
+	UserIsBot     bool  `json:"user_is_bot,omitempty"`
+	UserIsPremium bool  `json:"user_is_premium,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#keyboardbuttonrequestchat
-// type KeyboardButtonRequestChat struct {
-// 	RequestId               int64                    `json:"request_id"`
-// 	ChatIsChannel           bool                     `json:"chat_is_channel"`
-// 	ChatIsForum             bool                     `json:"chat_is_forum,omitempty"`
-// 	ChatHasUserName         bool                     `json:"chat_has_username,omitempty"`
-// 	ChatIsCreated           bool                     `json:"chat_is_created,omitempty"`
-// 	UserAdministratorRights *ChatAdministratorRights `json:"user_administrator_rights,omitempty"`
-// 	BotAdministratorRights  *ChatAdministratorRights `json:"bot_administrator_rights,omitempty"`
-// 	BotIsMember             bool                     `json:"bot_is_member,omitempty"`
-// }
+// https://core.telegram.org/bots/api#keyboardbuttonrequestchat
+type KeyboardButtonRequestChat struct {
+	RequestId               int64                    `json:"request_id"`
+	ChatIsChannel           bool                     `json:"chat_is_channel"`
+	ChatIsForum             bool                     `json:"chat_is_forum,omitempty"`
+	ChatHasUserName         bool                     `json:"chat_has_username,omitempty"`
+	ChatIsCreated           bool                     `json:"chat_is_created,omitempty"`
+	UserAdministratorRights *ChatAdministratorRights `json:"user_administrator_rights,omitempty"`
+	BotAdministratorRights  *ChatAdministratorRights `json:"bot_administrator_rights,omitempty"`
+	BotIsMember             bool                     `json:"bot_is_member,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#keyboardbuttonpolltype
-// type KeyboardButtonPollType struct {
-// 	Type string `json:"type,omitempty"`
-// }
+// https://core.telegram.org/bots/api#keyboardbuttonpolltype
+type KeyboardButtonPollType struct {
+	Type string `json:"type,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#replykeyboardremove
-// type ReplyKeyboardRemove struct {
-// 	RemoveKeyboard bool `json:"remove_keyboard"`
-// 	Selective      bool `json:"selective,omitempty"`
-// }
+// https://core.telegram.org/bots/api#replykeyboardremove
+type ReplyKeyboardRemove struct {
+	RemoveKeyboard bool `json:"remove_keyboard"`
+	Selective      bool `json:"selective,omitempty"`
+}
 
 // https://core.telegram.org/bots/api#inlinekeyboardmarkup
 type InlineKeyboardMarkup struct {
@@ -512,12 +512,12 @@ type CallbackQuery struct {
 	GameShortName   string   `json:"game_short_name,omitempty"`
 }
 
-// // https://core.telegram.org/bots/api#forcereply
-// type ForceReply struct {
-// 	ForceReply            bool   `json:"force_reply"`
-// 	InputFieldPlaceholder string `json:"input_field_placeholder,omitempty"`
-// 	Selective             bool   `json:"selective,omitempty"`
-// }
+// https://core.telegram.org/bots/api#forcereply
+type ForceReply struct {
+	ForceReply            bool   `json:"force_reply"`
+	InputFieldPlaceholder string `json:"input_field_placeholder,omitempty"`
+	Selective             bool   `json:"selective,omitempty"`
+}
 
 // https://core.telegram.org/bots/api#chatphoto
 type ChatPhoto struct {
@@ -540,94 +540,94 @@ type ChatInviteLink struct {
 	PendingJoinRequestCount int64  `json:"pending_join_request_count,omitempty"`
 }
 
-// // https://core.telegram.org/bots/api#chatadministratorrights
-// type ChatAdministratorRights struct {
-// 	IsAnonymous         bool `json:"is_anonymous"`
-// 	CanManageChat       bool `json:"can_manage_chat"`
-// 	CanDeleteMessages   bool `json:"can_delete_messages"`
-// 	CanManageVideoChats bool `json:"can_manage_video_chats"`
-// 	CanRestrictMembers  bool `json:"can_restrict_members"`
-// 	CanPromoteMembers   bool `json:"can_promote_members"`
-// 	CanChangeInfo       bool `json:"can_change_info"`
-// 	CanInviteUsers      bool `json:"can_invite_users"`
-// 	CanPostMessages     bool `json:"can_post_messages,omitempty"`
-// 	CanEditMessages     bool `json:"can_edit_messages,omitempty"`
-// 	CanPinMessages      bool `json:"can_pin_messages,omitempty"`
-// 	CanManageTopics     bool `json:"can_manage_topics,omitempty"`
-// }
+// https://core.telegram.org/bots/api#chatadministratorrights
+type ChatAdministratorRights struct {
+	IsAnonymous         bool `json:"is_anonymous"`
+	CanManageChat       bool `json:"can_manage_chat"`
+	CanDeleteMessages   bool `json:"can_delete_messages"`
+	CanManageVideoChats bool `json:"can_manage_video_chats"`
+	CanRestrictMembers  bool `json:"can_restrict_members"`
+	CanPromoteMembers   bool `json:"can_promote_members"`
+	CanChangeInfo       bool `json:"can_change_info"`
+	CanInviteUsers      bool `json:"can_invite_users"`
+	CanPostMessages     bool `json:"can_post_messages,omitempty"`
+	CanEditMessages     bool `json:"can_edit_messages,omitempty"`
+	CanPinMessages      bool `json:"can_pin_messages,omitempty"`
+	CanManageTopics     bool `json:"can_manage_topics,omitempty"`
+}
 
 // https://core.telegram.org/bots/api#chatmember
 type ChatMember struct {
 }
 
-// // https://core.telegram.org/bots/api#chatmemberowner
-// type ChatMemberOwner struct {
-// 	Status      string `json:"status"`
-// 	User        *User  `json:"user"`
-// 	IsAnonymous bool   `json:"is_anonymous"`
-// 	CustomTitle string `json:"custom_title,omitempty"`
-// }
+// https://core.telegram.org/bots/api#chatmemberowner
+type ChatMemberOwner struct {
+	Status      string `json:"status"`
+	User        *User  `json:"user"`
+	IsAnonymous bool   `json:"is_anonymous"`
+	CustomTitle string `json:"custom_title,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#chatmemberadministrator
-// type ChatMemberAdministrator struct {
-// 	Status              string `json:"status"`
-// 	User                *User  `json:"user"`
-// 	CanBeEdited         bool   `json:"can_be_edited"`
-// 	IsAnonymous         bool   `json:"is_anonymous"`
-// 	CanManageChat       bool   `json:"can_manage_chat"`
-// 	CanDeleteMessages   bool   `json:"can_delete_messages"`
-// 	CanManageVideoChats bool   `json:"can_manage_video_chats"`
-// 	CanRestrictMembers  bool   `json:"can_restrict_members"`
-// 	CanPromoteMembers   bool   `json:"can_promote_members"`
-// 	CanChangeInfo       bool   `json:"can_change_info"`
-// 	CanInviteUsers      bool   `json:"can_invite_users"`
-// 	CanPostMessages     bool   `json:"can_post_messages,omitempty"`
-// 	CanEditMessages     bool   `json:"can_edit_messages,omitempty"`
-// 	CanPinMessages      bool   `json:"can_pin_messages,omitempty"`
-// 	CanManageTopics     bool   `json:"can_manage_topics,omitempty"`
-// 	CustomTitle         string `json:"custom_title,omitempty"`
-// }
+// https://core.telegram.org/bots/api#chatmemberadministrator
+type ChatMemberAdministrator struct {
+	Status              string `json:"status"`
+	User                *User  `json:"user"`
+	CanBeEdited         bool   `json:"can_be_edited"`
+	IsAnonymous         bool   `json:"is_anonymous"`
+	CanManageChat       bool   `json:"can_manage_chat"`
+	CanDeleteMessages   bool   `json:"can_delete_messages"`
+	CanManageVideoChats bool   `json:"can_manage_video_chats"`
+	CanRestrictMembers  bool   `json:"can_restrict_members"`
+	CanPromoteMembers   bool   `json:"can_promote_members"`
+	CanChangeInfo       bool   `json:"can_change_info"`
+	CanInviteUsers      bool   `json:"can_invite_users"`
+	CanPostMessages     bool   `json:"can_post_messages,omitempty"`
+	CanEditMessages     bool   `json:"can_edit_messages,omitempty"`
+	CanPinMessages      bool   `json:"can_pin_messages,omitempty"`
+	CanManageTopics     bool   `json:"can_manage_topics,omitempty"`
+	CustomTitle         string `json:"custom_title,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#chatmembermember
-// type ChatMemberMember struct {
-// 	Status string `json:"status"`
-// 	User   *User  `json:"user"`
-// }
+// https://core.telegram.org/bots/api#chatmembermember
+type ChatMemberMember struct {
+	Status string `json:"status"`
+	User   *User  `json:"user"`
+}
 
-// // https://core.telegram.org/bots/api#chatmemberrestricted
-// type ChatMemberRestricted struct {
-// 	Status                string `json:"status"`
-// 	User                  *User  `json:"user"`
-// 	IsMember              bool   `json:"is_member"`
-// 	CanSendMessages       bool   `json:"can_send_messages"`
-// 	CanSendAudios         bool   `json:"can_send_audios"`
-// 	CanSendDocuments      bool   `json:"can_send_documents"`
-// 	CanSendPhotos         bool   `json:"can_send_photos"`
-// 	CanSendVideos         bool   `json:"can_send_videos"`
-// 	CanSendVideoNotes     bool   `json:"can_send_video_notes"`
-// 	CanSendVoiceNotes     bool   `json:"can_send_voice_notes"`
-// 	CanSendPolls          bool   `json:"can_send_polls"`
-// 	CanSendOtherMessages  bool   `json:"can_send_other_messages"`
-// 	CanAddWebPagePreviews bool   `json:"can_add_web_page_previews"`
-// 	CanChangeInfo         bool   `json:"can_change_info"`
-// 	CanInviteUsers        bool   `json:"can_invite_users"`
-// 	CanPinMessages        bool   `json:"can_pin_messages"`
-// 	CanManageTopics       bool   `json:"can_manage_topics"`
-// 	UntilDate             int64  `json:"until_date"`
-// }
+// https://core.telegram.org/bots/api#chatmemberrestricted
+type ChatMemberRestricted struct {
+	Status                string `json:"status"`
+	User                  *User  `json:"user"`
+	IsMember              bool   `json:"is_member"`
+	CanSendMessages       bool   `json:"can_send_messages"`
+	CanSendAudios         bool   `json:"can_send_audios"`
+	CanSendDocuments      bool   `json:"can_send_documents"`
+	CanSendPhotos         bool   `json:"can_send_photos"`
+	CanSendVideos         bool   `json:"can_send_videos"`
+	CanSendVideoNotes     bool   `json:"can_send_video_notes"`
+	CanSendVoiceNotes     bool   `json:"can_send_voice_notes"`
+	CanSendPolls          bool   `json:"can_send_polls"`
+	CanSendOtherMessages  bool   `json:"can_send_other_messages"`
+	CanAddWebPagePreviews bool   `json:"can_add_web_page_previews"`
+	CanChangeInfo         bool   `json:"can_change_info"`
+	CanInviteUsers        bool   `json:"can_invite_users"`
+	CanPinMessages        bool   `json:"can_pin_messages"`
+	CanManageTopics       bool   `json:"can_manage_topics"`
+	UntilDate             int64  `json:"until_date"`
+}
 
-// // https://core.telegram.org/bots/api#chatmemberleft
-// type ChatMemberLeft struct {
-// 	Status string `json:"status"`
-// 	User   *User  `json:"user"`
-// }
+// https://core.telegram.org/bots/api#chatmemberleft
+type ChatMemberLeft struct {
+	Status string `json:"status"`
+	User   *User  `json:"user"`
+}
 
-// // https://core.telegram.org/bots/api#chatmemberbanned
-// type ChatMemberBanned struct {
-// 	Status    string `json:"status"`
-// 	User      *User  `json:"user"`
-// 	UntilDate int64  `json:"until_date"`
-// }
+// https://core.telegram.org/bots/api#chatmemberbanned
+type ChatMemberBanned struct {
+	Status    string `json:"status"`
+	User      *User  `json:"user"`
+	UntilDate int64  `json:"until_date"`
+}
 
 // https://core.telegram.org/bots/api#chatmemberupdated
 type ChatMemberUpdated struct {
@@ -674,175 +674,175 @@ type ChatLocation struct {
 	Address  string    `json:"address"`
 }
 
-// // https://core.telegram.org/bots/api#forumtopic
-// type ForumTopic struct {
-// 	MessageThreadId   int64  `json:"message_thread_id"`
-// 	Name              string `json:"name"`
-// 	IconColor         int64  `json:"icon_color"`
-// 	IconCustomEmojiId string `json:"icon_custom_emoji_id,omitempty"`
-// }
+// https://core.telegram.org/bots/api#forumtopic
+type ForumTopic struct {
+	MessageThreadId   int64  `json:"message_thread_id"`
+	Name              string `json:"name"`
+	IconColor         int64  `json:"icon_color"`
+	IconCustomEmojiId string `json:"icon_custom_emoji_id,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#botcommand
-// type BotCommand struct {
-// 	Command     string `json:"command"`
-// 	Description string `json:"description"`
-// }
+// https://core.telegram.org/bots/api#botcommand
+type BotCommand struct {
+	Command     string `json:"command"`
+	Description string `json:"description"`
+}
 
-// // https://core.telegram.org/bots/api#botcommandscope
-// type BotCommandScope struct {
-// }
+// https://core.telegram.org/bots/api#botcommandscope
+type BotCommandScope struct {
+}
 
-// // https://core.telegram.org/bots/api#determining-list-of-commands
-// type DeterminingListOfCommands struct {
-// }
+// https://core.telegram.org/bots/api#determining-list-of-commands
+type DeterminingListOfCommands struct {
+}
 
-// // https://core.telegram.org/bots/api#botcommandscopedefault
-// type BotCommandScopeDefault struct {
-// 	Type string `json:"type"`
-// }
+// https://core.telegram.org/bots/api#botcommandscopedefault
+type BotCommandScopeDefault struct {
+	Type string `json:"type"`
+}
 
-// // https://core.telegram.org/bots/api#botcommandscopeallprivatechats
-// type BotCommandScopeAllPrivateChats struct {
-// 	Type string `json:"type"`
-// }
+// https://core.telegram.org/bots/api#botcommandscopeallprivatechats
+type BotCommandScopeAllPrivateChats struct {
+	Type string `json:"type"`
+}
 
-// // https://core.telegram.org/bots/api#botcommandscopeallgroupchats
-// type BotCommandScopeAllGroupChats struct {
-// 	Type string `json:"type"`
-// }
+// https://core.telegram.org/bots/api#botcommandscopeallgroupchats
+type BotCommandScopeAllGroupChats struct {
+	Type string `json:"type"`
+}
 
-// // https://core.telegram.org/bots/api#botcommandscopeallchatadministrators
-// type BotCommandScopeAllChatAdministrators struct {
-// 	Type string `json:"type"`
-// }
+// https://core.telegram.org/bots/api#botcommandscopeallchatadministrators
+type BotCommandScopeAllChatAdministrators struct {
+	Type string `json:"type"`
+}
 
-// // https://core.telegram.org/bots/api#botcommandscopechat
-// type BotCommandScopeChat struct {
-// 	Type   string `json:"type"`
-// 	ChatId int64  `json:"chat_id"`
-// }
+// https://core.telegram.org/bots/api#botcommandscopechat
+type BotCommandScopeChat struct {
+	Type   string `json:"type"`
+	ChatId int64  `json:"chat_id"`
+}
 
-// // https://core.telegram.org/bots/api#botcommandscopechatadministrators
-// type BotCommandScopeChatAdministrators struct {
-// 	Type   string `json:"type"`
-// 	ChatId int64  `json:"chat_id"`
-// }
+// https://core.telegram.org/bots/api#botcommandscopechatadministrators
+type BotCommandScopeChatAdministrators struct {
+	Type   string `json:"type"`
+	ChatId int64  `json:"chat_id"`
+}
 
-// // https://core.telegram.org/bots/api#botcommandscopechatmember
-// type BotCommandScopeChatMember struct {
-// 	Type   string `json:"type"`
-// 	ChatId int64  `json:"chat_id"`
-// 	UserId int64  `json:"user_id"`
-// }
+// https://core.telegram.org/bots/api#botcommandscopechatmember
+type BotCommandScopeChatMember struct {
+	Type   string `json:"type"`
+	ChatId int64  `json:"chat_id"`
+	UserId int64  `json:"user_id"`
+}
 
-// // https://core.telegram.org/bots/api#botname
-// type BotName struct {
-// 	Name string `json:"name"`
-// }
+// https://core.telegram.org/bots/api#botname
+type BotName struct {
+	Name string `json:"name"`
+}
 
-// // https://core.telegram.org/bots/api#botdescription
-// type BotDescription struct {
-// 	Description string `json:"description"`
-// }
+// https://core.telegram.org/bots/api#botdescription
+type BotDescription struct {
+	Description string `json:"description"`
+}
 
-// // https://core.telegram.org/bots/api#botshortdescription
-// type BotShortDescription struct {
-// 	ShortDescription string `json:"short_description"`
-// }
+// https://core.telegram.org/bots/api#botshortdescription
+type BotShortDescription struct {
+	ShortDescription string `json:"short_description"`
+}
 
-// // https://core.telegram.org/bots/api#menubutton
-// type MenuButton struct {
-// }
+// https://core.telegram.org/bots/api#menubutton
+type MenuButton struct {
+}
 
-// // https://core.telegram.org/bots/api#menubuttoncommands
-// type MenuButtonCommands struct {
-// 	Type string `json:"type"`
-// }
+// https://core.telegram.org/bots/api#menubuttoncommands
+type MenuButtonCommands struct {
+	Type string `json:"type"`
+}
 
-// // https://core.telegram.org/bots/api#menubuttonwebapp
-// type MenuButtonWebApp struct {
-// 	Type   string      `json:"type"`
-// 	Text   string      `json:"text"`
-// 	WebApp *WebAppInfo `json:"web_app"`
-// }
+// https://core.telegram.org/bots/api#menubuttonwebapp
+type MenuButtonWebApp struct {
+	Type   string      `json:"type"`
+	Text   string      `json:"text"`
+	WebApp *WebAppInfo `json:"web_app"`
+}
 
-// // https://core.telegram.org/bots/api#menubuttondefault
-// type MenuButtonDefault struct {
-// 	Type string `json:"type"`
-// }
+// https://core.telegram.org/bots/api#menubuttondefault
+type MenuButtonDefault struct {
+	Type string `json:"type"`
+}
 
-// // https://core.telegram.org/bots/api#responseparameters
-// type ResponseParameters struct {
-// 	MigrateToChatId int64 `json:"migrate_to_chat_id,omitempty"`
-// 	RetryAfter      int64 `json:"retry_after,omitempty"`
-// }
+// https://core.telegram.org/bots/api#responseparameters
+type ResponseParameters struct {
+	MigrateToChatId int64 `json:"migrate_to_chat_id,omitempty"`
+	RetryAfter      int64 `json:"retry_after,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inputmedia
-// type InputMedia struct {
-// }
+// https://core.telegram.org/bots/api#inputmedia
+type InputMedia struct {
+}
 
-// // https://core.telegram.org/bots/api#inputmediaphoto
-// type InputMediaPhoto struct {
-// 	Type            string          `json:"type"`
-// 	Media           string          `json:"media"`
-// 	Caption         string          `json:"caption,omitempty"`
-// 	ParseMode       string          `json:"parse_mode,omitempty"`
-// 	CaptionEntities []MessageEntity `json:"caption_entities,omitempty"`
-// 	HasSpoiler      bool            `json:"has_spoiler,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inputmediaphoto
+type InputMediaPhoto struct {
+	Type            string          `json:"type"`
+	Media           string          `json:"media"`
+	Caption         string          `json:"caption,omitempty"`
+	ParseMode       string          `json:"parse_mode,omitempty"`
+	CaptionEntities []MessageEntity `json:"caption_entities,omitempty"`
+	HasSpoiler      bool            `json:"has_spoiler,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inputmediavideo
-// type InputMediaVideo struct {
-// 	Type              string          `json:"type"`
-// 	Media             string          `json:"media"`
-// 	Thumbnail         *InputFile      `json:"thumbnail,omitempty"`
-// 	Caption           string          `json:"caption,omitempty"`
-// 	ParseMode         string          `json:"parse_mode,omitempty"`
-// 	CaptionEntities   []MessageEntity `json:"caption_entities,omitempty"`
-// 	Width             int64           `json:"width,omitempty"`
-// 	Height            int64           `json:"height,omitempty"`
-// 	Duration          int64           `json:"duration,omitempty"`
-// 	SupportsStreaming bool            `json:"supports_streaming,omitempty"`
-// 	HasSpoiler        bool            `json:"has_spoiler,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inputmediavideo
+type InputMediaVideo struct {
+	Type              string          `json:"type"`
+	Media             string          `json:"media"`
+	Thumbnail         *InputFile      `json:"thumbnail,omitempty"`
+	Caption           string          `json:"caption,omitempty"`
+	ParseMode         string          `json:"parse_mode,omitempty"`
+	CaptionEntities   []MessageEntity `json:"caption_entities,omitempty"`
+	Width             int64           `json:"width,omitempty"`
+	Height            int64           `json:"height,omitempty"`
+	Duration          int64           `json:"duration,omitempty"`
+	SupportsStreaming bool            `json:"supports_streaming,omitempty"`
+	HasSpoiler        bool            `json:"has_spoiler,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inputmediaanimation
-// type InputMediaAnimation struct {
-// 	Type            string          `json:"type"`
-// 	Media           string          `json:"media"`
-// 	Thumbnail       *InputFile      `json:"thumbnail,omitempty"`
-// 	Caption         string          `json:"caption,omitempty"`
-// 	ParseMode       string          `json:"parse_mode,omitempty"`
-// 	CaptionEntities []MessageEntity `json:"caption_entities,omitempty"`
-// 	Width           int64           `json:"width,omitempty"`
-// 	Height          int64           `json:"height,omitempty"`
-// 	Duration        int64           `json:"duration,omitempty"`
-// 	HasSpoiler      bool            `json:"has_spoiler,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inputmediaanimation
+type InputMediaAnimation struct {
+	Type            string          `json:"type"`
+	Media           string          `json:"media"`
+	Thumbnail       *InputFile      `json:"thumbnail,omitempty"`
+	Caption         string          `json:"caption,omitempty"`
+	ParseMode       string          `json:"parse_mode,omitempty"`
+	CaptionEntities []MessageEntity `json:"caption_entities,omitempty"`
+	Width           int64           `json:"width,omitempty"`
+	Height          int64           `json:"height,omitempty"`
+	Duration        int64           `json:"duration,omitempty"`
+	HasSpoiler      bool            `json:"has_spoiler,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inputmediaaudio
-// type InputMediaAudio struct {
-// 	Type            string          `json:"type"`
-// 	Media           string          `json:"media"`
-// 	Thumbnail       *InputFile      `json:"thumbnail,omitempty"`
-// 	Caption         string          `json:"caption,omitempty"`
-// 	ParseMode       string          `json:"parse_mode,omitempty"`
-// 	CaptionEntities []MessageEntity `json:"caption_entities,omitempty"`
-// 	Duration        int64           `json:"duration,omitempty"`
-// 	Performer       string          `json:"performer,omitempty"`
-// 	Title           string          `json:"title,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inputmediaaudio
+type InputMediaAudio struct {
+	Type            string          `json:"type"`
+	Media           string          `json:"media"`
+	Thumbnail       *InputFile      `json:"thumbnail,omitempty"`
+	Caption         string          `json:"caption,omitempty"`
+	ParseMode       string          `json:"parse_mode,omitempty"`
+	CaptionEntities []MessageEntity `json:"caption_entities,omitempty"`
+	Duration        int64           `json:"duration,omitempty"`
+	Performer       string          `json:"performer,omitempty"`
+	Title           string          `json:"title,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inputmediadocument
-// type InputMediaDocument struct {
-// 	Type                        string          `json:"type"`
-// 	Media                       string          `json:"media"`
-// 	Thumbnail                   *InputFile      `json:"thumbnail,omitempty"`
-// 	Caption                     string          `json:"caption,omitempty"`
-// 	ParseMode                   string          `json:"parse_mode,omitempty"`
-// 	CaptionEntities             []MessageEntity `json:"caption_entities,omitempty"`
-// 	DisableContentTypeDetection bool            `json:"disable_content_type_detection,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inputmediadocument
+type InputMediaDocument struct {
+	Type                        string          `json:"type"`
+	Media                       string          `json:"media"`
+	Thumbnail                   *InputFile      `json:"thumbnail,omitempty"`
+	Caption                     string          `json:"caption,omitempty"`
+	ParseMode                   string          `json:"parse_mode,omitempty"`
+	CaptionEntities             []MessageEntity `json:"caption_entities,omitempty"`
+	DisableContentTypeDetection bool            `json:"disable_content_type_detection,omitempty"`
+}
 
 // https://core.telegram.org/bots/api#inputfile
 type InputFile struct {
@@ -867,16 +867,16 @@ type Sticker struct {
 	FileSize         int64         `json:"file_size,omitempty"`
 }
 
-// // https://core.telegram.org/bots/api#stickerset
-// type StickerSet struct {
-// 	Name        string     `json:"name"`
-// 	Title       string     `json:"title"`
-// 	StickerType string     `json:"sticker_type"`
-// 	IsAnimated  bool       `json:"is_animated"`
-// 	IsVideo     bool       `json:"is_video"`
-// 	Stickers    []Sticker  `json:"stickers"`
-// 	Thumbnail   *PhotoSize `json:"thumbnail,omitempty"`
-// }
+// https://core.telegram.org/bots/api#stickerset
+type StickerSet struct {
+	Name        string     `json:"name"`
+	Title       string     `json:"title"`
+	StickerType string     `json:"sticker_type"`
+	IsAnimated  bool       `json:"is_animated"`
+	IsVideo     bool       `json:"is_video"`
+	Stickers    []Sticker  `json:"stickers"`
+	Thumbnail   *PhotoSize `json:"thumbnail,omitempty"`
+}
 
 // https://core.telegram.org/bots/api#maskposition
 type MaskPosition struct {
@@ -886,13 +886,13 @@ type MaskPosition struct {
 	Scale  float64 `json:"scale"`
 }
 
-// // https://core.telegram.org/bots/api#inputsticker
-// type InputSticker struct {
-// 	Sticker      *InputFile    `json:"sticker"`
-// 	EmojiList    []string      `json:"emoji_list"`
-// 	MaskPosition *MaskPosition `json:"mask_position,omitempty"`
-// 	Keywords     []string      `json:"keywords,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inputsticker
+type InputSticker struct {
+	Sticker      *InputFile    `json:"sticker"`
+	EmojiList    []string      `json:"emoji_list"`
+	MaskPosition *MaskPosition `json:"mask_position,omitempty"`
+	Keywords     []string      `json:"keywords,omitempty"`
+}
 
 // https://core.telegram.org/bots/api#inlinequery
 type InlineQuery struct {
@@ -904,363 +904,363 @@ type InlineQuery struct {
 	Location *Location `json:"location,omitempty"`
 }
 
-// // https://core.telegram.org/bots/api#inlinequeryresultsbutton
-// type InlineQueryResultsButton struct {
-// 	Text           string      `json:"text"`
-// 	WebApp         *WebAppInfo `json:"web_app,omitempty"`
-// 	StartParameter string      `json:"start_parameter,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultsbutton
+type InlineQueryResultsButton struct {
+	Text           string      `json:"text"`
+	WebApp         *WebAppInfo `json:"web_app,omitempty"`
+	StartParameter string      `json:"start_parameter,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresult
-// type InlineQueryResult struct {
-// }
+// https://core.telegram.org/bots/api#inlinequeryresult
+type InlineQueryResult struct {
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultarticle
-// type InlineQueryResultArticle struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	Title               string                `json:"title"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	Url                 string                `json:"url,omitempty"`
-// 	HideUrl             bool                  `json:"hide_url,omitempty"`
-// 	Description         string                `json:"description,omitempty"`
-// 	ThumbnailUrl        string                `json:"thumbnail_url,omitempty"`
-// 	ThumbnailWidth      int64                 `json:"thumbnail_width,omitempty"`
-// 	ThumbnailHeight     int64                 `json:"thumbnail_height,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultarticle
+type InlineQueryResultArticle struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	Title               string                `json:"title"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	Url                 string                `json:"url,omitempty"`
+	HideUrl             bool                  `json:"hide_url,omitempty"`
+	Description         string                `json:"description,omitempty"`
+	ThumbnailUrl        string                `json:"thumbnail_url,omitempty"`
+	ThumbnailWidth      int64                 `json:"thumbnail_width,omitempty"`
+	ThumbnailHeight     int64                 `json:"thumbnail_height,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultphoto
-// type InlineQueryResultPhoto struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	PhotoUrl            string                `json:"photo_url"`
-// 	ThumbnailUrl        string                `json:"thumbnail_url"`
-// 	PhotoWidth          int64                 `json:"photo_width,omitempty"`
-// 	PhotoHeight         int64                 `json:"photo_height,omitempty"`
-// 	Title               string                `json:"title,omitempty"`
-// 	Description         string                `json:"description,omitempty"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultphoto
+type InlineQueryResultPhoto struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	PhotoUrl            string                `json:"photo_url"`
+	ThumbnailUrl        string                `json:"thumbnail_url"`
+	PhotoWidth          int64                 `json:"photo_width,omitempty"`
+	PhotoHeight         int64                 `json:"photo_height,omitempty"`
+	Title               string                `json:"title,omitempty"`
+	Description         string                `json:"description,omitempty"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultgif
-// type InlineQueryResultGif struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	GifUrl              string                `json:"gif_url"`
-// 	GifWidth            int64                 `json:"gif_width,omitempty"`
-// 	GifHeight           int64                 `json:"gif_height,omitempty"`
-// 	GifDuration         int64                 `json:"gif_duration,omitempty"`
-// 	ThumbnailUrl        string                `json:"thumbnail_url"`
-// 	ThumbnailMimeType   string                `json:"thumbnail_mime_type,omitempty"`
-// 	Title               string                `json:"title,omitempty"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultgif
+type InlineQueryResultGif struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	GifUrl              string                `json:"gif_url"`
+	GifWidth            int64                 `json:"gif_width,omitempty"`
+	GifHeight           int64                 `json:"gif_height,omitempty"`
+	GifDuration         int64                 `json:"gif_duration,omitempty"`
+	ThumbnailUrl        string                `json:"thumbnail_url"`
+	ThumbnailMimeType   string                `json:"thumbnail_mime_type,omitempty"`
+	Title               string                `json:"title,omitempty"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultmpeg4gif
-// type InlineQueryResultMpeg4Gif struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	Mpeg4Url            string                `json:"mpeg4_url"`
-// 	Mpeg4Width          int64                 `json:"mpeg4_width,omitempty"`
-// 	Mpeg4Height         int64                 `json:"mpeg4_height,omitempty"`
-// 	Mpeg4Duration       int64                 `json:"mpeg4_duration,omitempty"`
-// 	ThumbnailUrl        string                `json:"thumbnail_url"`
-// 	ThumbnailMimeType   string                `json:"thumbnail_mime_type,omitempty"`
-// 	Title               string                `json:"title,omitempty"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultmpeg4gif
+type InlineQueryResultMpeg4Gif struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	Mpeg4Url            string                `json:"mpeg4_url"`
+	Mpeg4Width          int64                 `json:"mpeg4_width,omitempty"`
+	Mpeg4Height         int64                 `json:"mpeg4_height,omitempty"`
+	Mpeg4Duration       int64                 `json:"mpeg4_duration,omitempty"`
+	ThumbnailUrl        string                `json:"thumbnail_url"`
+	ThumbnailMimeType   string                `json:"thumbnail_mime_type,omitempty"`
+	Title               string                `json:"title,omitempty"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultvideo
-// type InlineQueryResultVideo struct {
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultvideo
+type InlineQueryResultVideo struct {
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultaudio
-// type InlineQueryResultAudio struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	AudioUrl            string                `json:"audio_url"`
-// 	Title               string                `json:"title"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	Performer           string                `json:"performer,omitempty"`
-// 	AudioDuration       int64                 `json:"audio_duration,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultaudio
+type InlineQueryResultAudio struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	AudioUrl            string                `json:"audio_url"`
+	Title               string                `json:"title"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	Performer           string                `json:"performer,omitempty"`
+	AudioDuration       int64                 `json:"audio_duration,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultvoice
-// type InlineQueryResultVoice struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	VoiceUrl            string                `json:"voice_url"`
-// 	Title               string                `json:"title"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	VoiceDuration       int64                 `json:"voice_duration,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultvoice
+type InlineQueryResultVoice struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	VoiceUrl            string                `json:"voice_url"`
+	Title               string                `json:"title"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	VoiceDuration       int64                 `json:"voice_duration,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultdocument
-// type InlineQueryResultDocument struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	Title               string                `json:"title"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	DocumentUrl         string                `json:"document_url"`
-// 	MimeType            string                `json:"mime_type"`
-// 	Description         string                `json:"description,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// 	ThumbnailUrl        string                `json:"thumbnail_url,omitempty"`
-// 	ThumbnailWidth      int64                 `json:"thumbnail_width,omitempty"`
-// 	ThumbnailHeight     int64                 `json:"thumbnail_height,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultdocument
+type InlineQueryResultDocument struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	Title               string                `json:"title"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	DocumentUrl         string                `json:"document_url"`
+	MimeType            string                `json:"mime_type"`
+	Description         string                `json:"description,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+	ThumbnailUrl        string                `json:"thumbnail_url,omitempty"`
+	ThumbnailWidth      int64                 `json:"thumbnail_width,omitempty"`
+	ThumbnailHeight     int64                 `json:"thumbnail_height,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultlocation
-// type InlineQueryResultLocation struct {
-// 	Type                 string                `json:"type"`
-// 	Id                   string                `json:"id"`
-// 	Latitude             float64               `json:"latitude"`
-// 	Longitude            float64               `json:"longitude"`
-// 	Title                string                `json:"title"`
-// 	HorizontalAccuracy   float64               `json:"horizontal_accuracy,omitempty"`
-// 	LivePeriod           int64                 `json:"live_period,omitempty"`
-// 	Heading              int64                 `json:"heading,omitempty"`
-// 	ProximityAlertRadius int64                 `json:"proximity_alert_radius,omitempty"`
-// 	ReplyMarkup          *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent  *InputMessageContent  `json:"input_message_content,omitempty"`
-// 	ThumbnailUrl         string                `json:"thumbnail_url,omitempty"`
-// 	ThumbnailWidth       int64                 `json:"thumbnail_width,omitempty"`
-// 	ThumbnailHeight      int64                 `json:"thumbnail_height,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultlocation
+type InlineQueryResultLocation struct {
+	Type                 string                `json:"type"`
+	Id                   string                `json:"id"`
+	Latitude             float64               `json:"latitude"`
+	Longitude            float64               `json:"longitude"`
+	Title                string                `json:"title"`
+	HorizontalAccuracy   float64               `json:"horizontal_accuracy,omitempty"`
+	LivePeriod           int64                 `json:"live_period,omitempty"`
+	Heading              int64                 `json:"heading,omitempty"`
+	ProximityAlertRadius int64                 `json:"proximity_alert_radius,omitempty"`
+	ReplyMarkup          *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent  *InputMessageContent  `json:"input_message_content,omitempty"`
+	ThumbnailUrl         string                `json:"thumbnail_url,omitempty"`
+	ThumbnailWidth       int64                 `json:"thumbnail_width,omitempty"`
+	ThumbnailHeight      int64                 `json:"thumbnail_height,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultvenue
-// type InlineQueryResultVenue struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	Latitude            float64               `json:"latitude"`
-// 	Longitude           float64               `json:"longitude"`
-// 	Title               string                `json:"title"`
-// 	Address             string                `json:"address"`
-// 	FoursquareId        string                `json:"foursquare_id,omitempty"`
-// 	FoursquareType      string                `json:"foursquare_type,omitempty"`
-// 	GooglePlaceId       string                `json:"google_place_id,omitempty"`
-// 	GooglePlaceType     string                `json:"google_place_type,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// 	ThumbnailUrl        string                `json:"thumbnail_url,omitempty"`
-// 	ThumbnailWidth      int64                 `json:"thumbnail_width,omitempty"`
-// 	ThumbnailHeight     int64                 `json:"thumbnail_height,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultvenue
+type InlineQueryResultVenue struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	Latitude            float64               `json:"latitude"`
+	Longitude           float64               `json:"longitude"`
+	Title               string                `json:"title"`
+	Address             string                `json:"address"`
+	FoursquareId        string                `json:"foursquare_id,omitempty"`
+	FoursquareType      string                `json:"foursquare_type,omitempty"`
+	GooglePlaceId       string                `json:"google_place_id,omitempty"`
+	GooglePlaceType     string                `json:"google_place_type,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+	ThumbnailUrl        string                `json:"thumbnail_url,omitempty"`
+	ThumbnailWidth      int64                 `json:"thumbnail_width,omitempty"`
+	ThumbnailHeight     int64                 `json:"thumbnail_height,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultcontact
-// type InlineQueryResultContact struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	PhoneNumber         string                `json:"phone_number"`
-// 	FirstName           string                `json:"first_name"`
-// 	LastName            string                `json:"last_name,omitempty"`
-// 	Vcard               string                `json:"vcard,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// 	ThumbnailUrl        string                `json:"thumbnail_url,omitempty"`
-// 	ThumbnailWidth      int64                 `json:"thumbnail_width,omitempty"`
-// 	ThumbnailHeight     int64                 `json:"thumbnail_height,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultcontact
+type InlineQueryResultContact struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	PhoneNumber         string                `json:"phone_number"`
+	FirstName           string                `json:"first_name"`
+	LastName            string                `json:"last_name,omitempty"`
+	Vcard               string                `json:"vcard,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+	ThumbnailUrl        string                `json:"thumbnail_url,omitempty"`
+	ThumbnailWidth      int64                 `json:"thumbnail_width,omitempty"`
+	ThumbnailHeight     int64                 `json:"thumbnail_height,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultgame
-// type InlineQueryResultGame struct {
-// 	Type          string                `json:"type"`
-// 	Id            string                `json:"id"`
-// 	GameShortName string                `json:"game_short_name"`
-// 	ReplyMarkup   *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultgame
+type InlineQueryResultGame struct {
+	Type          string                `json:"type"`
+	Id            string                `json:"id"`
+	GameShortName string                `json:"game_short_name"`
+	ReplyMarkup   *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultcachedphoto
-// type InlineQueryResultCachedPhoto struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	PhotoFileId         string                `json:"photo_file_id"`
-// 	Title               string                `json:"title,omitempty"`
-// 	Description         string                `json:"description,omitempty"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultcachedphoto
+type InlineQueryResultCachedPhoto struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	PhotoFileId         string                `json:"photo_file_id"`
+	Title               string                `json:"title,omitempty"`
+	Description         string                `json:"description,omitempty"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultcachedgif
-// type InlineQueryResultCachedGif struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	GifFileId           string                `json:"gif_file_id"`
-// 	Title               string                `json:"title,omitempty"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultcachedgif
+type InlineQueryResultCachedGif struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	GifFileId           string                `json:"gif_file_id"`
+	Title               string                `json:"title,omitempty"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultcachedmpeg4gif
-// type InlineQueryResultCachedMpeg4Gif struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	Mpeg4FileId         string                `json:"mpeg4_file_id"`
-// 	Title               string                `json:"title,omitempty"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultcachedmpeg4gif
+type InlineQueryResultCachedMpeg4Gif struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	Mpeg4FileId         string                `json:"mpeg4_file_id"`
+	Title               string                `json:"title,omitempty"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultcachedsticker
-// type InlineQueryResultCachedSticker struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	StickerFileId       string                `json:"sticker_file_id"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultcachedsticker
+type InlineQueryResultCachedSticker struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	StickerFileId       string                `json:"sticker_file_id"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultcacheddocument
-// type InlineQueryResultCachedDocument struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	Title               string                `json:"title"`
-// 	DocumentFileId      string                `json:"document_file_id"`
-// 	Description         string                `json:"description,omitempty"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultcacheddocument
+type InlineQueryResultCachedDocument struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	Title               string                `json:"title"`
+	DocumentFileId      string                `json:"document_file_id"`
+	Description         string                `json:"description,omitempty"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultcachedvideo
-// type InlineQueryResultCachedVideo struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	VideoFileId         string                `json:"video_file_id"`
-// 	Title               string                `json:"title"`
-// 	Description         string                `json:"description,omitempty"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultcachedvideo
+type InlineQueryResultCachedVideo struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	VideoFileId         string                `json:"video_file_id"`
+	Title               string                `json:"title"`
+	Description         string                `json:"description,omitempty"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultcachedvoice
-// type InlineQueryResultCachedVoice struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	VoiceFileId         string                `json:"voice_file_id"`
-// 	Title               string                `json:"title"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultcachedvoice
+type InlineQueryResultCachedVoice struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	VoiceFileId         string                `json:"voice_file_id"`
+	Title               string                `json:"title"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inlinequeryresultcachedaudio
-// type InlineQueryResultCachedAudio struct {
-// 	Type                string                `json:"type"`
-// 	Id                  string                `json:"id"`
-// 	AudioFileId         string                `json:"audio_file_id"`
-// 	Caption             string                `json:"caption,omitempty"`
-// 	ParseMode           string                `json:"parse_mode,omitempty"`
-// 	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
-// 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
-// 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inlinequeryresultcachedaudio
+type InlineQueryResultCachedAudio struct {
+	Type                string                `json:"type"`
+	Id                  string                `json:"id"`
+	AudioFileId         string                `json:"audio_file_id"`
+	Caption             string                `json:"caption,omitempty"`
+	ParseMode           string                `json:"parse_mode,omitempty"`
+	CaptionEntities     []MessageEntity       `json:"caption_entities,omitempty"`
+	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inputmessagecontent
-// type InputMessageContent struct {
-// }
+// https://core.telegram.org/bots/api#inputmessagecontent
+type InputMessageContent struct {
+}
 
-// // https://core.telegram.org/bots/api#inputtextmessagecontent
-// type InputTextMessageContent struct {
-// 	MessageText           string          `json:"message_text"`
-// 	ParseMode             string          `json:"parse_mode,omitempty"`
-// 	Entities              []MessageEntity `json:"entities,omitempty"`
-// 	DisableWebPagePreview bool            `json:"disable_web_page_preview,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inputtextmessagecontent
+type InputTextMessageContent struct {
+	MessageText           string          `json:"message_text"`
+	ParseMode             string          `json:"parse_mode,omitempty"`
+	Entities              []MessageEntity `json:"entities,omitempty"`
+	DisableWebPagePreview bool            `json:"disable_web_page_preview,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inputlocationmessagecontent
-// type InputLocationMessageContent struct {
-// 	Latitude             float64 `json:"latitude"`
-// 	Longitude            float64 `json:"longitude"`
-// 	HorizontalAccuracy   float64 `json:"horizontal_accuracy,omitempty"`
-// 	LivePeriod           int64   `json:"live_period,omitempty"`
-// 	Heading              int64   `json:"heading,omitempty"`
-// 	ProximityAlertRadius int64   `json:"proximity_alert_radius,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inputlocationmessagecontent
+type InputLocationMessageContent struct {
+	Latitude             float64 `json:"latitude"`
+	Longitude            float64 `json:"longitude"`
+	HorizontalAccuracy   float64 `json:"horizontal_accuracy,omitempty"`
+	LivePeriod           int64   `json:"live_period,omitempty"`
+	Heading              int64   `json:"heading,omitempty"`
+	ProximityAlertRadius int64   `json:"proximity_alert_radius,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inputvenuemessagecontent
-// type InputVenueMessageContent struct {
-// 	Latitude        float64 `json:"latitude"`
-// 	Longitude       float64 `json:"longitude"`
-// 	Title           string  `json:"title"`
-// 	Address         string  `json:"address"`
-// 	FoursquareId    string  `json:"foursquare_id,omitempty"`
-// 	FoursquareType  string  `json:"foursquare_type,omitempty"`
-// 	GooglePlaceId   string  `json:"google_place_id,omitempty"`
-// 	GooglePlaceType string  `json:"google_place_type,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inputvenuemessagecontent
+type InputVenueMessageContent struct {
+	Latitude        float64 `json:"latitude"`
+	Longitude       float64 `json:"longitude"`
+	Title           string  `json:"title"`
+	Address         string  `json:"address"`
+	FoursquareId    string  `json:"foursquare_id,omitempty"`
+	FoursquareType  string  `json:"foursquare_type,omitempty"`
+	GooglePlaceId   string  `json:"google_place_id,omitempty"`
+	GooglePlaceType string  `json:"google_place_type,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inputcontactmessagecontent
-// type InputContactMessageContent struct {
-// 	PhoneNumber string `json:"phone_number"`
-// 	FirstName   string `json:"first_name"`
-// 	LastName    string `json:"last_name,omitempty"`
-// 	Vcard       string `json:"vcard,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inputcontactmessagecontent
+type InputContactMessageContent struct {
+	PhoneNumber string `json:"phone_number"`
+	FirstName   string `json:"first_name"`
+	LastName    string `json:"last_name,omitempty"`
+	Vcard       string `json:"vcard,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#inputinvoicemessagecontent
-// type InputInvoiceMessageContent struct {
-// 	Title                     string         `json:"title"`
-// 	Description               string         `json:"description"`
-// 	Payload                   string         `json:"payload"`
-// 	ProviderToken             string         `json:"provider_token"`
-// 	Currency                  string         `json:"currency"`
-// 	Prices                    []LabeledPrice `json:"prices"`
-// 	MaxTipAmount              int64          `json:"max_tip_amount,omitempty"`
-// 	SuggestedTipAmounts       []int64        `json:"suggested_tip_amounts,omitempty"`
-// 	ProviderData              string         `json:"provider_data,omitempty"`
-// 	PhotoUrl                  string         `json:"photo_url,omitempty"`
-// 	PhotoSize                 int64          `json:"photo_size,omitempty"`
-// 	PhotoWidth                int64          `json:"photo_width,omitempty"`
-// 	PhotoHeight               int64          `json:"photo_height,omitempty"`
-// 	NeedName                  bool           `json:"need_name,omitempty"`
-// 	NeedPhoneNumber           bool           `json:"need_phone_number,omitempty"`
-// 	NeedEmail                 bool           `json:"need_email,omitempty"`
-// 	NeedShippingAddress       bool           `json:"need_shipping_address,omitempty"`
-// 	SendPhoneNumberToProvider bool           `json:"send_phone_number_to_provider,omitempty"`
-// 	SendEmailToProvider       bool           `json:"send_email_to_provider,omitempty"`
-// 	IsFlexible                bool           `json:"is_flexible,omitempty"`
-// }
+// https://core.telegram.org/bots/api#inputinvoicemessagecontent
+type InputInvoiceMessageContent struct {
+	Title                     string         `json:"title"`
+	Description               string         `json:"description"`
+	Payload                   string         `json:"payload"`
+	ProviderToken             string         `json:"provider_token"`
+	Currency                  string         `json:"currency"`
+	Prices                    []LabeledPrice `json:"prices"`
+	MaxTipAmount              int64          `json:"max_tip_amount,omitempty"`
+	SuggestedTipAmounts       []int64        `json:"suggested_tip_amounts,omitempty"`
+	ProviderData              string         `json:"provider_data,omitempty"`
+	PhotoUrl                  string         `json:"photo_url,omitempty"`
+	PhotoSize                 int64          `json:"photo_size,omitempty"`
+	PhotoWidth                int64          `json:"photo_width,omitempty"`
+	PhotoHeight               int64          `json:"photo_height,omitempty"`
+	NeedName                  bool           `json:"need_name,omitempty"`
+	NeedPhoneNumber           bool           `json:"need_phone_number,omitempty"`
+	NeedEmail                 bool           `json:"need_email,omitempty"`
+	NeedShippingAddress       bool           `json:"need_shipping_address,omitempty"`
+	SendPhoneNumberToProvider bool           `json:"send_phone_number_to_provider,omitempty"`
+	SendEmailToProvider       bool           `json:"send_email_to_provider,omitempty"`
+	IsFlexible                bool           `json:"is_flexible,omitempty"`
+}
 
 // https://core.telegram.org/bots/api#choseninlineresult
 type ChosenInlineResult struct {
@@ -1271,16 +1271,16 @@ type ChosenInlineResult struct {
 	Query           string    `json:"query"`
 }
 
-// // https://core.telegram.org/bots/api#sentwebappmessage
-// type SentWebAppMessage struct {
-// 	InlineMessageId string `json:"inline_message_id,omitempty"`
-// }
+// https://core.telegram.org/bots/api#sentwebappmessage
+type SentWebAppMessage struct {
+	InlineMessageId string `json:"inline_message_id,omitempty"`
+}
 
-// // https://core.telegram.org/bots/api#labeledprice
-// type LabeledPrice struct {
-// 	Label  string `json:"label"`
-// 	Amount int64  `json:"amount"`
-// }
+// https://core.telegram.org/bots/api#labeledprice
+type LabeledPrice struct {
+	Label  string `json:"label"`
+	Amount int64  `json:"amount"`
+}
 
 // https://core.telegram.org/bots/api#invoice
 type Invoice struct {
@@ -1309,12 +1309,12 @@ type OrderInfo struct {
 	ShippingAddress *ShippingAddress `json:"shipping_address,omitempty"`
 }
 
-// // https://core.telegram.org/bots/api#shippingoption
-// type ShippingOption struct {
-// 	Id     string         `json:"id"`
-// 	Title  string         `json:"title"`
-// 	Prices []LabeledPrice `json:"prices"`
-// }
+// https://core.telegram.org/bots/api#shippingoption
+type ShippingOption struct {
+	Id     string         `json:"id"`
+	Title  string         `json:"title"`
+	Prices []LabeledPrice `json:"prices"`
+}
 
 // https://core.telegram.org/bots/api#successfulpayment
 type SuccessfulPayment struct {
@@ -1381,82 +1381,82 @@ type EncryptedCredentials struct {
 	Secret string `json:"secret"`
 }
 
-// // https://core.telegram.org/bots/api#passportelementerror
-// type PassportElementError struct {
-// }
+// https://core.telegram.org/bots/api#passportelementerror
+type PassportElementError struct {
+}
 
-// // https://core.telegram.org/bots/api#passportelementerrordatafield
-// type PassportElementErrorDataField struct {
-// 	Source    string `json:"source"`
-// 	Type      string `json:"type"`
-// 	FieldName string `json:"field_name"`
-// 	DataHash  string `json:"data_hash"`
-// 	Message   string `json:"message"`
-// }
+// https://core.telegram.org/bots/api#passportelementerrordatafield
+type PassportElementErrorDataField struct {
+	Source    string `json:"source"`
+	Type      string `json:"type"`
+	FieldName string `json:"field_name"`
+	DataHash  string `json:"data_hash"`
+	Message   string `json:"message"`
+}
 
-// // https://core.telegram.org/bots/api#passportelementerrorfrontside
-// type PassportElementErrorFrontSide struct {
-// 	Source   string `json:"source"`
-// 	Type     string `json:"type"`
-// 	FileHash string `json:"file_hash"`
-// 	Message  string `json:"message"`
-// }
+// https://core.telegram.org/bots/api#passportelementerrorfrontside
+type PassportElementErrorFrontSide struct {
+	Source   string `json:"source"`
+	Type     string `json:"type"`
+	FileHash string `json:"file_hash"`
+	Message  string `json:"message"`
+}
 
-// // https://core.telegram.org/bots/api#passportelementerrorreverseside
-// type PassportElementErrorReverseSide struct {
-// 	Source   string `json:"source"`
-// 	Type     string `json:"type"`
-// 	FileHash string `json:"file_hash"`
-// 	Message  string `json:"message"`
-// }
+// https://core.telegram.org/bots/api#passportelementerrorreverseside
+type PassportElementErrorReverseSide struct {
+	Source   string `json:"source"`
+	Type     string `json:"type"`
+	FileHash string `json:"file_hash"`
+	Message  string `json:"message"`
+}
 
-// // https://core.telegram.org/bots/api#passportelementerrorselfie
-// type PassportElementErrorSelfie struct {
-// 	Source   string `json:"source"`
-// 	Type     string `json:"type"`
-// 	FileHash string `json:"file_hash"`
-// 	Message  string `json:"message"`
-// }
+// https://core.telegram.org/bots/api#passportelementerrorselfie
+type PassportElementErrorSelfie struct {
+	Source   string `json:"source"`
+	Type     string `json:"type"`
+	FileHash string `json:"file_hash"`
+	Message  string `json:"message"`
+}
 
-// // https://core.telegram.org/bots/api#passportelementerrorfile
-// type PassportElementErrorFile struct {
-// 	Source   string `json:"source"`
-// 	Type     string `json:"type"`
-// 	FileHash string `json:"file_hash"`
-// 	Message  string `json:"message"`
-// }
+// https://core.telegram.org/bots/api#passportelementerrorfile
+type PassportElementErrorFile struct {
+	Source   string `json:"source"`
+	Type     string `json:"type"`
+	FileHash string `json:"file_hash"`
+	Message  string `json:"message"`
+}
 
-// // https://core.telegram.org/bots/api#passportelementerrorfiles
-// type PassportElementErrorFiles struct {
-// 	Source     string   `json:"source"`
-// 	Type       string   `json:"type"`
-// 	FileHashes []string `json:"file_hashes"`
-// 	Message    string   `json:"message"`
-// }
+// https://core.telegram.org/bots/api#passportelementerrorfiles
+type PassportElementErrorFiles struct {
+	Source     string   `json:"source"`
+	Type       string   `json:"type"`
+	FileHashes []string `json:"file_hashes"`
+	Message    string   `json:"message"`
+}
 
-// // https://core.telegram.org/bots/api#passportelementerrortranslationfile
-// type PassportElementErrorTranslationFile struct {
-// 	Source   string `json:"source"`
-// 	Type     string `json:"type"`
-// 	FileHash string `json:"file_hash"`
-// 	Message  string `json:"message"`
-// }
+// https://core.telegram.org/bots/api#passportelementerrortranslationfile
+type PassportElementErrorTranslationFile struct {
+	Source   string `json:"source"`
+	Type     string `json:"type"`
+	FileHash string `json:"file_hash"`
+	Message  string `json:"message"`
+}
 
-// // https://core.telegram.org/bots/api#passportelementerrortranslationfiles
-// type PassportElementErrorTranslationFiles struct {
-// 	Source     string   `json:"source"`
-// 	Type       string   `json:"type"`
-// 	FileHashes []string `json:"file_hashes"`
-// 	Message    string   `json:"message"`
-// }
+// https://core.telegram.org/bots/api#passportelementerrortranslationfiles
+type PassportElementErrorTranslationFiles struct {
+	Source     string   `json:"source"`
+	Type       string   `json:"type"`
+	FileHashes []string `json:"file_hashes"`
+	Message    string   `json:"message"`
+}
 
-// // https://core.telegram.org/bots/api#passportelementerrorunspecified
-// type PassportElementErrorUnspecified struct {
-// 	Source      string `json:"source"`
-// 	Type        string `json:"type"`
-// 	ElementHash string `json:"element_hash"`
-// 	Message     string `json:"message"`
-// }
+// https://core.telegram.org/bots/api#passportelementerrorunspecified
+type PassportElementErrorUnspecified struct {
+	Source      string `json:"source"`
+	Type        string `json:"type"`
+	ElementHash string `json:"element_hash"`
+	Message     string `json:"message"`
+}
 
 // https://core.telegram.org/bots/api#game
 type Game struct {
@@ -1472,9 +1472,9 @@ type Game struct {
 type CallbackGame struct {
 }
 
-// // https://core.telegram.org/bots/api#gamehighscore
-// type GameHighScore struct {
-// 	Position int64 `json:"position"`
-// 	User     *User `json:"user"`
-// 	Score    int64 `json:"score"`
-// }
+// https://core.telegram.org/bots/api#gamehighscore
+type GameHighScore struct {
+	Position int64 `json:"position"`
+	User     *User `json:"user"`
+	Score    int64 `json:"score"`
+}
