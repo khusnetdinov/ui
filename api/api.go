@@ -32,7 +32,7 @@ type Config struct {
 type Api struct {
 	config Config
 	client *http.Client
-	Logger *Slog
+	logger *Slog
 	url    string
 	User   User
 }
@@ -60,11 +60,15 @@ func New(config *Config) (*Api, error) {
 
 	api := &Api{
 		config: *config,
-		Logger: NewSlog(os.Stdout, config.Debug),
+		logger: NewSlog(os.Stdout, config.Debug),
 		client: &http.Client{Timeout: config.HttpClientTimeout},
 		url:    url,
 	}
-	api.Logger.Info("Configuration:", "debug", api.config.Debug, "production", api.config.Production)
+	api.logger.Info(
+		"Configuration:",
+		"debug", api.config.Debug,
+		"production", api.config.Production,
+	)
 
 	var user User
 	requestParams := GetMeParams{}
@@ -72,12 +76,22 @@ func New(config *Config) (*Api, error) {
 		return &Api{}, err
 	}
 	api.User = user
-	api.Logger.Info("Authenticated:", "User", user)
+	api.logger.Info(
+		"Authenticated:",
+		"User", user,
+	)
 
 	return api, nil
 }
 
 func (api *Api) ListenPoolingUpdates(callback func(updates <-chan Update)) {
+	api.logger.Info(
+		"ListenPoolingUpdates:",
+		"offset", api.config.UpdateOffset,
+		"limit", api.config.UpdateLimit,
+		"timeout", api.config.UpdateTimeout,
+	)
+
 	updatesChan := make(chan Update, api.config.UpdateBuffer)
 
 	go func() {
@@ -98,6 +112,12 @@ func (api *Api) ListenPoolingUpdates(callback func(updates <-chan Update)) {
 				if update.UpdateId >= api.config.UpdateOffset {
 					api.config.UpdateOffset = update.UpdateId + 1
 					updatesChan <- update
+
+					api.logger.Info(
+						"PoolingUpdate",
+						"update", update,
+						"offset", api.config.UpdateOffset,
+					)
 				}
 			}
 		}
@@ -107,6 +127,15 @@ func (api *Api) ListenPoolingUpdates(callback func(updates <-chan Update)) {
 }
 
 func (api *Api) ListenHttpWebHookUpdates(callback func(updates <-chan Update)) {
+	api.logger.Info(
+		"ListenHttpWebHookUpdates:",
+		"webhook", api.config.WebHookListenOnPath,
+		"port", api.config.WebHookListenOnPort,
+		"cert", nil,
+		"key", nil,
+		"tsl", false,
+	)
+
 	updatesChan := make(chan Update, api.config.UpdateBuffer)
 
 	http.HandleFunc(api.config.WebHookListenOnPath, func(writer http.ResponseWriter, request *http.Request) {
@@ -116,6 +145,11 @@ func (api *Api) ListenHttpWebHookUpdates(callback func(updates <-chan Update)) {
 		}
 
 		updatesChan <- update
+
+		api.logger.Info(
+			"WebHookUpdate",
+			"update", update,
+		)
 	})
 	go http.ListenAndServe(api.config.WebHookListenOnPort, nil)
 
@@ -123,6 +157,15 @@ func (api *Api) ListenHttpWebHookUpdates(callback func(updates <-chan Update)) {
 }
 
 func (api Api) ListenHttpsWebHookUpdates(callback func(updates <-chan Update)) {
+	api.logger.Info(
+		"ListenHttpWebHookUpdates:",
+		"webhook", api.config.WebHookListenOnPath,
+		"port", api.config.WebHookListenOnPort,
+		"cert", api.config.WebHookTlsCertPem,
+		"key", api.config.WebHookTlsKeyPem,
+		"tsl", true,
+	)
+
 	updatesChan := make(chan Update, api.config.UpdateBuffer)
 
 	http.HandleFunc(api.config.WebHookListenOnPath, func(writer http.ResponseWriter, request *http.Request) {
@@ -132,6 +175,11 @@ func (api Api) ListenHttpsWebHookUpdates(callback func(updates <-chan Update)) {
 		}
 
 		updatesChan <- update
+
+		api.logger.Info(
+			"WebHookUpdate",
+			"update", update,
+		)
 	})
 	go http.ListenAndServeTLS(
 		api.config.WebHookListenOnPort,

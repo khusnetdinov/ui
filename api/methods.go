@@ -3,8 +3,10 @@ package api
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
+	"github.com/google/uuid"
 )
 
 const (
@@ -134,6 +136,9 @@ const (
 )
 
 func (api Api) request(url string, params interface{}, result interface{}) error {
+	uuid := fmt.Sprintf("%s", uuid.New())
+	api.logger.Debug(uuid, "url", url, "params", params)
+
 	jsonParams, err := json.Marshal(params)
 	if err != nil {
 		return err
@@ -160,6 +165,15 @@ func (api Api) request(url string, params interface{}, result interface{}) error
 	var apiResponse Response
 	if err := json.Unmarshal(body, &apiResponse); err != nil {
 		return err
+	}
+	api.logger.Debug(uuid, "apiResponse", apiResponse)
+
+	if !apiResponse.Ok {
+		return &Error{
+			Code: apiResponse.ErrorCode,
+			Message: apiResponse.Description,
+			ResponseParams: apiResponse.Parameters,
+		}
 	}
 
 	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {

@@ -10,7 +10,7 @@ import (
 func main() {
 
 	config := api.Config{
-		Debug:               false,
+		Debug:               true,
 		Production:          true,
 		Token:               "6591790550:AAE5s6Mmhs8QsGPDxmTxEB23kvKKg3KrI_w",
 		HttpClientTimeout:   time.Duration(5) * time.Second,
@@ -39,7 +39,6 @@ func main() {
 					Text:             update.Message.Text,
 				}
 				ui.SendMessage(requestParams, &message)
-				ui.Logger.Info("ListenPoolingUpdates:", "Update", message)
 			}
 		}
 	})

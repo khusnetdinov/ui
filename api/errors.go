@@ -1,9 +1,9 @@
 package api
 
 type Error struct {
-	Code    int
-	Message string
-	ResponseParams
+	Code           int
+	Message        string
+	ResponseParams *ResponseParams
 }
 
 func (e Error) Error() string {
