@@ -10,6 +10,7 @@ import (
 func main() {
 
 	config := api.Config{
+		Debug:               false,
 		Production:          true,
 		Token:               "6591790550:AAE5s6Mmhs8QsGPDxmTxEB23kvKKg3KrI_w",
 		HttpClientTimeout:   time.Duration(5) * time.Second,
@@ -25,7 +26,7 @@ func main() {
 	}
 	ui, err := api.New(&config)
 	if err != nil {
-		log.Panic(err)
+		log.Fatal(err)
 	}
 
 	ui.ListenPoolingUpdates(func(updates <-chan api.Update) {
@@ -38,7 +39,7 @@ func main() {
 					Text:             update.Message.Text,
 				}
 				ui.SendMessage(requestParams, &message)
-				log.Println(JsonPrint(message))
+				ui.Logger.Info("ListenPoolingUpdates:", "Update", message)
 			}
 		}
 	})

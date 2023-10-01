@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -12,8 +13,9 @@ const telegramApiUrl = "https://api.telegram.org/bot%s/"
 const localApiUrl = "http://localhost:8081/bot%s/"
 
 type Config struct {
-	Production          bool
+	Debug               bool
 	Token               string
+	Production          bool
 	HttpClientTimeout   time.Duration
 	UpdatesVia          string
 	UpdateBuffer        int64
@@ -28,8 +30,9 @@ type Config struct {
 }
 
 type Api struct {
-	client *http.Client
 	config Config
+	client *http.Client
+	Logger *Slog
 	url    string
 	User   User
 }
@@ -57,9 +60,11 @@ func New(config *Config) (*Api, error) {
 
 	api := &Api{
 		config: *config,
+		Logger: NewSlog(os.Stdout, config.Debug),
 		client: &http.Client{Timeout: config.HttpClientTimeout},
 		url:    url,
 	}
+	api.Logger.Info("Configuration:", "debug", api.config.Debug, "production", api.config.Production)
 
 	var user User
 	requestParams := GetMeParams{}
@@ -67,6 +72,7 @@ func New(config *Config) (*Api, error) {
 		return &Api{}, err
 	}
 	api.User = user
+	api.Logger.Info("Authenticated:", "User", user)
 
 	return api, nil
 }
