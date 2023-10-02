@@ -169,11 +169,7 @@ func (api Api) request(url string, params interface{}, result interface{}) error
 	api.logger.Debug(uuid, "apiResponse", apiResponse)
 
 	if !apiResponse.Ok {
-		return &Error{
-			Code: apiResponse.ErrorCode,
-			Message: apiResponse.Description,
-			ResponseParams: apiResponse.Parameters,
-		}
+		return NewApiResponseError(&apiResponse)
 	}
 
 	if err := json.Unmarshal(apiResponse.Result, &result); err != nil {
