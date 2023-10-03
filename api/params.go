@@ -1,7 +1,7 @@
 package api
 
 // https://core.telegram.org/bots/api#getupdates
-type GetUpdatesParams struct {
+type RequestParamsGetUpdates struct {
 	Offset         int64    `json:"offset,omitempty"`
 	Limit          int64    `json:"limit,omitempty"`
 	Timeout        int64    `json:"timeout,omitempty"`
@@ -9,7 +9,7 @@ type GetUpdatesParams struct {
 }
 
 // https://core.telegram.org/bots/api#setwebhook
-type SetWebHookParams struct {
+type RequestParamsSetWebHook struct {
 	Url                string     `json:"url"`
 	Certificate        *InputFile `json:"certificate,omitempty"`
 	IpAddress          int64      `json:"ip_address,omitempty"`
@@ -20,24 +20,24 @@ type SetWebHookParams struct {
 }
 
 // https://core.telegram.org/bots/api#deletewebhook
-type DeleteWebHookParams struct {
+type RequestParamsDeleteWebHook struct {
 	DropPendingUpdates bool `json:"drop_pending_updates,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#getwebhookinfo
-type GetWebHookInfoParams struct{}
+type RequestParamsGetWebHookInfo struct{}
 
 // https://core.telegram.org/bots/api#getme
-type GetMeParams struct{}
+type RequestParamsGetMe struct{}
 
 // https://core.telegram.org/bots/api#logout
-type LogOutParams struct {}
+type RequestParamsLogOut struct {}
 
 // https://core.telegram.org/bots/api#close
-type CloseParams struct {}
+type RequestParamsClose struct {}
 
 // https://core.telegram.org/bots/api#sendmessage
-type SendMessageParams struct {
+type RequestParamsSendMessage struct {
 	ChatId                   int64           `json:"chat_id"`
 	MessageThreadId          int64           `json:"message_thread_id,omitempty"`
 	Text                     string          `json:"text"`
@@ -52,7 +52,7 @@ type SendMessageParams struct {
 }
 
 // https://core.telegram.org/bots/api#forwardmessage
-type ForwardMessageParams struct {
+type RequestParamsForwardMessage struct {
 	ChatId              int64 `json:"chat_id"`
 	MessageThreadId     int64 `json:"message_thread_id,omitempty"`
 	FromChatId          int64 `json:"from_chat_id"`
@@ -62,7 +62,7 @@ type ForwardMessageParams struct {
 }
 
 // https://core.telegram.org/bots/api#copymessage
-type CopyMessageParams struct {
+type RequestParamsCopyMessage struct {
 	ChatId                   int64           `json:"chat_id"`
 	MessageThreadId          int64           `json:"message_thread_id,omitempty"`
 	FromChatId               int64           `json:"from_chat_id"`
@@ -78,7 +78,7 @@ type CopyMessageParams struct {
 }
 
 // https://core.telegram.org/bots/api#sendphoto
-type SendPhotoParams struct {
+type RequestParamsSendPhoto struct {
 	ChatId                   int64           `json:"chat_id"`
 	MessageThreadId          int64           `json:"message_thread_id,omitempty"`
 	Photo                    InputFile       `json:"photo"`
@@ -94,7 +94,7 @@ type SendPhotoParams struct {
 }
 
 // https://core.telegram.org/bots/api#sendaudio
-type SendAudioParams struct {
+type RequestParamsSendAudio struct {
 	ChatId                   int64           `json:"chat_id"`
 	MessageThreadId          int64           `json:"message_thread_id,omitempty"`
 	Audio                    InputFile       `json:"photo"`
@@ -110,7 +110,7 @@ type SendAudioParams struct {
 }
 
 // https://core.telegram.org/bots/api#senddocument
-type SendDocumentParams struct {
+type RequestParamsSendDocument struct {
 	ChatId          int64 `json:"chat_id"`
 	MessageThreadId int64 `json:"message_thread_id,omitempty"`
 	// Document InputFile or String`json:"document"`
@@ -127,7 +127,7 @@ type SendDocumentParams struct {
 }
 
 // https://core.telegram.org/bots/api#sendvideo
-type SendVideoParams struct {
+type RequestParamsSendVideo struct {
 	ChatId          int64 `json:"chat_id"`
 	MessageThreadId int64 `json:"message_thread_id,omitempty"`
 	// Video InputFile or String`json:"video"`
@@ -148,7 +148,7 @@ type SendVideoParams struct {
 }
 
 // https://core.telegram.org/bots/api#sendanimation
-type SendAnimationParams struct {
+type RequestParamsSendAnimation struct {
 	ChatId          int64 `json:"chat_id"`
 	MessageThreadId int64 `json:"message_thread_id,omitempty"`
 	// Animation InputFile or String`json:"animation"`
@@ -168,7 +168,7 @@ type SendAnimationParams struct {
 }
 
 // https://core.telegram.org/bots/api#sendvoice
-type SendVoiceParams struct {
+type RequestParamsSendVoice struct {
 	ChatId          int64 `json:"chat_id"`
 	MessageThreadId int64 `json:"message_thread_id,omitempty"`
 	// Voice InputFile or String`json:"voice"`
@@ -184,7 +184,7 @@ type SendVoiceParams struct {
 }
 
 // https://core.telegram.org/bots/api#sendvideonote
-type SendVideoNoteParams struct {
+type RequestParamsSendVideoNote struct {
 	ChatId          int64 `json:"chat_id"`
 	MessageThreadId int64 `json:"message_thread_id,omitempty"`
 	// VideoNote InputFile or String`json:"video_note"`
@@ -199,7 +199,7 @@ type SendVideoNoteParams struct {
 }
 
 // https://core.telegram.org/bots/api#sendmediagroup
-type SendMediaGroupParams struct {
+type RequestParamsSendMediaGroup struct {
 	ChatId          int64 `json:"chat_id"`
 	MessageThreadId int64 `json:"message_thread_id,omitempty"`
 	// Media []InputMediaAudio, InputMediaDocument, InputMediaPhoto and InputMediaVideo`json:"media"`
@@ -210,7 +210,7 @@ type SendMediaGroupParams struct {
 }
 
 // https://core.telegram.org/bots/api#sendlocation
-type SendLocationParams struct {
+type RequestParamsSendLocation struct {
 	ChatId                   int64   `json:"chat_id"`
 	MessageThreadId          int64   `json:"message_thread_id,omitempty"`
 	Latitude                 float64 `json:"latitude"`
@@ -227,7 +227,7 @@ type SendLocationParams struct {
 }
 
 // https://core.telegram.org/bots/api#sendvenue
-type SendVenueParams struct {
+type RequestParamsSendVenue struct {
 	ChatId                   int64   `json:"chat_id"`
 	MessageThreadId          int64   `json:"message_thread_id,omitempty"`
 	Latitude                 float64 `json:"latitude"`
@@ -246,7 +246,7 @@ type SendVenueParams struct {
 }
 
 // https://core.telegram.org/bots/api#sendcontact
-type SendContactParams struct {
+type RequestParamsSendContact struct {
 	ChatId                   int64  `json:"chat_id"`
 	MessageThreadId          int64  `json:"message_thread_id,omitempty"`
 	PhoneNumber              string `json:"phone_number"`
@@ -261,7 +261,7 @@ type SendContactParams struct {
 }
 
 // https://core.telegram.org/bots/api#sendpoll
-type SendPollParams struct {
+type RequestParamsSendPoll struct {
 	ChatId                   int64           `json:"chat_id"`
 	MessageThreadId          int64           `json:"message_thread_id,omitempty"`
 	Question                 string          `json:"question"`
@@ -284,7 +284,7 @@ type SendPollParams struct {
 }
 
 // https://core.telegram.org/bots/api#senddice
-type SendDiceParams struct {
+type RequestParamsSendDice struct {
 	ChatId                   int64  `json:"chat_id"`
 	MessageThreadId          int64  `json:"message_thread_id,omitempty"`
 	Emoji                    string `json:"emoji,omitempty"`
@@ -296,26 +296,26 @@ type SendDiceParams struct {
 }
 
 // https://core.telegram.org/bots/api#sendchataction
-type SendChatActionParams struct {
+type RequestParamsSendChatAction struct {
 	ChatId                   int64  `json:"chat_id"`
 	MessageThreadId          int64  `json:"message_thread_id,omitempty"`
 	action                   string `json:"action,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#getuserprofilephotos
-type GetUserProfilePhotosParams struct {
+type RequestParamsGetUserProfilePhotos struct {
 	UserId int64 `json:"user_id"`
 	Offset int64 `json:"offset,omitempty"`
 	Limit  int64 `json:"limit,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#getfile
-type GetFileParams struct {
+type RequestParamsGetFile struct {
 	FileId string `json:"file_id"`
 }
 
 // https://core.telegram.org/bots/api#banchatmember
-type BanChatMemberParams struct {
+type RequestParamsBanChatMember struct {
 	ChatId         int64 `json:"chat_id"`
 	UserId         int64 `json:"user_id"`
 	UntilDate      int64 `json:"until_date,omitempty"`
@@ -323,14 +323,14 @@ type BanChatMemberParams struct {
 }
 
 // https://core.telegram.org/bots/api#unbanchatmember
-type UnbanChatMemberParams struct {
+type RequestParamsUnbanChatMember struct {
 	ChatId       int64 `json:"chat_id"`
 	UserId       int64 `json:"user_id"`
 	OnlyIfBanned bool  `json:"only_if_banned,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#restrictchatmember
-type RestrictChatMemberParams struct {
+type RequestParamsRestrictChatMember struct {
 	ChatId                        int64            `json:"chat_id"`
 	UserId                        int64            `json:"user_id"`
 	Permissions                   *ChatPermissions `json:"permissions"`
@@ -339,7 +339,7 @@ type RestrictChatMemberParams struct {
 }
 
 // https://core.telegram.org/bots/api#promotechatmember
-type PromoteChatMemberParams struct {
+type RequestParamsPromoteChatMember struct {
 	ChatId              int64 `json:"chat_id"`
 	UserId              int64 `json:"user_id"`
 	IsAnonymous         bool  `json:"is_anonymous,omitempty"`
@@ -357,38 +357,38 @@ type PromoteChatMemberParams struct {
 }
 
 // https://core.telegram.org/bots/api#setchatadministratorcustomtitle
-type SetChatAdministratorCustomTitleParams struct {
+type RequestParamsSetChatAdministratorCustomTitle struct {
 	ChatId      int64  `json:"chat_id"`
 	UserId      int64  `json:"user_id"`
 	CustomTitle string `json:"custom_title"`
 }
 
 // https://core.telegram.org/bots/api#banchatsenderchat
-type BanChatSenderChatParams struct {
+type RequestParamsBanChatSenderChat struct {
 	ChatId       int64 `json:"chat_id"`
 	SenderChatId int64 `json:"sender_chat_id"`
 }
 
 // https://core.telegram.org/bots/api#unbanchatsenderchat
-type UnbanChatSenderChatParams struct {
+type RequestParamsUnbanChatSenderChat struct {
 	ChatId       int64 `json:"chat_id"`
 	SenderChatId int64 `json:"sender_chat_id"`
 }
 
 // https://core.telegram.org/bots/api#setchatpermissions
-type SetChatPermissionsParams struct {
+type RequestParamsSetChatPermissions struct {
 	ChatId                        int64            `json:"chat_id"`
 	Permissions                   *ChatPermissions `json:"permissions"`
 	UseIndependentChatPermissions bool             `json:"use_independent_chat_permissions,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#exportchatinvitelink
-type ExportChatInviteLinkParams struct {
+type RequestParamsExportChatInviteLink struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#createchatinvitelink
-type CreateChatInviteLinkParams struct {
+type RequestParamsCreateChatInviteLink struct {
 	ChatId             int64  `json:"chat_id"`
 	Name               string `json:"name,omitempty"`
 	ExpireDate         int64  `json:"expire_date,omitempty"`
@@ -397,7 +397,7 @@ type CreateChatInviteLinkParams struct {
 }
 
 // https://core.telegram.org/bots/api#editchatinvitelink
-type EditChatInviteLinkParams struct {
+type RequestParamsEditChatInviteLink struct {
 	ChatId             int64  `json:"chat_id"`
 	InviteLink         string `json:"invite_link"`
 	Name               string `json:"name,omitempty"`
@@ -407,107 +407,107 @@ type EditChatInviteLinkParams struct {
 }
 
 // https://core.telegram.org/bots/api#revokechatinvitelink
-type RevokeChatInviteLinkParams struct {
+type RequestParamsRevokeChatInviteLink struct {
 	ChatId     int64  `json:"chat_id"`
 	InviteLink string `json:"invite_link"`
 }
 
 // https://core.telegram.org/bots/api#approvechatjoinrequest
-type ApproveChatJoinRequestParams struct {
+type RequestParamsApproveChatJoinRequest struct {
 	ChatId int64 `json:"chat_id"`
 	UserId int64 `json:"user_id"`
 }
 
 // https://core.telegram.org/bots/api#declinechatjoinrequest
-type DeclineChatJoinRequestParams struct {
+type RequestParamsDeclineChatJoinRequest struct {
 	ChatId int64 `json:"chat_id"`
 	UserId int64 `json:"user_id"`
 }
 
 // https://core.telegram.org/bots/api#setchatphoto
-type SetChatPhotoParams struct {
+type RequestParamsSetChatPhoto struct {
 	ChatId int64      `json:"chat_id"`
 	Photo  *InputFile `json:"photo"`
 }
 
 // https://core.telegram.org/bots/api#deletechatphoto
-type DeleteChatPhotoParams struct {
+type RequestParamsDeleteChatPhoto struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#setchattitle
-type SetChatTitleParams struct {
+type RequestParamsSetChatTitle struct {
 	ChatId int64  `json:"chat_id"`
 	Title  string `json:"title"`
 }
 
 // https://core.telegram.org/bots/api#setchatdescription
-type SetChatDescriptionParams struct {
+type RequestParamsSetChatDescription struct {
 	ChatId      int64  `json:"chat_id"`
 	Description string `json:"description,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#pinchatmessage
-type PinChatMessageParams struct {
+type RequestParamsPinChatMessage struct {
 	ChatId              int64 `json:"chat_id"`
 	MessageId           int64 `json:"message_id"`
 	DisableNotification bool  `json:"disable_notification,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#unpinchatmessage
-type UnpinChatMessageParams struct {
+type RequestParamsUnpinChatMessage struct {
 	ChatId    int64 `json:"chat_id"`
 	MessageId int64 `json:"message_id,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#unpinallchatmessages
-type UnpinAllChatMessagesParams struct {
+type RequestParamsUnpinAllChatMessages struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#leavechat
-type LeaveChatParams struct {
+type RequestParamsLeaveChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#getchat
-type GetChatParams struct {
+type RequestParamsGetChat struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#getchatadministrators
-type GetChatAdministratorsParams struct {
+type RequestParamsGetChatAdministrators struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#getchatmembercount
-type GetChatMemberCountParams struct {
+type RequestParamsGetChatMemberCount struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#getchatmember
-type GetChatMemberParams struct {
+type RequestParamsGetChatMember struct {
 	ChatId int64 `json:"chat_id"`
 	UserId int64 `json:"user_id"`
 }
 
 // https://core.telegram.org/bots/api#setchatstickerset
-type SetChatStickerSetParams struct {
+type RequestParamsSetChatStickerSet struct {
 	ChatId         int64  `json:"chat_id"`
 	StickerSetName string `json:"sticker_set_name"`
 }
 
 // https://core.telegram.org/bots/api#deletechatstickerset
-type DeleteChatStickerSetParams struct {
+type RequestParamsDeleteChatStickerSet struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#getforumtopiciconstickers
-type GetForumTopicIconStickersParams struct {
+type RequestParamsGetForumTopicIconStickers struct {
 }
 
 // https://core.telegram.org/bots/api#createforumtopic
-type CreateForumTopicParams struct {
+type RequestParamsCreateForumTopic struct {
 	ChatId            int64  `json:"chat_id"`
 	Name              string `json:"name"`
 	IconColor         int64  `json:"icon_color,omitempty"`
@@ -515,7 +515,7 @@ type CreateForumTopicParams struct {
 }
 
 // https://core.telegram.org/bots/api#editforumtopic
-type EditForumTopicParams struct {
+type RequestParamsEditForumTopic struct {
 	ChatId            int64  `json:"chat_id"`
 	MessageThreadId   int64  `json:"message_thread_id"`
 	Name              string `json:"name,omitempty"`
@@ -523,140 +523,140 @@ type EditForumTopicParams struct {
 }
 
 // https://core.telegram.org/bots/api#closeforumtopic
-type CloseForumTopicParams struct {
+type RequestParamsCloseForumTopic struct {
 	ChatId          int64 `json:"chat_id"`
 	MessageThreadId int64 `json:"message_thread_id"`
 }
 
 // https://core.telegram.org/bots/api#reopenforumtopic
-type ReopenForumTopicParams struct {
+type RequestParamsReopenForumTopic struct {
 	ChatId          int64 `json:"chat_id"`
 	MessageThreadId int64 `json:"message_thread_id"`
 }
 
 // https://core.telegram.org/bots/api#deleteforumtopic
-type DeleteForumTopicParams struct {
+type RequestParamsDeleteForumTopic struct {
 	ChatId          int64 `json:"chat_id"`
 	MessageThreadId int64 `json:"message_thread_id"`
 }
 
 // https://core.telegram.org/bots/api#unpinallforumtopicmessages
-type UnpinAllForumTopicMessagesParams struct {
+type RequestParamsUnpinAllForumTopicMessages struct {
 	ChatId          int64 `json:"chat_id"`
 	MessageThreadId int64 `json:"message_thread_id"`
 }
 
 // https://core.telegram.org/bots/api#editgeneralforumtopic
-type EditGeneralForumTopicParams struct {
+type RequestParamsEditGeneralForumTopic struct {
 	ChatId int64  `json:"chat_id"`
 	Name   string `json:"name"`
 }
 
 // https://core.telegram.org/bots/api#closegeneralforumtopic
-type CloseGeneralForumTopicParams struct {
+type RequestParamsCloseGeneralForumTopic struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#reopengeneralforumtopic
-type ReopenGeneralForumTopicParams struct {
+type RequestParamsReopenGeneralForumTopic struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#hidegeneralforumtopic
-type HideGeneralForumTopicParams struct {
+type RequestParamsHideGeneralForumTopic struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#unhidegeneralforumtopic
-type UnhideGeneralForumTopicParams struct {
+type RequestParamsUnhideGeneralForumTopic struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#unpinallgeneralforumtopicmessages
-type UnpinAllGeneralForumTopicMessagesParams struct {
+type RequestParamsUnpinAllGeneralForumTopicMessages struct {
 	ChatId int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#answercallbackquery
-type AnswerCallbackQueryParams struct {
+type RequestParamsAnswerCallbackQuery struct {
 }
 
 // https://core.telegram.org/bots/api#setmycommands
-type SetMyCommandsParams struct {
+type RequestParamsSetMyCommands struct {
 	Commands     []BotCommand     `json:"commands"`
 	Scope        *BotCommandScope `json:"scope,omitempty"`
 	LanguageCode string           `json:"language_code,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#deletemycommands
-type DeleteMyCommandsParams struct {
+type RequestParamsDeleteMyCommands struct {
 	Scope        *BotCommandScope `json:"scope,omitempty"`
 	LanguageCode string           `json:"language_code,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#getmycommands
-type GetMyCommandsParams struct {
+type RequestParamsGetMyCommands struct {
 	Scope        *BotCommandScope `json:"scope,omitempty"`
 	LanguageCode string           `json:"language_code,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#setmyname
-type SetMyNameParams struct {
+type RequestParamsSetMyName struct {
 	Name         string `json:"name,omitempty"`
 	LanguageCode string `json:"language_code,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#getmyname
-type GetMyNameParams struct {
+type RequestParamsGetMyName struct {
 	LanguageCode string `json:"language_code,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#setmydescription
-type SetMyDescriptionParams struct {
+type RequestParamsSetMyDescription struct {
 	Description  string `json:"description,omitempty"`
 	LanguageCode string `json:"language_code,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#getmydescription
-type GetMyDescriptionParams struct {
+type RequestParamsGetMyDescription struct {
 	LanguageCode string `json:"language_code,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#setmyshortdescription
-type SetMyShortDescriptionParams struct {
+type RequestParamsSetMyShortDescription struct {
 	ShortDescription string `json:"short_description,omitempty"`
 	LanguageCode     string `json:"language_code,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#getmyshortdescription
-type GetMyShortDescriptionParams struct {
+type RequestParamsGetMyShortDescription struct {
 	LanguageCode string `json:"language_code,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#setchatmenubutton
-type SetChatMenuButtonParams struct {
+type RequestParamsSetChatMenuButton struct {
 	ChatId     int64       `json:"chat_id,omitempty"`
 	MenuButton *MenuButton `json:"menu_button,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#getchatmenubutton
-type GetChatMenuButtonParams struct {
+type RequestParamsGetChatMenuButton struct {
 	ChatId int64 `json:"chat_id,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#setmydefaultadministratorrights
-type SetMyDefaultAdministratorRightsParams struct {
+type RequestParamsSetMyDefaultAdministratorRights struct {
 	Rights      *ChatAdministratorRights `json:"rights,omitempty"`
 	ForChannels bool                     `json:"for_channels,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#getmydefaultadministratorrights
-type GetMyDefaultAdministratorRightsParams struct {
+type RequestParamsGetMyDefaultAdministratorRights struct {
 	ForChannels bool `json:"for_channels,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#editmessagetext
-type EditMessageTextParams struct {
+type RequestParamsEditMessageText struct {
 	ChatId                int64                 `json:"chat_id,omitempty"`
 	MessageId             int64                 `json:"message_id,omitempty"`
 	InlineMessageId       string                `json:"inline_message_id,omitempty"`
@@ -668,7 +668,7 @@ type EditMessageTextParams struct {
 }
 
 // https://core.telegram.org/bots/api#editmessagecaption
-type EditMessageCaptionParams struct {
+type RequestParamsEditMessageCaption struct {
 	ChatId          int64                 `json:"chat_id,omitempty"`
 	MessageId       int64                 `json:"message_id,omitempty"`
 	InlineMessageId string                `json:"inline_message_id,omitempty"`
@@ -679,7 +679,7 @@ type EditMessageCaptionParams struct {
 }
 
 // https://core.telegram.org/bots/api#editmessagemedia
-type EditMessageMediaParams struct {
+type RequestParamsEditMessageMedia struct {
 	ChatId          int64                 `json:"chat_id,omitempty"`
 	MessageId       int64                 `json:"message_id,omitempty"`
 	InlineMessageId string                `json:"inline_message_id,omitempty"`
@@ -688,7 +688,7 @@ type EditMessageMediaParams struct {
 }
 
 // https://core.telegram.org/bots/api#editmessagelivelocation
-type EditMessageLiveLocationParams struct {
+type RequestParamsEditMessageLiveLocation struct {
 	ChatId               int64                 `json:"chat_id,omitempty"`
 	MessageId            int64                 `json:"message_id,omitempty"`
 	InlineMessageId      string                `json:"inline_message_id,omitempty"`
@@ -701,7 +701,7 @@ type EditMessageLiveLocationParams struct {
 }
 
 // https://core.telegram.org/bots/api#stopmessagelivelocation
-type StopMessageLiveLocationParams struct {
+type RequestParamsStopMessageLiveLocation struct {
 	ChatId          int64                 `json:"chat_id,omitempty"`
 	MessageId       int64                 `json:"message_id,omitempty"`
 	InlineMessageId string                `json:"inline_message_id,omitempty"`
@@ -709,7 +709,7 @@ type StopMessageLiveLocationParams struct {
 }
 
 // https://core.telegram.org/bots/api#editmessagereplymarkup
-type EditMessageReplyMarkupParams struct {
+type RequestParamsEditMessageReplyMarkup struct {
 	ChatId          int64                 `json:"chat_id,omitempty"`
 	MessageId       int64                 `json:"message_id,omitempty"`
 	InlineMessageId string                `json:"inline_message_id,omitempty"`
@@ -717,20 +717,20 @@ type EditMessageReplyMarkupParams struct {
 }
 
 // https://core.telegram.org/bots/api#stoppoll
-type StopPollParams struct {
+type RequestParamsStopPoll struct {
 	ChatId      int64                 `json:"chat_id"`
 	MessageId   int64                 `json:"message_id"`
 	ReplyMarkup *InlineKeyboardMarkup `json:"reply_markup,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#deletemessage
-type DeleteMessageParams struct {
+type RequestParamsDeleteMessage struct {
 	ChatId    int64 `json:"chat_id"`
 	MessageId int64 `json:"message_id"`
 }
 
 // https://core.telegram.org/bots/api#sendsticker
-type SendStickerParams struct {
+type RequestParamsSendSticker struct {
 	ChatId          int64 `json:"chat_id"`
 	MessageThreadId int64 `json:"message_thread_id,omitempty"`
 	// Sticker InputFile or String`json:"sticker"`
@@ -743,24 +743,24 @@ type SendStickerParams struct {
 }
 
 // https://core.telegram.org/bots/api#getstickerset
-type GetStickerSetParams struct {
+type RequestParamsGetStickerSet struct {
 	Name string `json:"name"`
 }
 
 // https://core.telegram.org/bots/api#getcustomemojistickers
-type GetCustomEmojiStickersParams struct {
+type RequestParamsGetCustomEmojiStickers struct {
 	CustomEmojiIds []string `json:"custom_emoji_ids"`
 }
 
 // https://core.telegram.org/bots/api#uploadstickerfile
-type UploadStickerFileParams struct {
+type RequestParamsUploadStickerFile struct {
 	UserId        int64      `json:"user_id"`
 	Sticker       *InputFile `json:"sticker"`
 	StickerFormat string     `json:"sticker_format"`
 }
 
 // https://core.telegram.org/bots/api#createnewstickerset
-type CreateNewStickerSetParams struct {
+type RequestParamsCreateNewStickerSet struct {
 	UserId          int64          `json:"user_id"`
 	Name            string         `json:"name"`
 	Title           string         `json:"title"`
@@ -771,67 +771,67 @@ type CreateNewStickerSetParams struct {
 }
 
 // https://core.telegram.org/bots/api#addstickertoset
-type AddStickerToSetParams struct {
+type RequestParamsAddStickerToSet struct {
 	UserId  int64         `json:"user_id"`
 	Name    string        `json:"name"`
 	Sticker *InputSticker `json:"sticker"`
 }
 
 // https://core.telegram.org/bots/api#setstickerpositioninset
-type SetStickerPositionInSetParams struct {
+type RequestParamsSetStickerPositionInSet struct {
 	Sticker  string `json:"sticker"`
 	Position int64  `json:"position"`
 }
 
 // https://core.telegram.org/bots/api#deletestickerfromset
-type DeleteStickerFromSetParams struct {
+type RequestParamsDeleteStickerFromSet struct {
 	Sticker string `json:"sticker"`
 }
 
 // https://core.telegram.org/bots/api#setstickeremojilist
-type SetStickerEmojiListParams struct {
+type RequestParamsSetStickerEmojiList struct {
 	Sticker   string   `json:"sticker"`
 	EmojiList []string `json:"emoji_list"`
 }
 
 // https://core.telegram.org/bots/api#setstickerkeywords
-type SetStickerKeywordsParams struct {
+type RequestParamsSetStickerKeywords struct {
 	Sticker  string   `json:"sticker"`
 	Keywords []string `json:"keywords,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#setstickermaskposition
-type SetStickerMaskPositionParams struct {
+type RequestParamsSetStickerMaskPosition struct {
 	Sticker      string        `json:"sticker"`
 	MaskPosition *MaskPosition `json:"mask_position,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#setstickersettitle
-type SetStickerSetTitleParams struct {
+type RequestParamsSetStickerSetTitle struct {
 	Name  string `json:"name"`
 	Title string `json:"title"`
 }
 
 // https://core.telegram.org/bots/api#setstickersetthumbnail
-type SetStickerSetThumbnailParams struct {
+type RequestParamsSetStickerSetThumbnail struct {
 	Name   string `json:"name"`
 	UserId int64  `json:"user_id"`
 	// Thumbnail InputFile or String`json:"thumbnail,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#setcustomemojistickersetthumbnail
-type SetCustomEmojiStickerSetThumbnailParams struct {
+type RequestParamsSetCustomEmojiStickerSetThumbnail struct {
 	Name          string `json:"name"`
 	CustomEmojiId string `json:"custom_emoji_id,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#deletestickerset
-type DeleteStickerSetParams struct {
+type RequestParamsDeleteStickerSet struct {
 	Name string `json:"name"`
 }
 
 // https://core.telegram.org/bots/api#answerinlinequery
-type AnswerInlineQueryParams struct {
+type RequestParamsAnswerInlineQuery struct {
 	InlineQueryId string                    `json:"inline_query_id"`
 	Results       []InlineQueryResult       `json:"results"`
 	CacheTime     int64                     `json:"cache_time,omitempty"`
@@ -841,13 +841,13 @@ type AnswerInlineQueryParams struct {
 }
 
 // https://core.telegram.org/bots/api#answerwebappquery
-type AnswerWebAppQueryParams struct {
+type RequestParamsAnswerWebAppQuery struct {
 	WebAppQueryId string             `json:"web_app_query_id"`
 	Result        *InlineQueryResult `json:"result"`
 }
 
 // https://core.telegram.org/bots/api#sendinvoice
-type SendInvoiceParams struct {
+type RequestParamsSendInvoice struct {
 	ChatId                    int64                 `json:"chat_id"`
 	MessageThreadId           int64                 `json:"message_thread_id,omitempty"`
 	Title                     string                `json:"title"`
@@ -879,7 +879,7 @@ type SendInvoiceParams struct {
 }
 
 // https://core.telegram.org/bots/api#createinvoicelink
-type CreateInvoiceLinkParams struct {
+type RequestParamsCreateInvoiceLink struct {
 	Title                     string         `json:"title"`
 	Description               string         `json:"description"`
 	Payload                   string         `json:"payload"`
@@ -903,7 +903,7 @@ type CreateInvoiceLinkParams struct {
 }
 
 // https://core.telegram.org/bots/api#answershippingquery
-type AnswerShippingQueryParams struct {
+type RequestParamsAnswerShippingQuery struct {
 	ShippingQueryId string           `json:"shipping_query_id"`
 	Ok              bool             `json:"ok"`
 	ShippingOptions []ShippingOption `json:"shipping_options,omitempty"`
@@ -911,18 +911,18 @@ type AnswerShippingQueryParams struct {
 }
 
 // https://core.telegram.org/bots/api#answerprecheckoutquery
-type AnswerPreCheckoutQueryParams struct {
+type RequestParamsAnswerPreCheckoutQuery struct {
 	PreCheckoutQueryId string `json:"pre_checkout_query_id"`
 	Ok                 bool   `json:"ok"`
 	ErrorMessage       string `json:"error_message,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#setpassportdataerrors
-type SetPassportDataErrorsParams struct {
+type RequestParamsSetPassportDataErrors struct {
 }
 
 // https://core.telegram.org/bots/api#sendgame
-type SendGameParams struct {
+type RequestParamsSendGame struct {
 	ChatId                   int64                 `json:"chat_id"`
 	MessageThreadId          int64                 `json:"message_thread_id,omitempty"`
 	GameShortName            string                `json:"game_short_name"`
@@ -934,7 +934,7 @@ type SendGameParams struct {
 }
 
 // https://core.telegram.org/bots/api#setgamescore
-type SetGameScoreParams struct {
+type RequestParamsSetGameScore struct {
 	UserId             int64  `json:"user_id"`
 	Score              int64  `json:"score"`
 	Force              bool   `json:"force,omitempty"`
@@ -945,7 +945,7 @@ type SetGameScoreParams struct {
 }
 
 // https://core.telegram.org/bots/api#getgamehighscores
-type GetGameHighScoresParams struct {
+type RequestParamsGetGameHighScores struct {
 	UserId             int64  `json:"user_id"`
 	ChatId             int64  `json:"chat_id,omitempty"`
 	MessageId          int64  `json:"message_id,omitempty"`

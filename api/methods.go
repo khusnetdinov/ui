@@ -179,7 +179,7 @@ func (api Api) request(url string, params interface{}, result interface{}) error
 	return nil
 }
 
-func (api Api) GetUpdates(params GetUpdatesParams, result *[]Update) error {
+func (api Api) GetUpdates(params RequestParamsGetUpdates, result *[]Update) error {
 	if err := api.request(RequestMethodGetUpdates, params, &result); err != nil {
 		return err
 	}
@@ -187,7 +187,7 @@ func (api Api) GetUpdates(params GetUpdatesParams, result *[]Update) error {
 	return nil
 }
 
-func (api Api) SetWebHook(params SetWebHookParams, result *bool) error {
+func (api Api) SetWebHook(params RequestParamsSetWebHook, result *bool) error {
 	if err := api.request(RequestMethodSetWebHook, params, &result); err != nil {
 		return err
 	}
@@ -195,7 +195,7 @@ func (api Api) SetWebHook(params SetWebHookParams, result *bool) error {
 	return nil
 }
 
-func (api Api) DeleteWebHook(params DeleteWebHookParams, result *bool) error {
+func (api Api) DeleteWebHook(params RequestParamsDeleteWebHook, result *bool) error {
 	if err := api.request(RequestMethodDeleteWebHook, params, &result); err != nil {
 		return err
 	}
@@ -203,7 +203,7 @@ func (api Api) DeleteWebHook(params DeleteWebHookParams, result *bool) error {
 	return nil
 }
 
-func (api Api) GetWebHookInfo(params GetWebHookInfoParams, result *WebHookInfo) error {
+func (api Api) GetWebHookInfo(params RequestParamsGetWebHookInfo, result *WebHookInfo) error {
 	if err := api.request(RequestMethodGetWebHookInfo, params, &result); err != nil {
 		return err
 	}
@@ -211,7 +211,7 @@ func (api Api) GetWebHookInfo(params GetWebHookInfoParams, result *WebHookInfo) 
 	return nil
 }
 
-func (api Api) GetMe(params GetMeParams, result *User) error {
+func (api Api) GetMe(params RequestParamsGetMe, result *User) error {
 	if err := api.request(RequestMethodGetMe, params, &result); err != nil {
 		return err
 	}
@@ -219,7 +219,7 @@ func (api Api) GetMe(params GetMeParams, result *User) error {
 	return nil
 }
 
-func (api Api) LogOut(params LogOutParams, result *bool) error {
+func (api Api) LogOut(params RequestParamsLogOut, result *bool) error {
 	if err := api.request(RequestMethodLogOut, params, &result); err != nil {
 		return err
 	}
@@ -227,7 +227,7 @@ func (api Api) LogOut(params LogOutParams, result *bool) error {
 	return nil
 }
 
-func (api Api) Close(params CloseParams, result *bool) error {
+func (api Api) Close(params RequestParamsClose, result *bool) error {
 	if err := api.request(RequestMethodClose, params, &result); err != nil {
 		return err
 	}
@@ -235,7 +235,7 @@ func (api Api) Close(params CloseParams, result *bool) error {
 	return nil
 }
 
-func (api Api) SendMessage(params SendMessageParams, result *Message) error {
+func (api Api) SendMessage(params RequestParamsSendMessage, result *Message) error {
 	if err := api.request(RequestMethodSendMessage, params, &result); err != nil {
 		return err
 	}
@@ -243,7 +243,7 @@ func (api Api) SendMessage(params SendMessageParams, result *Message) error {
 	return nil
 }
 
-func (api Api) ForwardMessage(params ForwardMessageParams, result *Message) error {
+func (api Api) ForwardMessage(params RequestParamsForwardMessage, result *Message) error {
 	if err := api.request(RequestMethodForwardMessage, params, &result); err != nil {
 		return err
 	}
@@ -251,7 +251,7 @@ func (api Api) ForwardMessage(params ForwardMessageParams, result *Message) erro
 	return nil
 }
 
-func (api Api) CopyMessage(params CopyMessageParams, result *int64) error {
+func (api Api) CopyMessage(params RequestParamsCopyMessage, result *int64) error {
 	if err := api.request(RequestMethodCopyMessage, params, &result); err != nil {
 		return err
 	}
@@ -259,7 +259,7 @@ func (api Api) CopyMessage(params CopyMessageParams, result *int64) error {
 	return nil
 }
 
-func (api Api) SendPhoto(params SendPhotoParams, result *Message) error {
+func (api Api) SendPhoto(params RequestParamsSendPhoto, result *Message) error {
 	if err := api.request(RequestMethodSendPhoto, params, &result); err != nil {
 		return err
 	}
@@ -267,7 +267,7 @@ func (api Api) SendPhoto(params SendPhotoParams, result *Message) error {
 	return nil
 }
 
-func (api Api) SendAudio(params SendAudioParams, result *Message) error {
+func (api Api) SendAudio(params RequestParamsSendAudio, result *Message) error {
 	if err := api.request(RequestMethodSendAudio, params, &result); err != nil {
 		return err
 	}
@@ -275,7 +275,7 @@ func (api Api) SendAudio(params SendAudioParams, result *Message) error {
 	return nil
 }
 
-func (api Api) SendDocument(params SendDocumentParams, result *Message) error {
+func (api Api) SendDocument(params RequestParamsSendDocument, result *Message) error {
 	if err := api.request(RequestMethodSendDocument, params, &result); err != nil {
 		return err
 	}
@@ -283,7 +283,7 @@ func (api Api) SendDocument(params SendDocumentParams, result *Message) error {
 	return nil
 }
 
-func (api Api) SendVideo(params SendVideoParams, result *Message) error {
+func (api Api) SendVideo(params RequestParamsSendVideo, result *Message) error {
 	if err := api.request(RequestMethodSendVideo, params, &result); err != nil {
 		return err
 	}
@@ -291,7 +291,7 @@ func (api Api) SendVideo(params SendVideoParams, result *Message) error {
 	return nil
 }
 
-func (api Api) SendAnimation(params SendAnimationParams, result *Message) error {
+func (api Api) SendAnimation(params RequestParamsSendAnimation, result *Message) error {
 	if err := api.request(RequestMethodSendAnimation, params, &result); err != nil {
 		return err
 	}
@@ -299,7 +299,7 @@ func (api Api) SendAnimation(params SendAnimationParams, result *Message) error 
 	return nil
 }
 
-func (api Api) SendVoice(params SendVoiceParams, result *Message) error {
+func (api Api) SendVoice(params RequestParamsSendVoice, result *Message) error {
 	if err := api.request(RequestMethodSendVoice, params, &result); err != nil {
 		return err
 	}
@@ -307,7 +307,7 @@ func (api Api) SendVoice(params SendVoiceParams, result *Message) error {
 	return nil
 }
 
-func (api Api) SendVideoNote(params SendVideoNoteParams, result *Message) error {
+func (api Api) SendVideoNote(params RequestParamsSendVideoNote, result *Message) error {
 	if err := api.request(RequestMethodSendVideoNote, params, &result); err != nil {
 		return err
 	}
@@ -315,7 +315,7 @@ func (api Api) SendVideoNote(params SendVideoNoteParams, result *Message) error 
 	return nil
 }
 
-func (api Api) SendMediaGroup(params SendMediaGroupParams, result *Message) error {
+func (api Api) SendMediaGroup(params RequestParamsSendMediaGroup, result *Message) error {
 	if err := api.request(RequestMethodSendMediaGroup, params, &result); err != nil {
 		return err
 	}
@@ -323,7 +323,7 @@ func (api Api) SendMediaGroup(params SendMediaGroupParams, result *Message) erro
 	return nil
 }
 
-func (api Api) SendLocation(params SendLocationParams, result *Message) error {
+func (api Api) SendLocation(params RequestParamsSendLocation, result *Message) error {
 	if err := api.request(RequestMethodSendLocation, params, &result); err != nil {
 		return err
 	}
@@ -331,7 +331,7 @@ func (api Api) SendLocation(params SendLocationParams, result *Message) error {
 	return nil
 }
 
-func (api Api) SendVenue(params SendVenueParams, result *Message) error {
+func (api Api) SendVenue(params RequestParamsSendVenue, result *Message) error {
 	if err := api.request(RequestMethodSendVenue, params, &result); err != nil {
 		return err
 	}
@@ -339,7 +339,7 @@ func (api Api) SendVenue(params SendVenueParams, result *Message) error {
 	return nil
 }
 
-func (api Api) SendContact(params SendContactParams, result *Message) error {
+func (api Api) SendContact(params RequestParamsSendContact, result *Message) error {
 	if err := api.request(RequestMethodSendContact, params, &result); err != nil {
 		return err
 	}
@@ -347,7 +347,7 @@ func (api Api) SendContact(params SendContactParams, result *Message) error {
 	return nil
 }
 
-func (api Api) SendPoll(params SendPollParams, result *Message) error {
+func (api Api) SendPoll(params RequestParamsSendPoll, result *Message) error {
 	if err := api.request(RequestMethodSendPoll, params, &result); err != nil {
 		return err
 	}
@@ -355,7 +355,7 @@ func (api Api) SendPoll(params SendPollParams, result *Message) error {
 	return nil
 }
 
-func (api Api) SendDice(params SendDiceParams, result *Message) error {
+func (api Api) SendDice(params RequestParamsSendDice, result *Message) error {
 	if err := api.request(RequestMethodSendDice, params, &result); err != nil {
 		return err
 	}
@@ -363,7 +363,7 @@ func (api Api) SendDice(params SendDiceParams, result *Message) error {
 	return nil
 }
 
-func (api Api) SendChatAction(params SendChatActionParams, result *bool) error {
+func (api Api) SendChatAction(params RequestParamsSendChatAction, result *bool) error {
 	if err := api.request(RequestMethodSendChatAction, params, &result); err != nil {
 		return err
 	}
@@ -371,7 +371,7 @@ func (api Api) SendChatAction(params SendChatActionParams, result *bool) error {
 	return nil
 }
 
-func (api Api) GetUserProfilePhotos(params GetUserProfilePhotosParams, result *UserProfilePhotos) error {
+func (api Api) GetUserProfilePhotos(params RequestParamsGetUserProfilePhotos, result *UserProfilePhotos) error {
 	if err := api.request(RequestMethodGetUserProfilePhotos, params, &result); err != nil {
 		return err
 	}
@@ -379,7 +379,7 @@ func (api Api) GetUserProfilePhotos(params GetUserProfilePhotosParams, result *U
 	return nil
 }
 
-func (api Api) GetFile(params GetFileParams, result *File) error {
+func (api Api) GetFile(params RequestParamsGetFile, result *File) error {
 	if err := api.request(RequestMethodGetFile, params, &result); err != nil {
 		return err
 	}
@@ -387,7 +387,7 @@ func (api Api) GetFile(params GetFileParams, result *File) error {
 	return nil
 }
 
-func (api Api) BanChatMember(params BanChatMemberParams, result *bool) error {
+func (api Api) BanChatMember(params RequestParamsBanChatMember, result *bool) error {
 	if err := api.request(RequestMethodBanChatMember, params, &result); err != nil {
 		return err
 	}
@@ -395,7 +395,7 @@ func (api Api) BanChatMember(params BanChatMemberParams, result *bool) error {
 	return nil
 }
 
-func (api Api) UnbanChatMember(params UnbanChatMemberParams, result *bool) error {
+func (api Api) UnbanChatMember(params RequestParamsUnbanChatMember, result *bool) error {
 	if err := api.request(RequestMethodUnbanChatMember, params, &result); err != nil {
 		return err
 	}
@@ -403,7 +403,7 @@ func (api Api) UnbanChatMember(params UnbanChatMemberParams, result *bool) error
 	return nil
 }
 
-func (api Api) RestrictChatMember(params RestrictChatMemberParams, result *bool) error {
+func (api Api) RestrictChatMember(params RequestParamsRestrictChatMember, result *bool) error {
 	if err := api.request(RequestMethodRestrictChatMember, params, &result); err != nil {
 		return err
 	}
@@ -411,7 +411,7 @@ func (api Api) RestrictChatMember(params RestrictChatMemberParams, result *bool)
 	return nil
 }
 
-func (api Api) PromoteChatMember(params PromoteChatMemberParams, result *bool) error {
+func (api Api) PromoteChatMember(params RequestParamsPromoteChatMember, result *bool) error {
 	if err := api.request(RequestMethodPromoteChatMember, params, &result); err != nil {
 		return err
 	}
@@ -419,7 +419,7 @@ func (api Api) PromoteChatMember(params PromoteChatMemberParams, result *bool) e
 	return nil
 }
 
-func (api Api) SetChatAdministratorCustomTitle(params SetChatAdministratorCustomTitleParams, result *bool) error {
+func (api Api) SetChatAdministratorCustomTitle(params RequestParamsSetChatAdministratorCustomTitle, result *bool) error {
 	if err := api.request(RequestMethodSetChatAdministratorCustomTitle, params, &result); err != nil {
 		return err
 	}
@@ -427,7 +427,7 @@ func (api Api) SetChatAdministratorCustomTitle(params SetChatAdministratorCustom
 	return nil
 }
 
-func (api Api) BanChatSenderChat(params BanChatSenderChatParams, result *bool) error {
+func (api Api) BanChatSenderChat(params RequestParamsBanChatSenderChat, result *bool) error {
 	if err := api.request(RequestMethodBanChatSenderChat, params, &result); err != nil {
 		return err
 	}
@@ -435,7 +435,7 @@ func (api Api) BanChatSenderChat(params BanChatSenderChatParams, result *bool) e
 	return nil
 }
 
-func (api Api) UnbanChatSenderChat(params UnbanChatSenderChatParams, result *bool) error {
+func (api Api) UnbanChatSenderChat(params RequestParamsUnbanChatSenderChat, result *bool) error {
 	if err := api.request(RequestMethodUnbanChatSenderChat, params, &result); err != nil {
 		return err
 	 }
@@ -443,7 +443,7 @@ func (api Api) UnbanChatSenderChat(params UnbanChatSenderChatParams, result *boo
 	return nil
 }
 
-func (api Api) SetChatPermissions(params SetChatPermissionsParams, result *bool) error {
+func (api Api) SetChatPermissions(params RequestParamsSetChatPermissions, result *bool) error {
 	if err := api.request(RequestMethodSetChatPermissions, params, &result); err != nil {
 		return err
 	}
@@ -451,7 +451,7 @@ func (api Api) SetChatPermissions(params SetChatPermissionsParams, result *bool)
 	return nil
 }
 
-func (api Api) ExportChatInviteLink(params ExportChatInviteLinkParams, result *string) error {
+func (api Api) ExportChatInviteLink(params RequestParamsExportChatInviteLink, result *string) error {
 	if err := api.request(RequestMethodExportChatInviteLink, params, &result); err != nil {
 		return err
 	}
@@ -459,7 +459,7 @@ func (api Api) ExportChatInviteLink(params ExportChatInviteLinkParams, result *s
 	return nil
 }
 
-func (api Api) CreateChatInviteLink(params CreateChatInviteLinkParams, result *ChatInviteLink) error {
+func (api Api) CreateChatInviteLink(params RequestParamsCreateChatInviteLink, result *ChatInviteLink) error {
 	if err := api.request(RequestMethodCreateChatInviteLink, params, &result); err != nil {
 		return err
 	}
@@ -467,7 +467,7 @@ func (api Api) CreateChatInviteLink(params CreateChatInviteLinkParams, result *C
 	return nil
 }
 
-func (api Api) EditChatInviteLink(params EditChatInviteLinkParams, result *ChatInviteLink) error {
+func (api Api) EditChatInviteLink(params RequestParamsEditChatInviteLink, result *ChatInviteLink) error {
 	if err := api.request(RequestMethodEditChatInviteLink, params, &result); err != nil {
 		return err
 	}
@@ -475,7 +475,7 @@ func (api Api) EditChatInviteLink(params EditChatInviteLinkParams, result *ChatI
 	return nil
 }
 
-func (api Api) RevokeChatInviteLink(params RevokeChatInviteLinkParams, result *ChatInviteLink) error {
+func (api Api) RevokeChatInviteLink(params RequestParamsRevokeChatInviteLink, result *ChatInviteLink) error {
 	if err := api.request(RequestMethodRevokeChatInviteLink, params, &result); err != nil {
 		return err
 	}
@@ -483,7 +483,7 @@ func (api Api) RevokeChatInviteLink(params RevokeChatInviteLinkParams, result *C
 	return nil
 }
 
-func (api Api) ApproveChatJoinRequest(params ApproveChatJoinRequestParams, result *bool) error {
+func (api Api) ApproveChatJoinRequest(params RequestParamsApproveChatJoinRequest, result *bool) error {
 	if err := api.request(RequestMethodApproveChatJoinRequest, params, &result); err != nil {
 		return err
 	}
@@ -491,7 +491,7 @@ func (api Api) ApproveChatJoinRequest(params ApproveChatJoinRequestParams, resul
 	return nil
 }
 
-func (api Api) DeclineChatJoinRequest(params DeclineChatJoinRequestParams, result *bool) error {
+func (api Api) DeclineChatJoinRequest(params RequestParamsDeclineChatJoinRequest, result *bool) error {
 	if err := api.request(RequestMethodDeclineChatJoinRequest, params, &result); err != nil {
 		return err
 	}
@@ -499,7 +499,7 @@ func (api Api) DeclineChatJoinRequest(params DeclineChatJoinRequestParams, resul
 	return nil
 }
 
-func (api Api) SetChatPhoto(params SetChatPhotoParams, result *bool) error {
+func (api Api) SetChatPhoto(params RequestParamsSetChatPhoto, result *bool) error {
 	if err := api.request(RequestMethodSetChatPhoto, params, &result); err != nil {
 		return err
 	}
@@ -507,7 +507,7 @@ func (api Api) SetChatPhoto(params SetChatPhotoParams, result *bool) error {
 	return nil
 }
 
-func (api Api) DeleteChatPhoto(params DeleteChatPhotoParams, result *bool) error {
+func (api Api) DeleteChatPhoto(params RequestParamsDeleteChatPhoto, result *bool) error {
 	if err := api.request(RequestMethodDeleteChatPhoto, params, &result); err != nil {
 		return err
 	}
@@ -515,7 +515,7 @@ func (api Api) DeleteChatPhoto(params DeleteChatPhotoParams, result *bool) error
 	return nil
 }
 
-func (api Api) SetChatTitle(params SetChatTitleParams, result *bool) error {
+func (api Api) SetChatTitle(params RequestParamsSetChatTitle, result *bool) error {
 	if err := api.request(RequestMethodSetChatTitle, params, &result); err != nil {
 		return err
 	}
@@ -523,7 +523,7 @@ func (api Api) SetChatTitle(params SetChatTitleParams, result *bool) error {
 	return nil
 }
 
-func (api Api) SetChatDescription(params SetChatDescriptionParams, result *bool) error {
+func (api Api) SetChatDescription(params RequestParamsSetChatDescription, result *bool) error {
 	if err := api.request(RequestMethodSetChatDescription, params, &result); err != nil {
 		return err
 	}
@@ -531,7 +531,7 @@ func (api Api) SetChatDescription(params SetChatDescriptionParams, result *bool)
 	return nil
 }
 
-func (api Api) PinChatMessage(params PinChatMessageParams, result *bool) error {
+func (api Api) PinChatMessage(params RequestParamsPinChatMessage, result *bool) error {
 	if err := api.request(RequestMethodPinChatMessage, params, &result); err != nil {
 		return err
 	}
@@ -539,7 +539,7 @@ func (api Api) PinChatMessage(params PinChatMessageParams, result *bool) error {
 	return nil
 }
 
-func (api Api) UnpinChatMessage(params UnpinChatMessageParams, result *bool) error {
+func (api Api) UnpinChatMessage(params RequestParamsUnpinChatMessage, result *bool) error {
 	if err := api.request(RequestMethodUnpinChatMessage, params, &result); err != nil {
 		return err
 	}
@@ -547,7 +547,7 @@ func (api Api) UnpinChatMessage(params UnpinChatMessageParams, result *bool) err
 	return nil
 }
 
-func (api Api) UnpinAllChatMessages(params UnpinAllChatMessagesParams, result *bool) error {
+func (api Api) UnpinAllChatMessages(params RequestParamsUnpinAllChatMessages, result *bool) error {
 	if err := api.request(RequestMethodUnpinAllChatMessages, params, &result); err != nil {
 		return err
 	}
@@ -555,7 +555,7 @@ func (api Api) UnpinAllChatMessages(params UnpinAllChatMessagesParams, result *b
 	return nil
 }
 
-func (api Api) LeaveChat(params LeaveChatParams, result *bool) error {
+func (api Api) LeaveChat(params RequestParamsLeaveChat, result *bool) error {
 	if err := api.request(RequestMethodLeaveChat, params, &result); err != nil {
 		return err
 	}
@@ -563,7 +563,7 @@ func (api Api) LeaveChat(params LeaveChatParams, result *bool) error {
 	return nil
 }
 
-func (api Api) GetChat(params GetChatParams, result *Chat) error {
+func (api Api) GetChat(params RequestParamsGetChat, result *Chat) error {
 	if err := api.request(RequestMethodGetChat, params, &result); err != nil {
 		return err
 	}
@@ -571,7 +571,7 @@ func (api Api) GetChat(params GetChatParams, result *Chat) error {
 	return nil
 }
 
-func (api Api) GetChatAdministrators(params GetChatAdministratorsParams, result *[]ChatMember) error {
+func (api Api) GetChatAdministrators(params RequestParamsGetChatAdministrators, result *[]ChatMember) error {
 	if err := api.request(RequestMethodGetChatAdministrators, params, &result); err != nil {
 		return err
 	}
@@ -579,7 +579,7 @@ func (api Api) GetChatAdministrators(params GetChatAdministratorsParams, result 
 	return nil
 }
 
-func (api Api) GetChatMemberCount(params GetChatMemberCountParams, result *int64) error {
+func (api Api) GetChatMemberCount(params RequestParamsGetChatMemberCount, result *int64) error {
 	if err := api.request(RequestMethodGetChatMemberCount, params, &result); err != nil {
 		return err
 	}
@@ -587,7 +587,7 @@ func (api Api) GetChatMemberCount(params GetChatMemberCountParams, result *int64
 	return nil
 }
 
-func (api Api) GetChatMember(params GetChatMemberParams, result *ChatMember) error {
+func (api Api) GetChatMember(params RequestParamsGetChatMember, result *ChatMember) error {
 	if err := api.request(RequestMethodGetChatMember, params, &result); err != nil {
 		return err
 	}
@@ -595,7 +595,7 @@ func (api Api) GetChatMember(params GetChatMemberParams, result *ChatMember) err
 	return nil
 }
 
-func (api Api) SetChatStickerSet(params SetChatStickerSetParams, result *bool) error {
+func (api Api) SetChatStickerSet(params RequestParamsSetChatStickerSet, result *bool) error {
 	if err := api.request(RequestMethodSetChatStickerSet, params, &result); err != nil {
 		return err
 	}
@@ -603,7 +603,7 @@ func (api Api) SetChatStickerSet(params SetChatStickerSetParams, result *bool) e
 	return nil
 }
 
-func (api Api) DeleteChatStickerSet(params DeleteChatStickerSetParams, result *bool) error {
+func (api Api) DeleteChatStickerSet(params RequestParamsDeleteChatStickerSet, result *bool) error {
 	if err := api.request(RequestMethodDeleteChatStickerSet, params, &result); err != nil {
 		return err
 	}
@@ -611,7 +611,7 @@ func (api Api) DeleteChatStickerSet(params DeleteChatStickerSetParams, result *b
 	return nil
 }
 
-func (api Api) GetForumTopicIconStickers(params GetForumTopicIconStickersParams, result *[]Sticker) error {
+func (api Api) GetForumTopicIconStickers(params RequestParamsGetForumTopicIconStickers, result *[]Sticker) error {
 	if err := api.request(RequestMethodGetForumTopicIconStickers, params, &result); err != nil {
 		return err
 	}
@@ -619,7 +619,7 @@ func (api Api) GetForumTopicIconStickers(params GetForumTopicIconStickersParams,
 	return nil
 }
 
-func (api Api) CreateForumTopic(params CreateForumTopicParams, result *ForumTopic) error {
+func (api Api) CreateForumTopic(params RequestParamsCreateForumTopic, result *ForumTopic) error {
 	if err := api.request(RequestMethodCreateForumTopic, params, &result); err != nil {
 		return err
 	}
@@ -627,7 +627,7 @@ func (api Api) CreateForumTopic(params CreateForumTopicParams, result *ForumTopi
 	return nil
 }
 
-func (api Api) EditForumTopic(params EditForumTopicParams, result *bool) error {
+func (api Api) EditForumTopic(params RequestParamsEditForumTopic, result *bool) error {
 	if err := api.request(RequestMethodEditForumTopic, params, &result); err != nil {
 		return err
 	}
@@ -635,7 +635,7 @@ func (api Api) EditForumTopic(params EditForumTopicParams, result *bool) error {
 	return nil
 }
 
-func (api Api) CloseForumTopic(params CloseForumTopicParams, result *bool) error {
+func (api Api) CloseForumTopic(params RequestParamsCloseForumTopic, result *bool) error {
 	if err := api.request(RequestMethodCloseForumTopic, params, &result); err != nil {
 		return err
 	}
@@ -643,7 +643,7 @@ func (api Api) CloseForumTopic(params CloseForumTopicParams, result *bool) error
 	return nil
 }
 
-func (api Api) ReopenForumTopic(params ReopenForumTopicParams, result *bool) error {
+func (api Api) ReopenForumTopic(params RequestParamsReopenForumTopic, result *bool) error {
 	if err := api.request(RequestMethodReopenForumTopic, params, &result); err != nil {
 		return err
 	}
@@ -651,7 +651,7 @@ func (api Api) ReopenForumTopic(params ReopenForumTopicParams, result *bool) err
 	return nil
 }
 
-func (api Api) DeleteForumTopic(params DeleteForumTopicParams, result *bool) error {
+func (api Api) DeleteForumTopic(params RequestParamsDeleteForumTopic, result *bool) error {
 	if err := api.request(RequestMethodDeleteForumTopic, params, &result); err != nil {
 		return err
 	}
@@ -659,7 +659,7 @@ func (api Api) DeleteForumTopic(params DeleteForumTopicParams, result *bool) err
 	return nil
 }
 
-func (api Api) UnpinAllForumTopicMessages(params UnpinAllForumTopicMessagesParams, result *bool) error {
+func (api Api) UnpinAllForumTopicMessages(params RequestParamsUnpinAllForumTopicMessages, result *bool) error {
 	if err := api.request(RequestMethodUnpinAllForumTopicMessages, params, &result); err != nil {
 		return err
 	}
@@ -667,7 +667,7 @@ func (api Api) UnpinAllForumTopicMessages(params UnpinAllForumTopicMessagesParam
 	return nil
 }
 
-func (api Api) EditGeneralForumTopic(params EditGeneralForumTopicParams, result *bool) error {
+func (api Api) EditGeneralForumTopic(params RequestParamsEditGeneralForumTopic, result *bool) error {
 	if err := api.request(RequestMethodEditGeneralForumTopic, params, &result); err != nil {
 		return err
 	}
@@ -675,7 +675,7 @@ func (api Api) EditGeneralForumTopic(params EditGeneralForumTopicParams, result 
 	return nil
 }
 
-func (api Api) CloseGeneralForumTopic(params CloseGeneralForumTopicParams, result *bool) error {
+func (api Api) CloseGeneralForumTopic(params RequestParamsCloseGeneralForumTopic, result *bool) error {
 	if err := api.request(RequestMethodCloseGeneralForumTopic, params, &result); err != nil {
 		return err
 	}
@@ -683,7 +683,7 @@ func (api Api) CloseGeneralForumTopic(params CloseGeneralForumTopicParams, resul
 	return nil
 }
 
-func (api Api) ReopenGeneralForumTopic(params ReopenGeneralForumTopicParams, result *bool) error {
+func (api Api) ReopenGeneralForumTopic(params RequestParamsReopenGeneralForumTopic, result *bool) error {
 	if err := api.request(RequestMethodReopenGeneralForumTopic, params, &result); err != nil {
 		return err
 	}
@@ -691,7 +691,7 @@ func (api Api) ReopenGeneralForumTopic(params ReopenGeneralForumTopicParams, res
 	return nil
 }
 
-func (api Api) HideGeneralForumTopic(params HideGeneralForumTopicParams, result *bool) error {
+func (api Api) HideGeneralForumTopic(params RequestParamsHideGeneralForumTopic, result *bool) error {
 	if err := api.request(RequestMethodHideGeneralForumTopic, params, &result); err != nil {
 		return err
 	}
@@ -699,7 +699,7 @@ func (api Api) HideGeneralForumTopic(params HideGeneralForumTopicParams, result 
 	return nil
 }
 
-func (api Api) UnhideGeneralForumTopic(params UnhideGeneralForumTopicParams, result *bool) error {
+func (api Api) UnhideGeneralForumTopic(params RequestParamsUnhideGeneralForumTopic, result *bool) error {
 	if err := api.request(RequestMethodUnhideGeneralForumTopic, params, &result); err != nil {
 		return err
 	}
@@ -707,7 +707,7 @@ func (api Api) UnhideGeneralForumTopic(params UnhideGeneralForumTopicParams, res
 	return nil
 }
 
-func (api Api) UnpinAllGeneralForumTopicMessages(params UnpinAllGeneralForumTopicMessagesParams, result *bool) error {
+func (api Api) UnpinAllGeneralForumTopicMessages(params RequestParamsUnpinAllGeneralForumTopicMessages, result *bool) error {
 	if err := api.request(RequestMethodUnpinAllGeneralForumTopicMessages, params, &result); err != nil {
 		return err
 	}
@@ -715,7 +715,7 @@ func (api Api) UnpinAllGeneralForumTopicMessages(params UnpinAllGeneralForumTopi
 	return nil
 }
 
-func (api Api) AnswerCallbackQuery(params AnswerCallbackQueryParams, result *bool) error {
+func (api Api) AnswerCallbackQuery(params RequestParamsAnswerCallbackQuery, result *bool) error {
 	if err := api.request(RequestMethodAnswerCallbackQuery, params, &result); err != nil {
 		return err
 	}
@@ -723,7 +723,7 @@ func (api Api) AnswerCallbackQuery(params AnswerCallbackQueryParams, result *boo
 	return nil
 }
 
-func (api Api) SetMyCommands(params SetMyCommandsParams, result *bool) error {
+func (api Api) SetMyCommands(params RequestParamsSetMyCommands, result *bool) error {
 	if err := api.request(RequestMethodSetMyCommands, params, &result); err != nil {
 		return err
 	}
@@ -731,7 +731,7 @@ func (api Api) SetMyCommands(params SetMyCommandsParams, result *bool) error {
 	return nil
 }
 
-func (api Api) DeleteMyCommands(params DeleteMyCommandsParams, result *bool) error {
+func (api Api) DeleteMyCommands(params RequestParamsDeleteMyCommands, result *bool) error {
 	if err := api.request(RequestMethodDeleteMyCommands, params, &result); err != nil {
 		return err
 	}
@@ -739,7 +739,7 @@ func (api Api) DeleteMyCommands(params DeleteMyCommandsParams, result *bool) err
 	return nil
 }
 
-func (api Api) GetMyCommands(params GetMyCommandsParams, result *[]BotCommand) error {
+func (api Api) GetMyCommands(params RequestParamsGetMyCommands, result *[]BotCommand) error {
 	if err := api.request(RequestMethodGetMyCommands, params, &result); err != nil {
 		return err
 	}
@@ -747,7 +747,7 @@ func (api Api) GetMyCommands(params GetMyCommandsParams, result *[]BotCommand) e
 	return nil
 }
 
-func (api Api) SetMyName(params SetMyNameParams, result *bool) error {
+func (api Api) SetMyName(params RequestParamsSetMyName, result *bool) error {
 	if err := api.request(RequestMethodSetMyName, params, &result); err != nil {
 		return err
 	}
@@ -755,7 +755,7 @@ func (api Api) SetMyName(params SetMyNameParams, result *bool) error {
 	return nil
 }
 
-func (api Api) GetMyName(params GetMyNameParams, result *BotName) error {
+func (api Api) GetMyName(params RequestParamsGetMyName, result *BotName) error {
 	if err := api.request(RequestMethodGetMyName, params, &result); err != nil {
 		return err
 	}
@@ -763,7 +763,7 @@ func (api Api) GetMyName(params GetMyNameParams, result *BotName) error {
 	return nil
 }
 
-func (api Api) SetMyDescription(params SetMyDescriptionParams, result *bool) error {
+func (api Api) SetMyDescription(params RequestParamsSetMyDescription, result *bool) error {
 	if err := api.request(RequestMethodSetMyDescription, params, &result); err != nil {
 		return err
 	}
@@ -771,7 +771,7 @@ func (api Api) SetMyDescription(params SetMyDescriptionParams, result *bool) err
 	return nil
 }
 
-func (api Api) GetMyDescription(params GetMyDescriptionParams, result *BotDescription) error {
+func (api Api) GetMyDescription(params RequestParamsGetMyDescription, result *BotDescription) error {
 	if err := api.request(RequestMethodGetMyDescription, params, &result); err != nil {
 		return err
 	}
@@ -779,7 +779,7 @@ func (api Api) GetMyDescription(params GetMyDescriptionParams, result *BotDescri
 	return nil
 }
 
-func (api Api) SetMyShortDescription(params SetMyShortDescriptionParams, result *bool) error {
+func (api Api) SetMyShortDescription(params RequestParamsSetMyShortDescription, result *bool) error {
 	if err := api.request(RequestMethodSetMyShortDescription, params, &result); err != nil {
 		return err
 	}
@@ -787,7 +787,7 @@ func (api Api) SetMyShortDescription(params SetMyShortDescriptionParams, result 
 	return nil
 }
 
-func (api Api) GetMyShortDescription(params GetMyShortDescriptionParams, result *BotShortDescription) error {
+func (api Api) GetMyShortDescription(params RequestParamsGetMyShortDescription, result *BotShortDescription) error {
 	if err := api.request(RequestMethodGetMyShortDescription, params, &result); err != nil {
 		return err
 	}
@@ -795,7 +795,7 @@ func (api Api) GetMyShortDescription(params GetMyShortDescriptionParams, result 
 	return nil
 }
 
-func (api Api) SetChatMenuButton(params SetChatMenuButtonParams, result *bool) error {
+func (api Api) SetChatMenuButton(params RequestParamsSetChatMenuButton, result *bool) error {
 	if err := api.request(RequestMethodSetChatMenuButton, params, &result); err != nil {
 		return err
 	}
@@ -803,7 +803,7 @@ func (api Api) SetChatMenuButton(params SetChatMenuButtonParams, result *bool) e
 	return nil
 }
 
-func (api Api) GetChatMenuButton(params GetChatMenuButtonParams, result *MenuButton) error {
+func (api Api) GetChatMenuButton(params RequestParamsGetChatMenuButton, result *MenuButton) error {
 	if err := api.request(RequestMethodGetChatMenuButton, params, &result); err != nil {
 		return err
 	}
@@ -811,7 +811,7 @@ func (api Api) GetChatMenuButton(params GetChatMenuButtonParams, result *MenuBut
 	return nil
 }
 
-func (api Api) SetMyDefaultAdministratorRights(params SetMyDefaultAdministratorRightsParams, result *bool) error {
+func (api Api) SetMyDefaultAdministratorRights(params RequestParamsSetMyDefaultAdministratorRights, result *bool) error {
 	if err := api.request(RequestMethodSetMyDefaultAdministratorRights, params, &result); err != nil {
 		return err
 	}
@@ -819,7 +819,7 @@ func (api Api) SetMyDefaultAdministratorRights(params SetMyDefaultAdministratorR
 	return nil
 }
 
-func (api Api) GetMyDefaultAdministratorRights(params GetMyDefaultAdministratorRightsParams, result *ChatAdministratorRights) error {
+func (api Api) GetMyDefaultAdministratorRights(params RequestParamsGetMyDefaultAdministratorRights, result *ChatAdministratorRights) error {
 	if err := api.request(RequestMethodGetMyDefaultAdministratorRights, params, &result); err != nil {
 		return err
 	}
@@ -827,7 +827,7 @@ func (api Api) GetMyDefaultAdministratorRights(params GetMyDefaultAdministratorR
 	return nil
 }
 
-func (api Api) EditMessageText(params EditMessageTextParams, result *Message) error {
+func (api Api) EditMessageText(params RequestParamsEditMessageText, result *Message) error {
 	if err := api.request(RequestMethodEditMessageText, params, &result); err != nil {
 		return err
 	}
@@ -835,7 +835,7 @@ func (api Api) EditMessageText(params EditMessageTextParams, result *Message) er
 	return nil
 }
 
-func (api Api) EditInlineMessageText(params EditMessageTextParams, result *bool) error {
+func (api Api) EditInlineMessageText(params RequestParamsEditMessageText, result *bool) error {
 	if err := api.request(RequestMethodEditMessageText, params, &result); err != nil {
 		return err
 	}
@@ -843,7 +843,7 @@ func (api Api) EditInlineMessageText(params EditMessageTextParams, result *bool)
 	return nil
 }
 
-func (api Api) EditMessageCaption(params EditMessageCaptionParams, result *Message) error {
+func (api Api) EditMessageCaption(params RequestParamsEditMessageCaption, result *Message) error {
 	if err := api.request(RequestMethodEditMessageCaption, params, &result); err != nil {
 		return err
 	}
@@ -851,7 +851,7 @@ func (api Api) EditMessageCaption(params EditMessageCaptionParams, result *Messa
 	return nil
 }
 
-func (api Api) EditInlineMessageCaption(params EditMessageCaptionParams, result **bool) error {
+func (api Api) EditInlineMessageCaption(params RequestParamsEditMessageCaption, result **bool) error {
 	if err := api.request(RequestMethodEditMessageCaption, params, &result); err != nil {
 		return err
 	}
@@ -859,7 +859,7 @@ func (api Api) EditInlineMessageCaption(params EditMessageCaptionParams, result 
 	return nil
 }
 
-func (api Api) EditMessageMedia(params EditMessageMediaParams, result *Message) error {
+func (api Api) EditMessageMedia(params RequestParamsEditMessageMedia, result *Message) error {
 	if err := api.request(RequestMethodEditMessageMedia, params, &result); err != nil {
 		return err
 	}
@@ -867,7 +867,7 @@ func (api Api) EditMessageMedia(params EditMessageMediaParams, result *Message) 
 	return nil
 }
 
-func (api Api) EditInlineMessageMedia(params EditMessageMediaParams, result *bool) error {
+func (api Api) EditInlineMessageMedia(params RequestParamsEditMessageMedia, result *bool) error {
 	if err := api.request(RequestMethodEditMessageMedia, params, &result); err != nil {
 		return err
 	}
@@ -875,7 +875,7 @@ func (api Api) EditInlineMessageMedia(params EditMessageMediaParams, result *boo
 	return nil
 }
 
-func (api Api) EditMessageLiveLocation(params EditMessageLiveLocationParams, result *Message) error {
+func (api Api) EditMessageLiveLocation(params RequestParamsEditMessageLiveLocation, result *Message) error {
 	if err := api.request(RequestMethodEditMessageLiveLocation, params, &result); err != nil {
 		return err
 	}
@@ -883,7 +883,7 @@ func (api Api) EditMessageLiveLocation(params EditMessageLiveLocationParams, res
 	return nil
 }
 
-func (api Api) EditInlineMessageLiveLocation(params EditMessageLiveLocationParams, result *bool) error {
+func (api Api) EditInlineMessageLiveLocation(params RequestParamsEditMessageLiveLocation, result *bool) error {
 	if err := api.request(RequestMethodEditMessageLiveLocation, params, &result); err != nil {
 		return err
 	}
@@ -891,7 +891,7 @@ func (api Api) EditInlineMessageLiveLocation(params EditMessageLiveLocationParam
 	return nil
 }
 
-func (api Api) StopMessageLiveLocation(params StopMessageLiveLocationParams, result *Message) error {
+func (api Api) StopMessageLiveLocation(params RequestParamsStopMessageLiveLocation, result *Message) error {
 	if err := api.request(RequestMethodStopMessageLiveLocation, params, &result); err != nil {
 		return err
 	}
@@ -900,7 +900,7 @@ func (api Api) StopMessageLiveLocation(params StopMessageLiveLocationParams, res
 }
 
 
-func (api Api) StopInlineMessageLiveLocation(params StopMessageLiveLocationParams, result *bool) error {
+func (api Api) StopInlineMessageLiveLocation(params RequestParamsStopMessageLiveLocation, result *bool) error {
 	if err := api.request(RequestMethodStopMessageLiveLocation, params, &result); err != nil {
 		return err
 	}
@@ -908,7 +908,7 @@ func (api Api) StopInlineMessageLiveLocation(params StopMessageLiveLocationParam
 	return nil
 }
 
-func (api Api) EditMessageReplyMarkup(params EditMessageReplyMarkupParams, result *Message) error {
+func (api Api) EditMessageReplyMarkup(params RequestParamsEditMessageReplyMarkup, result *Message) error {
 	if err := api.request(RequestMethodEditMessageReplyMarkup, params, &result); err != nil {
 		return err
 	}
@@ -916,7 +916,7 @@ func (api Api) EditMessageReplyMarkup(params EditMessageReplyMarkupParams, resul
 	return nil
 }
 
-func (api Api) EditInlineMessageReplyMarkup(params EditMessageReplyMarkupParams, result *bool) error {
+func (api Api) EditInlineMessageReplyMarkup(params RequestParamsEditMessageReplyMarkup, result *bool) error {
 	if err := api.request(RequestMethodEditMessageReplyMarkup, params, &result); err != nil {
 		return err
 	}
@@ -925,7 +925,7 @@ func (api Api) EditInlineMessageReplyMarkup(params EditMessageReplyMarkupParams,
 }
 
 
-func (api Api) DeleteMessage(params DeleteMessageParams, result *bool) error {
+func (api Api) DeleteMessage(params RequestParamsDeleteMessage, result *bool) error {
 	if err := api.request(RequestMethodDeleteMessage, params, &result); err != nil {
 		return err
 	}
@@ -933,7 +933,7 @@ func (api Api) DeleteMessage(params DeleteMessageParams, result *bool) error {
 	return nil
 }
 
-func (api Api) SendSticker(params SendStickerParams, result *Message) error {
+func (api Api) SendSticker(params RequestParamsSendSticker, result *Message) error {
 	if err := api.request(RequestMethodSendSticker, params, &result); err != nil {
 		return err
 	}
@@ -941,7 +941,7 @@ func (api Api) SendSticker(params SendStickerParams, result *Message) error {
 	return nil
 }
 
-func (api Api) GetStickerSet(params GetStickerSetParams, result *StickerSet) error {
+func (api Api) GetStickerSet(params RequestParamsGetStickerSet, result *StickerSet) error {
 	if err := api.request(RequestMethodGetStickerSet, params, &result); err != nil {
 		return err
 	}
@@ -949,7 +949,7 @@ func (api Api) GetStickerSet(params GetStickerSetParams, result *StickerSet) err
 	return nil
 }
 
-func (api Api) GetCustomEmojiStickers(params GetCustomEmojiStickersParams, result *Sticker) error {
+func (api Api) GetCustomEmojiStickers(params RequestParamsGetCustomEmojiStickers, result *Sticker) error {
 	if err := api.request(RequestMethodGetCustomEmojiStickers, params, &result); err != nil {
 		return err
 	}
@@ -957,7 +957,7 @@ func (api Api) GetCustomEmojiStickers(params GetCustomEmojiStickersParams, resul
 	return nil
 }
 
-func (api Api) UploadStickerFile(params UploadStickerFileParams, result *File) error {
+func (api Api) UploadStickerFile(params RequestParamsUploadStickerFile, result *File) error {
 	if err := api.request(RequestMethodUploadStickerFile, params, &result); err != nil {
 		return err
 	}
@@ -965,7 +965,7 @@ func (api Api) UploadStickerFile(params UploadStickerFileParams, result *File) e
 	return nil
 }
 
-func (api Api) CreateNewStickerSet(params CreateNewStickerSetParams, result *bool) error {
+func (api Api) CreateNewStickerSet(params RequestParamsCreateNewStickerSet, result *bool) error {
 	if err := api.request(RequestMethodCreateNewStickerSet, params, &result); err != nil {
 		return err
 	}
@@ -973,7 +973,7 @@ func (api Api) CreateNewStickerSet(params CreateNewStickerSetParams, result *boo
 	return nil
 }
 
-func (api Api) AddStickerToSet(params AddStickerToSetParams, result *bool) error {
+func (api Api) AddStickerToSet(params RequestParamsAddStickerToSet, result *bool) error {
 	if err := api.request(RequestMethodAddStickerToSet, params, &result); err != nil {
 		return err
 	}
@@ -981,7 +981,7 @@ func (api Api) AddStickerToSet(params AddStickerToSetParams, result *bool) error
 	return nil
 }
 
-func (api Api) SetStickerPositionInSet(params SetStickerPositionInSetParams, result *bool) error {
+func (api Api) SetStickerPositionInSet(params RequestParamsSetStickerPositionInSet, result *bool) error {
 	if err := api.request(RequestMethodSetStickerPositionInSet, params, &result); err != nil {
 		return err
 	}
@@ -989,7 +989,7 @@ func (api Api) SetStickerPositionInSet(params SetStickerPositionInSetParams, res
 	return nil
 }
 
-func (api Api) DeleteStickerFromSet(params DeleteStickerFromSetParams, result *bool) error {
+func (api Api) DeleteStickerFromSet(params RequestParamsDeleteStickerFromSet, result *bool) error {
 	if err := api.request(RequestMethodDeleteStickerFromSet, params, &result); err != nil {
 		return err
 	}
@@ -997,7 +997,7 @@ func (api Api) DeleteStickerFromSet(params DeleteStickerFromSetParams, result *b
 	return nil
 }
 
-func (api Api) SetStickerEmojiList(params SetStickerEmojiListParams, result *bool) error {
+func (api Api) SetStickerEmojiList(params RequestParamsSetStickerEmojiList, result *bool) error {
 	if err := api.request(RequestMethodSetStickerEmojiList, params, &result); err != nil {
 		return err
 	}
@@ -1005,7 +1005,7 @@ func (api Api) SetStickerEmojiList(params SetStickerEmojiListParams, result *boo
 	return nil
 }
 
-func (api Api) SetStickerKeywords(params SetStickerKeywordsParams, result *bool) error {
+func (api Api) SetStickerKeywords(params RequestParamsSetStickerKeywords, result *bool) error {
 	if err := api.request(RequestMethodSetStickerKeywords, params, &result); err != nil {
 		return err
 	}
@@ -1013,7 +1013,7 @@ func (api Api) SetStickerKeywords(params SetStickerKeywordsParams, result *bool)
 	return nil
 }
 
-func (api Api) SetStickerMaskPosition(params SetStickerMaskPositionParams, result *bool) error {
+func (api Api) SetStickerMaskPosition(params RequestParamsSetStickerMaskPosition, result *bool) error {
 	if err := api.request(RequestMethodSetStickerMaskPosition, params, &result); err != nil {
 		return err
 	}
@@ -1021,7 +1021,7 @@ func (api Api) SetStickerMaskPosition(params SetStickerMaskPositionParams, resul
 	return nil
 }
 
-func (api Api) SetStickerSetTitle(params SetStickerSetTitleParams, result *bool) error {
+func (api Api) SetStickerSetTitle(params RequestParamsSetStickerSetTitle, result *bool) error {
 	if err := api.request(RequestMethodSetStickerSetTitle, params, &result); err != nil {
 		return err
 	}
@@ -1029,7 +1029,7 @@ func (api Api) SetStickerSetTitle(params SetStickerSetTitleParams, result *bool)
 	return nil
 }
 
-func (api Api) SetStickerSetThumbnail(params SetStickerSetThumbnailParams, result *bool) error {
+func (api Api) SetStickerSetThumbnail(params RequestParamsSetStickerSetThumbnail, result *bool) error {
 	if err := api.request(RequestMethodSetStickerSetThumbnail, params, &result); err != nil {
 		return err
 	}
@@ -1037,7 +1037,7 @@ func (api Api) SetStickerSetThumbnail(params SetStickerSetThumbnailParams, resul
 	return nil
 }
 
-func (api Api) SetCustomEmojiStickerSetThumbnail(params SetCustomEmojiStickerSetThumbnailParams, result *bool) error {
+func (api Api) SetCustomEmojiStickerSetThumbnail(params RequestParamsSetCustomEmojiStickerSetThumbnail, result *bool) error {
 	if err := api.request(RequestMethodSetCustomEmojiStickerSetThumbnail, params, &result); err != nil {
 		return err
 	}
@@ -1045,7 +1045,7 @@ func (api Api) SetCustomEmojiStickerSetThumbnail(params SetCustomEmojiStickerSet
 	return nil
 }
 
-func (api Api) DeleteStickerSet(params DeleteStickerSetParams, result *bool) error {
+func (api Api) DeleteStickerSet(params RequestParamsDeleteStickerSet, result *bool) error {
 	if err := api.request(RequestMethodDeleteStickerSet, params, &result); err != nil {
 		return err
 	}
@@ -1053,7 +1053,7 @@ func (api Api) DeleteStickerSet(params DeleteStickerSetParams, result *bool) err
 	return nil
 }
 
-func (api Api) AnswerInlineQuery(params AnswerInlineQueryParams, result *bool) error {
+func (api Api) AnswerInlineQuery(params RequestParamsAnswerInlineQuery, result *bool) error {
 	if err := api.request(RequestMethodAnswerInlineQuery, params, &result); err != nil {
 		return err
 	}
@@ -1061,7 +1061,7 @@ func (api Api) AnswerInlineQuery(params AnswerInlineQueryParams, result *bool) e
 	return nil
 }
 
-func (api Api) AnswerWebAppQuery(params AnswerWebAppQueryParams, result *SentWebAppMessage) error {
+func (api Api) AnswerWebAppQuery(params RequestParamsAnswerWebAppQuery, result *SentWebAppMessage) error {
 	if err := api.request(RequestMethodAnswerWebAppQuery, params, &result); err != nil {
 		return err
 	}
@@ -1069,7 +1069,7 @@ func (api Api) AnswerWebAppQuery(params AnswerWebAppQueryParams, result *SentWeb
 	return nil
 }
 
-func (api Api) SendInvoice(params SendInvoiceParams, result *Message) error {
+func (api Api) SendInvoice(params RequestParamsSendInvoice, result *Message) error {
 	if err := api.request(RequestMethodSendInvoice, params, &result); err != nil {
 		return err
 	}
@@ -1077,7 +1077,7 @@ func (api Api) SendInvoice(params SendInvoiceParams, result *Message) error {
 	return nil
 }
 
-func (api Api) CreateInvoiceLink(params CreateInvoiceLinkParams, result *string) error {
+func (api Api) CreateInvoiceLink(params RequestParamsCreateInvoiceLink, result *string) error {
 	if err := api.request(RequestMethodCreateInvoiceLink, params, &result); err != nil {
 		return err
 	}
@@ -1085,7 +1085,7 @@ func (api Api) CreateInvoiceLink(params CreateInvoiceLinkParams, result *string)
 	return nil
 }
 
-func (api Api) AnswerShippingQuery(params AnswerShippingQueryParams, result *bool) error {
+func (api Api) AnswerShippingQuery(params RequestParamsAnswerShippingQuery, result *bool) error {
 	if err := api.request(RequestMethodAnswerShippingQuery, params, &result); err != nil {
 		return err
 	}
@@ -1093,7 +1093,7 @@ func (api Api) AnswerShippingQuery(params AnswerShippingQueryParams, result *boo
 	return nil
 }
 
-func (api Api) AnswerPreCheckoutQuery(params AnswerPreCheckoutQueryParams, result *bool) error {
+func (api Api) AnswerPreCheckoutQuery(params RequestParamsAnswerPreCheckoutQuery, result *bool) error {
 	if err := api.request(RequestMethodAnswerPreCheckoutQuery, params, &result); err != nil {
 		return err
 	}
@@ -1101,7 +1101,7 @@ func (api Api) AnswerPreCheckoutQuery(params AnswerPreCheckoutQueryParams, resul
 	return nil
 }
 
-func (api Api) SetPassportDataErrors(params SetPassportDataErrorsParams, result *bool) error {
+func (api Api) SetPassportDataErrors(params RequestParamsSetPassportDataErrors, result *bool) error {
 	if err := api.request(RequestMethodSetPassportDataErrors, params, &result); err != nil {
 		return err
 	}
@@ -1109,7 +1109,7 @@ func (api Api) SetPassportDataErrors(params SetPassportDataErrorsParams, result 
 	return nil
 }
 
-func (api Api) SendGame(params SendGameParams, result *Message) error {
+func (api Api) SendGame(params RequestParamsSendGame, result *Message) error {
 	if err := api.request(RequestMethodSendGame, params, &result); err != nil {
 		return err
 	}
@@ -1117,7 +1117,7 @@ func (api Api) SendGame(params SendGameParams, result *Message) error {
 	return nil
 }
 
-func (api Api) SetGameScore(params SetGameScoreParams, result *Message) error {
+func (api Api) SetGameScore(params RequestParamsSetGameScore, result *Message) error {
 	if err := api.request(RequestMethodSetGameScore, params, &result); err != nil {
 		return err
 	}
@@ -1125,7 +1125,7 @@ func (api Api) SetGameScore(params SetGameScoreParams, result *Message) error {
 	return nil
 }
 
-func (api Api) SetInlineGameScore(params SetGameScoreParams, result *bool) error {
+func (api Api) SetInlineGameScore(params RequestParamsSetGameScore, result *bool) error {
 	if err := api.request(RequestMethodSetGameScore, params, &result); err != nil {
 		return err
 	}
@@ -1133,7 +1133,7 @@ func (api Api) SetInlineGameScore(params SetGameScoreParams, result *bool) error
 	return nil
 }
 
-func (api Api) GetGameHighScores(params GetGameHighScoresParams, result *[]GameHighScore) error {
+func (api Api) GetGameHighScores(params RequestParamsGetGameHighScores, result *[]GameHighScore) error {
 	if err := api.request(RequestMethodGetGameHighScores, params, &result); err != nil {
 		return err
 	}

@@ -33,12 +33,14 @@ func main() {
 		for update := range updates {
 			if update.Message != nil {
 				var message api.Message
-				requestParams := api.SendMessageParams{
+				requestParams := api.RequestParamsSendMessage{
 					ChatId:           update.Message.Chat.Id,
 					ReplyToMessageId: update.Message.MessageId,
 					Text:             update.Message.Text,
 				}
-				ui.SendMessage(requestParams, &message)
+				if err := ui.SendMessage(requestParams, &message); err != nil {
+					log.Println(err)
+				}
 			}
 		}
 	})

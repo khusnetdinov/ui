@@ -71,7 +71,7 @@ func New(config *Config) (*Api, error) {
 	)
 
 	var user User
-	requestParams := GetMeParams{}
+	requestParams := RequestParamsGetMe{}
 	if err := api.GetMe(requestParams, &user); err != nil {
 		return &Api{}, err
 	}
@@ -97,7 +97,7 @@ func (api *Api) ListenPoolingUpdates(callback func(updates <-chan Update)) {
 	go func() {
 		for {
 			var updates []Update
-			requestParams := GetUpdatesParams{
+			requestParams := RequestParamsGetUpdates{
 				Offset:  api.config.UpdateOffset,
 				Limit:   api.config.UpdateLimit,
 				Timeout: api.config.UpdateTimeout,
