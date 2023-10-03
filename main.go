@@ -12,7 +12,8 @@ func main() {
 	config := api.Config{
 		Debug:               true,
 		Production:          true,
-		Token:               "6591790550:AAE5s6Mmhs8QsGPDxmTxEB23kvKKg3KrI_w",
+		// Token:               "6591790550:AAE5s6Mmhs8QsGPDxmTxEB23kvKKg3KrI_w",
+		Token:               "6082780877:AAFuH3vVGM2k5JZHQncGQnCkuQiDOB0ikMI",
 		HttpClientTimeout:   time.Duration(5) * time.Second,
 		UpdateBuffer:        100,
 		UpdateOffset:        0,
