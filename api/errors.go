@@ -3,14 +3,14 @@ package api
 type ApiResponseError struct {
 	Code           int
 	Message        string
-	ResponseParams *ResponseParams
+	ResponseParams *ApiResponseParams
 }
 
 func (e ApiResponseError) Error() string {
 	return e.Message
 }
 
-func NewApiResponseError(response *Response) error {
+func NewApiResponseError(response *ApiResponse) error {
 	return &ApiResponseError{
 		Code:           response.ErrorCode,
 		Message:        response.Description,

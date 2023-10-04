@@ -137,7 +137,7 @@ const (
 
 func (api Api) request(url string, params interface{}, result interface{}) error {
 	uuid := fmt.Sprintf("%s", uuid.New())
-	api.logger.Debug(uuid, "url", url, "params", params)
+	api.Logger.Debug(uuid, "url", url, "params", params)
 
 	jsonParams, err := json.Marshal(params)
 	if err != nil {
@@ -162,11 +162,11 @@ func (api Api) request(url string, params interface{}, result interface{}) error
 		return err
 	}
 
-	var apiResponse Response
+	var apiResponse ApiResponse
 	if err := json.Unmarshal(body, &apiResponse); err != nil {
 		return err
 	}
-	api.logger.Debug(uuid, "apiResponse", apiResponse)
+	api.Logger.Debug(uuid, "apiResponse", apiResponse)
 
 	if !apiResponse.Ok {
 		return NewApiResponseError(&apiResponse)
