@@ -3,8 +3,8 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"log/slog"
 	"net/http"
-	"os"
 	"time"
 )
 
@@ -13,7 +13,7 @@ const localApiUrl = "http://localhost:8081/bot%s/"
 
 type Api struct {
 	client *http.Client
-	Logger *Slog
+	Logger *slog.Logger
 	url    string
 	User   User
 }
@@ -31,7 +31,7 @@ type ApiResponseParams struct {
 	RetryAfter      int   `json:"retry_after,omitempty"`
 }
 
-func NewApi(token string, timeout time.Duration, production bool, debug bool) *Api {
+func NewApi(token string, timeout time.Duration, production bool, logger *slog.Logger) *Api {
 	var url string
 	if production {
 		url = fmt.Sprintf(telegramApiUrl, token)
@@ -40,7 +40,7 @@ func NewApi(token string, timeout time.Duration, production bool, debug bool) *A
 	}
 
 	return &Api{
-		Logger: NewSlog(os.Stdout, debug),
+		Logger: logger,
 		client: &http.Client{Timeout: timeout},
 		url:    url,
 	}

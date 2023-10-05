@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 	"log"
+	"log/slog"
+	"os"
 	"time"
 
 	telegram "github.com/telegrapha/ui/api"
@@ -28,11 +30,14 @@ type Config struct {
 type Bot struct {
 	api    *telegram.Api
 	config Config
+	logger *slog.Logger
 }
 
 func New(config *Config) (*Bot, error) {
-	api := telegram.NewApi(config.Token, config.HttpClientTimeout, config.Production, config.Debug)
-	api.Logger.Info(
+	logger := NewSlog(os.Stdout, config.Debug)
+
+	api := telegram.NewApi(config.Token, config.HttpClientTimeout, config.Production, logger)
+	logger.Info(
 		"Configuration:",
 		"debug", config.Debug,
 		"production", config.Production,
@@ -44,7 +49,7 @@ func New(config *Config) (*Bot, error) {
 		return &Bot{}, err
 	}
 	api.User = user
-	api.Logger.Info(
+	logger.Info(
 		"Authenticated:",
 		"User", user,
 	)
@@ -52,11 +57,12 @@ func New(config *Config) (*Bot, error) {
 	return &Bot{
 		api: api,
 		config: *config,
+		logger: logger,
 	}, nil
 }
 
 func (bot *Bot) ListenPoolingUpdates(callback func(updates <-chan telegram.Update)) {
-	bot.api.Logger.Info(
+	bot.logger.Info(
 		"ListenPoolingUpdates:",
 		"offset", bot.config.UpdateOffset,
 		"limit", bot.config.UpdateLimit,
@@ -74,7 +80,7 @@ func (bot *Bot) ListenPoolingUpdates(callback func(updates <-chan telegram.Updat
 				Timeout: bot.config.UpdateTimeout,
 			}
 			if err := bot.api.GetUpdates(requestParams, &updates); err != nil {
-				bot.api.Logger.Info("GetUpdates", "err", err)
+				bot.logger.Info("GetUpdates", "err", err)
 
 				time.Sleep(bot.config.HttpClientTimeout)
 			}
@@ -84,7 +90,7 @@ func (bot *Bot) ListenPoolingUpdates(callback func(updates <-chan telegram.Updat
 					bot.config.UpdateOffset = update.UpdateId + 1
 					updatesChan <- update
 
-					bot.api.Logger.Info(
+					bot.logger.Info(
 						"PoolingUpdate",
 						"update", update,
 						"offset", bot.config.UpdateOffset,
@@ -98,7 +104,7 @@ func (bot *Bot) ListenPoolingUpdates(callback func(updates <-chan telegram.Updat
 }
 
 func (bot *Bot) ListenHttpWebHookUpdates(callback func(updates <-chan telegram.Update)) {
-	bot.api.Logger.Info(
+	bot.logger.Info(
 		"ListenHttpWebHookUpdates:",
 		"webhook", bot.config.WebHookListenOnPath,
 		"port", bot.config.WebHookListenOnPort,
@@ -117,7 +123,7 @@ func (bot *Bot) ListenHttpWebHookUpdates(callback func(updates <-chan telegram.U
 
 		updatesChan <- update
 
-		bot.api.Logger.Info(
+		bot.logger.Info(
 			"WebHookUpdate",
 			"update", update,
 		)
@@ -128,7 +134,7 @@ func (bot *Bot) ListenHttpWebHookUpdates(callback func(updates <-chan telegram.U
 }
 
 func (bot *Bot) ListenHttpsWebHookUpdates(callback func(updates <-chan telegram.Update)) {
-	bot.api.Logger.Info(
+	bot.logger.Info(
 		"ListenHttpWebHookUpdates:",
 		"webhook", bot.config.WebHookListenOnPath,
 		"port", bot.config.WebHookListenOnPort,
@@ -147,7 +153,7 @@ func (bot *Bot) ListenHttpsWebHookUpdates(callback func(updates <-chan telegram.
 
 		updatesChan <- update
 
-		bot.api.Logger.Info(
+		bot.logger.Info(
 			"WebHookUpdate",
 			"update", update,
 		)
